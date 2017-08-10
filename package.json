@@ -1,0 +1,53 @@
+{
+  "name": "corenlp",
+  "version": "0.0.1",
+  "description": "A NodeJS CoreNLP library",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -Rf dist",
+    "compile": "gulp",
+    "test": "mocha test/index.js --compilers js:babel-core/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerardobort/node-corenlp.git"
+  },
+  "keywords": [
+    "corenlp",
+    "nlp",
+    "natural",
+    "language",
+    "processing",
+    "stanford",
+    "corenlp"
+  ],
+  "author": "Gerardo Bort",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gerardobort/node-corenlp/issues"
+  },
+  "homepage": "https://github.com/gerardobort/node-corenlp#readme",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.1",
+    "cz-conventional-changelog": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "mocha": "^3.5.0",
+    "sinon": "^3.1.0",
+    "sinon-chai": "^2.12.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
