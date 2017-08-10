@@ -1,5 +1,8 @@
-import Document from './document';
-import Sentence from './sentence';
+import Document from './simple/document';
+import Sentence from './simple/sentence';
+import SentencesAnnotation from './simple/sentences-annotation';
+import Token from './simple/token';
+import LemmaAnnotation from './simple/lemma-annotation';
 
 /**
  * SimpleCoreNLP iInterface
@@ -8,4 +11,7 @@ import Sentence from './sentence';
 export default {
   Document,
   Sentence,
+  SentencesAnnotation,
+  Token,
+  LemmaAnnotation,
 };

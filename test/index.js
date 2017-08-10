@@ -40,4 +40,54 @@ describe('CoreNLP Library entry point', function () {
     expect(sent).to.have.property('openieTriples').that.is.a('function');
     expect(sent).to.have.property('algorithms').that.is.a('function');
   });
+
+  describe('SimpleCoreNLP.Document', async function () {
+    let doc;
+    before(function () {
+      doc = new SimpleCoreNLP.Document('El pájaro veloz come kiwi. Los árboles se mecen sobre la faz de la tierra.');
+    });
+
+    it('should split a document into sentences: SimpleCoreNLP.SentencesAnnotation', async function () {
+      expect(await doc.sentences()).to.be.instanceof(SimpleCoreNLP.SentencesAnnotation);
+    });
+
+    describe('SimpleCoreNLP.SentencesAnnotation', async function () {
+      it('should be iterable: SimpleCoreNLP.Sentence', async function () {
+        for (const sent of await doc.sentences()) {
+          expect(sent).to.be.instanceof(SimpleCoreNLP.Sentence);
+        }
+        expect([...await doc.sentences()][0]).to.be.instanceof(SimpleCoreNLP.Sentence);
+        expect([...await doc.sentences()][1]).to.be.instanceof(SimpleCoreNLP.Sentence);
+        expect(await doc.sentence(0)).to.be.instanceof(SimpleCoreNLP.Sentence);
+        expect(await doc.sentence(1)).to.be.instanceof(SimpleCoreNLP.Sentence);
+      });
+
+      describe('SimpleCoreNLP.Sentence', async function () {
+        it('should cast to the sentence text: String', async function () {
+          expect((await doc.sentence(0)).toString()).to.equals('" El pájaro veloz come kiwi .');
+          expect((await doc.sentence(1)).toString()).to.equals('Los árboles se mecen sobre la faz de la tierra . "');
+        });
+      });
+    });
+  });
+
+  describe('SimpleCoreNLP.Sentence', async function () {
+    let sent;
+    before(function () {
+      sent = new SimpleCoreNLP.Sentence('El pájaro veloz come kiwi.');
+    });
+
+    it('should lemmatize a sentence: SimpleCoreNLP.LemmaAnnotation', async function () {
+      expect(await sent.lemmas()).to.be.instanceof(SimpleCoreNLP.LemmaAnnotation);
+    });
+
+    describe('SimpleCoreNLP.LemmaAnnotation', async function () {
+      describe('SimpleCoreNLP.Sentence', async function () {
+        it('should cast to the sentence text: String', async function () {
+          expect(sent.toString()).to.equals('El pájaro veloz come kiwi.');
+          // console.log('sent', JSON.stringify(sent, null, 4));
+        });
+      });
+    });
+  });
 });
