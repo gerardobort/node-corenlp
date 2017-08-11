@@ -1,5 +1,15 @@
 # Node CoreNLP Library
 
+## Roadmap
+
+### Simple
+
+https://stanfordnlp.github.io/CoreNLP/simple.html
+
+### Annotators
+
+https://stanfordnlp.github.io/CoreNLP/annotators.html
+
 ## CoreNLP Reference
 
 https://github.com/stanfordnlp/CoreNLP

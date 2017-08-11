@@ -1,17 +1,19 @@
-import Connector from './connector';
+import Annotable from './annotable';
 import Token from './token';
-import LemmaAnnotation from './lemma-annotation';
+import _ from 'lodash';
 
-export default class Sentence {
+export default class Sentence extends Annotable {
   constructor(text) {
-    this._text = text;
+    super(text);
+    this._tokens = [];
+    this._features = [];
   }
 
   parse() {
   }
 
   toString() {
-    return this._text || this.words().join(' ');
+    return this._text || this._tokens.map(token => token.toString()).join(' ');
   }
 
   words() {
@@ -22,20 +24,22 @@ export default class Sentence {
     return this._tokens[index].word();
   }
 
+  [Symbol.iterator]() {
+    return this._tokens.values();
+  }
+
   posTags() {
   }
 
   posTag(index) {
   }
 
-  async lemmas() {
-    this._lemmas = LemmaAnnotation.fromJson(
-      (await Connector.lemma(this._text))
-    );
-    return this._lemmas;
+  lemmas() {
+    return this._tokens.map(token => token.lemma());
   }
 
-  lemma(index) {
+  async lemma(index) {
+    return this._tokens[index].lemma();
   }
 
   nerTags() {
@@ -68,6 +72,16 @@ export default class Sentence {
    */
   algorithms() {
   }
+
+  fromJson(data, isSentence = false) {
+    const sentence = isSentence ? data : _.head(data.sentences);
+    this._tokens = sentence.tokens.map(tok => Token.fromJson(tok));
+    // from: relation annotator: basicDependencies, enhancedDependencies, enhancedPlusPlusDependencies
+    this._basicDependencies = sentence.basicDependencies;
+    this._enhancedDependencies = sentence.enhancedDependencies;
+    this._enhancedPlusPlusDependencies = sentence.enhancedPlusPlusDependencies;
+    return this;
+  }
 }
 
 /**
@@ -75,8 +89,7 @@ export default class Sentence {
  * @property {number} index
  * @property {Array.<Token>} tokens
  */
-Sentence.fromJson = function (data) {
+Sentence.fromJson = function (data, isSentence = false) {
   const instance = new this();
-  instance._tokens = data.tokens.map(token => Token.fromJson(token));
-  return instance;
+  return instance.fromJson(data, isSentence);
 };

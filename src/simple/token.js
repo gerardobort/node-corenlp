@@ -1,3 +1,5 @@
+import Service from './service';
+
 export default class Token {
   constructor(word) {
     this._word = word;
@@ -6,8 +8,24 @@ export default class Token {
   parse() {
   }
 
+  toString() {
+    return this._word;
+  }
+
   word() {
     return this._word;
+  }
+
+  lemma() {
+    return this._lemma;
+  }
+
+  ner() {
+    return this._ner;
+  }
+
+  pos() {
+    return Service.getTokenPosInfo(this);
   }
 }
 
@@ -29,7 +47,9 @@ Token.fromJson = function (data) {
   instance._characterOffsetEnd = data.characterOffsetEnd;
   instance._before = data.before;
   instance._after = data.after;
+  // annotations metadata
   instance._pos = data.pos;
   instance._lemma = data.lemma;
+  instance._ner = data.ner;
   return instance;
 };

@@ -1,0 +1,460 @@
+{
+  "source": "https://nlp.stanford.edu/software/spanish-faq.shtml#tagset",
+  "tagset": {
+    "ao0000": {
+      "group": "Adjectives",
+      "tag": "Adjective (ordinal)",
+      "examples": ["primera", "segunda", "últimos"]
+    },
+    "aq0000": {
+      "group": "Adjectives",
+      "tag": "Adjective (descriptive)",
+      "examples": ["populares", "elegido", "emocionada", "andaluz"]
+    },
+    "cc": {
+      "group": "Conjunctions",
+      "tag": "Conjunction (coordinating)",
+      "examples": ["y", "o", "pero"]
+    },
+    "cs": {
+      "group": "Conjunctions",
+      "tag": "Conjunction (subordinating)",
+      "examples": ["que", "como", "mientras"]
+    },
+    "da0000": {
+      "group": "Determiners",
+      "tag": "Article (definite)",
+      "examples": ["el", "la", "los", "las"]
+    },
+    "dd0000": {
+      "group": "Determiners",
+      "tag": "Demonstrative",
+      "examples": ["este", "esta", "esos"]
+    },
+    "de0000": {
+      "group": "Determiners",
+      "tag": "Exclamative (TODO)",
+      "examples": ["qué (¡Qué pobre!)"]
+    },
+    "di0000": {
+      "group": "Determiners",
+      "tag": "Article (indefinite)",
+      "examples": ["un", "muchos", "todos", "otros"]
+    },
+    "dn0000": {
+      "group": "Determiners",
+      "tag": "Numeral",
+      "examples": ["tres", "doscientas"]
+    },
+    "do0000": {
+      "group": "Determiners",
+      "tag": "Numeral (ordinal)",
+      "examples": ["el 65 aniversario"]
+    },
+    "dp0000": {
+      "group": "Determiners",
+      "tag": "Possessive",
+      "examples": ["sus", "mi"]
+    },
+    "dt0000": {
+      "group": "Determiners",
+      "tag": "Interrogative",
+      "examples": ["cuántos", "qué", "cuál"]
+    },
+    "f0": {
+      "group": "Punctuation",
+      "tag": "Other",
+      "examples": ["&", "@"]
+    },
+    "faa": {
+      "group": "Punctuation",
+      "tag": "Inverted exclamation mark",
+      "examples": ["¡"]
+    },
+    "fat": {
+      "group": "Punctuation",
+      "tag": "Exclamation mark",
+      "examples": ["!"]
+    },
+    "fc": {
+      "group": "Punctuation",
+      "tag": "Comma",
+      "examples": [","]
+    },
+    "fca": {
+      "group": "Punctuation",
+      "tag": "Left bracket",
+      "examples": ["["]
+    },
+    "fct": {
+      "group": "Punctuation",
+      "tag": "Right bracket",
+      "examples": ["]"]
+    },
+    "fd": {
+      "group": "Punctuation",
+      "tag": "Colon",
+      "examples": [":"]
+    },
+    "fe": {
+      "group": "Punctuation",
+      "tag": "Double quote",
+      "examples": ["\""]
+    },
+    "fg": {
+      "group": "Punctuation",
+      "tag": "Hyphen",
+      "examples": ["-"]
+    },
+    "fh": {
+      "group": "Punctuation",
+      "tag": "Forward slash",
+      "examples": ["/"]
+    },
+    "fia": {
+      "group": "Punctuation",
+      "tag": "Inverted question mark",
+      "examples": ["¿"]
+    },
+    "fit": {
+      "group": "Punctuation",
+      "tag": "Question mark",
+      "examples": ["?"]
+    },
+    "fp": {
+      "group": "Punctuation",
+      "tag": "Period / full-stop",
+      "examples": ["."]
+    },
+    "fpa": {
+      "group": "Punctuation",
+      "tag": "Left parenthesis",
+      "examples": ["("]
+    },
+    "fpt": {
+      "group": "Punctuation",
+      "tag": "Right parenthesis",
+      "examples": [")"]
+    },
+    "fra": {
+      "group": "Punctuation",
+      "tag": "Left guillemet / angle quote",
+      "examples": ["«"]
+    },
+    "frc": {
+      "group": "Punctuation",
+      "tag": "Right guillemet / angle quote",
+      "examples": ["»"]
+    },
+    "fs": {
+      "group": "Punctuation",
+      "tag": "Ellipsis",
+      "examples": ["...", "etcétera"]
+    },
+    "ft": {
+      "group": "Punctuation",
+      "tag": "Percent sign",
+      "examples": ["%"]
+    },
+    "fx": {
+      "group": "Punctuation",
+      "tag": "Semicolon",
+      "examples": [";"]
+    },
+    "fz": {
+      "group": "Punctuation",
+      "tag": "Single quote",
+      "examples": ["'"]
+    },
+    "i": {
+      "group": "Interjections",
+      "tag": "Interjection",
+      "examples": ["ay", "ojalá", "hola"]
+    },
+    "nc00000": {
+      "group": "Nouns",
+      "tag": "Unknown common noun (neologism, loanword)",
+      "examples": ["minidisc", "hooligans", "re-flotamiento"]
+    },
+    "nc0n000": {
+      "group": "Nouns",
+      "tag": "Common noun (invariant number)",
+      "examples": ["hipótesis", "campus", "golf"]
+    },
+    "nc0p000": {
+      "group": "Nouns",
+      "tag": "Common noun (plural)",
+      "examples": ["años", "elecciones"]
+    },
+    "nc0s000": {
+      "group": "Nouns",
+      "tag": "Common noun (singular)",
+      "examples": ["lista", "hotel", "partido"]
+    },
+    "np00000": {
+      "group": "Nouns",
+      "tag": "Proper noun",
+      "examples": ["Málaga", "Parlamento", "UFINSA"]
+    },
+    "p0000000": {
+      "group": "Pronouns",
+      "tag": "Impersonal se",
+      "examples": ["se"]
+    },
+    "pd000000": {
+      "group": "Pronouns",
+      "tag": "Demonstrative pronoun",
+      "examples": ["éste", "eso", "aquellas"]
+    },
+    "pe000000": {
+      "group": "Pronouns",
+      "tag": "Exclamative pronoun",
+      "examples": ["qué"]
+    },
+    "pi000000": {
+      "group": "Pronouns",
+      "tag": "Indefinite pronoun",
+      "examples": ["muchos", "uno", "tanto", "nadie"]
+    },
+    "pn000000": {
+      "group": "Pronouns",
+      "tag": "Numeral pronoun",
+      "examples": ["dos miles", "ambos"]
+    },
+    "pp000000": {
+      "group": "Pronouns",
+      "tag": "Personal pronoun",
+      "examples": ["ellos", "lo", "la", "nos"]
+    },
+    "pr000000": {
+      "group": "Pronouns",
+      "tag": "Relative pronoun",
+      "examples": ["que", "quien", "donde", "cuales"]
+    },
+    "pt000000": {
+      "group": "Pronouns",
+      "tag": "Interrogative pronoun",
+      "examples": ["cómo", "cuánto", "qué"]
+    },
+    "px000000": {
+      "group": "Pronouns",
+      "tag": "Possessive pronoun",
+      "examples": ["tuyo", "nuestra"]
+    },
+    "rg": {
+      "group": "Adverbs",
+      "tag": "Adverb (general)",
+      "examples": ["siempre", "más", "personalmente"]
+    },
+    "rn": {
+      "group": "Adverbs",
+      "tag": "Adverb (negating)",
+      "examples": ["no"]
+    },
+    "sp000": {
+      "group": "Prepositions",
+      "tag": "Preposition",
+      "examples": ["en", "de", "entre"]
+    },
+    "va00000": {
+      "group": "Verbs",
+      "tag": "Verb (unknown)",
+      "examples": ["should"]
+    },
+    "vag0000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, gerund)",
+      "examples": ["habiendo"]
+    },
+    "vaic000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, indicative, conditional)",
+      "examples": ["habría", "habríamos"]
+    },
+    "vaif000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, indicative, future)",
+      "examples": ["habrá", "habremos"]
+    },
+    "vaii000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, indicative, imperfect)",
+      "examples": ["había", "habíamos"]
+    },
+    "vaip000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, indicative, present)",
+      "examples": ["ha", "hemos"]
+    },
+    "vais000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, indicative, preterite)",
+      "examples": ["hubo", "hubimos"]
+    },
+    "vam0000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, imperative)",
+      "examples": ["haya"]
+    },
+    "van0000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, infinitive)",
+      "examples": ["haber"]
+    },
+    "vap0000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, participle)",
+      "examples": ["habido"]
+    },
+    "vasi000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, subjunctive, imperfect)",
+      "examples": ["hubiera", "hubiéramos", "hubiese"]
+    },
+    "vasp000": {
+      "group": "Verbs",
+      "tag": "Verb (auxiliary, subjunctive, present)",
+      "examples": ["haya", "hayamos"]
+    },
+    "vmg0000": {
+      "group": "Verbs",
+      "tag": "Verb (main, gerund)",
+      "examples": ["dando", "trabajando"]
+    },
+    "vmic000": {
+      "group": "Verbs",
+      "tag": "Verb (main, indicative, conditional)",
+      "examples": ["daría", "trabajaríamos"]
+    },
+    "vmif000": {
+      "group": "Verbs",
+      "tag": "Verb (main, indicative, future)",
+      "examples": ["dará", "trabajaremos"]
+    },
+    "vmii000": {
+      "group": "Verbs",
+      "tag": "Verb (main, indicative, imperfect)",
+      "examples": ["daba", "trabajábamos"]
+    },
+    "vmip000": {
+      "group": "Verbs",
+      "tag": "Verb (main, indicative, present)",
+      "examples": ["da", "trabajamos"]
+    },
+    "vmis000": {
+      "group": "Verbs",
+      "tag": "Verb (main, indicative, preterite)",
+      "examples": ["dio", "trabajamos"]
+    },
+    "vmm0000": {
+      "group": "Verbs",
+      "tag": "Verb (main, imperative)",
+      "examples": ["da", "dé", "trabaja", "trabajes", "trabajemos"]
+    },
+    "vmn0000": {
+      "group": "Verbs",
+      "tag": "Verb (main, infinitive)",
+      "examples": ["dar", "trabjar"]
+    },
+    "vmp0000": {
+      "group": "Verbs",
+      "tag": "Verb (main, participle)",
+      "examples": ["dado", "trabajado"]
+    },
+    "vmsi000": {
+      "group": "Verbs",
+      "tag": "Verb (main, subjunctive, imperfect)",
+      "examples": ["diera", "diese", "trabajáramos", "trabajésemos"]
+    },
+    "vmsp000": {
+      "group": "Verbs",
+      "tag": "Verb (main, subjunctive, present)",
+      "examples": ["dé", "trabajemos"]
+    },
+    "vsg0000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, gerund)",
+      "examples": ["siendo"]
+    },
+    "vsic000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, indicative, conditional)",
+      "examples": ["sería", "serían"]
+    },
+    "vsif000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, indicative, future)",
+      "examples": ["será", "seremos"]
+    },
+    "vsii000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, indicative, imperfect)",
+      "examples": ["era", "éramos"]
+    },
+    "vsip000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, indicative, present)",
+      "examples": ["es", "son"]
+    },
+    "vsis000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, indicative, preterite)",
+      "examples": ["fue", "fuiste"]
+    },
+    "vsm0000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, imperative)",
+      "examples": ["sea", "sé"]
+    },
+    "vsn0000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, infinitive)",
+      "examples": ["ser"]
+    },
+    "vsp0000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, participle)",
+      "examples": ["sido"]
+    },
+    "vssf000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, subjunctive, future)",
+      "examples": ["fuere"]
+    },
+    "vssi000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, subjunctive, imperfect)",
+      "examples": ["fuera", "fuese", "fuéramos"]
+    },
+    "vssp000": {
+      "group": "Verbs",
+      "tag": "Verb (semiauxiliary, subjunctive, present)",
+      "examples": ["sea", "seamos"]
+    },
+    "w": {
+      "group": "Dates",
+      "tag": "Date",
+      "examples": ["octubre", "jueves", "2002"]
+    },
+    "z0": {
+      "group": "Numerals",
+      "tag": "Numeral",
+      "examples": ["547.000", "04", "52,52"]
+    },
+    "zm": {
+      "group": "Numerals",
+      "tag": "Numeral qualifier (currency)",
+      "examples": ["dólares", "euros"]
+    },
+    "zu": {
+      "group": "Numerals",
+      "tag": "Numeral qualifier (other unites)",
+      "examples": ["km", "cc"]
+    },
+    "word": {
+      "group": "Other",
+      "tag": "Emoticon or other symbol",
+      "examples": [":)", "®"]
+    }
+  }
+}

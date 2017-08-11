@@ -1,34 +1,20 @@
-import Connector from './connector';
-import SentencesAnnotation from './sentences-annotation';
+import Annotable from './annotable';
+import Sentence from './sentence';
+import _ from 'lodash';
 
-export default class Document {
+export default class Document extends Annotable {
   constructor(text) {
-    this._text = text;
+    super(text);
+    this._sentences = [];
+    this._features = [];
   }
 
-  /**
-   * requirements: tokenize
-   * https://stanfordnlp.github.io/CoreNLP/ssplit.html
-   * @returns {Promise.<SentencesAnnotation>} ssplit
-   */
-  async _ssplit() {
-    this._sentencesAnnotation = SentencesAnnotation.fromJson(
-      await Connector.ssplit(this._text)
-    );
+  sentences() {
+    return this._sentences;
   }
 
-  async sentences() {
-    if (!this._sentencesAnnotation) {
-      await this._ssplit();
-    }
-    return this._sentencesAnnotation;
-  }
-
-  async sentence(index) {
-    if (!this._sentencesAnnotation) {
-      await this._ssplit();
-    }
-    return this._sentencesAnnotation.sentence(index);
+  sentence(index) {
+    return this._sentences[index];
   }
 
   /**
@@ -38,4 +24,19 @@ export default class Document {
    */
   coref() {
   }
+
+  fromJson(data) {
+    this._sentences = data.sentences.map(sent => Sentence.fromJson(sent, true));
+    return this;
+  }
 }
+
+/**
+ * @typedef Document
+ * @property {number} index
+ * @property {Array.<Sentence>} sentences
+ */
+Document.fromJson = function (data) {
+  const instance = new this();
+  return instance.fromJson(data);
+};
