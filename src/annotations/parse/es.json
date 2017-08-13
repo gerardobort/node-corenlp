@@ -1,0 +1,121 @@
+{
+  "source": "https://nlp.stanford.edu/software/spanish-faq.shtml#corpus-modifications",
+  "multiword": {
+    "conj": {
+      "description": "Conjunction",
+      "examples": ["No obstante, en el mercado …", "la fauna y la flora"]
+    },
+    "gerundi": {
+      "description": "Gerund",
+      "examples": ["responder atacando"]
+    },
+    "grup.a": {
+      "description": "Adjective group",
+      "examples": [""]
+    },
+    "grup.adv": {
+      "description": "Adverb group",
+      "examples": [""]
+    },
+    "grup.cc *": {
+      "description": "Coordinating conjunction group",
+      "examples": ["sino que lo pongo"]
+    },
+    "grup.cs *": {
+      "description": "Subordinating conjunction group",
+      "examples": ["mientras que el Ibex …"]
+    },
+    "grup.nom": {
+      "description": "Noun group",
+      "examples": ["un foro en Internet recogerá …", "permitieron a los mercados bursátiles europeos dar …"]
+    },
+    "grup.prep *": {
+      "description": "Preposition group",
+      "examples": ["a partir de hoy", "están por encima de los demás"]
+    },
+    "grup.pron *": {
+      "description": "Pronoun group",
+      "examples": ["El mío está …"]
+    },
+    "grup.verb": {
+      "description": "Verb group",
+      "examples": ["Francfort perdió el 0,05%", "las voces empiezan a subir de tono"]
+    },
+    "grup.w *": {
+      "description": "Date group",
+      "examples": ["en el pleno del pasado viernes", "desde el 19 de mayo por …"]
+    },
+    "grup.z *": {
+      "description": "Numeral group",
+      "examples": ["el 2,85 %"]
+    },
+    "inc": {
+      "description": "Inserted element",
+      "examples": ["El Gobierno , apuntó Pimentel, se …", "Testimoni silenciós (foto derecha)"]
+    },
+    "infinitiu": {
+      "description": "Infinitive",
+      "examples": ["permitiría regular actividades …", "para no empezar a regalar un tiempo"]
+    },
+    "interjeccio": {
+      "description": "Interjection",
+      "examples": ["Ojalá Aznar", "Bueno, hay una …"]
+    },
+    "morfema.pronominal": {
+      "description": "Pronominal morpheme",
+      "examples": ["él se reafirmó", "a oírse con más frecuencia"]
+    },
+    "morfema.verbal": {
+      "description": "Verbal morpheme",
+      "examples": ["se habla español"]
+    },
+    "neg": {
+      "description": "Negation",
+      "examples": ["no sabía exactamente"]
+    },
+    "participi": {
+      "description": "Participle",
+      "examples": ["espléndidamente decorada"]
+    },
+    "prep": {
+      "description": "Preposition",
+      "examples": ["la sostuvo con cuidado"]
+    },
+    "relatiu": {
+      "description": "Relative pronoun (complementizer)",
+      "examples": ["lo que iba a hacer"]
+    },
+    "ROOT": {
+      "description": "Sentence root",
+      "examples": [""]
+    },
+    "S": {
+      "description": "Clause",
+      "examples": ["lo que iba a hacer"]
+    },
+    "s.a": {
+      "description": "Adjective phrase",
+      "examples": ["un hermoso trabajo"]
+    },
+    "sadv": {
+      "description": "Adverbial phrase",
+      "examples": ["Al2 final se realizó … se comprometió anoche"]
+    },
+    "sentence": {
+      "description": "Main sentence",
+      "examples": [""]
+    },
+    "sn": {
+      "description": "Noun phrase",
+      "examples": ["En este sentido …", "por lo que aseguró"]
+    },
+    "sp": {
+      "description": "Prepositional phrase",
+      "examples": ["… decisión tomada por las autoridades"]
+    },
+    "spec": {
+      "description": "Specifier",
+      "examples": ["el término", "todos los objetivos"]
+    }
+  }
+}

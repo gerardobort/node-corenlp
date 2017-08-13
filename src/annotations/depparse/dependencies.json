@@ -1,0 +1,227 @@
+{
+  "source": "http://universaldependencies.org/u/dep/index.html",
+  "dependencies": {
+    "acl": {
+      "type": "clausal modifier of noun (adjectival clause)",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "advcl": {
+      "type": "adverbial clause modifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "advmod": {
+      "type": "adverbial modifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "amod": {
+      "type": "adjectival modifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "appos": {
+      "type": "appositional modifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "aux": {
+      "type": "auxiliary",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "case": {
+      "type": "case marking",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "cc": {
+      "type": "coordinating conjunction",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "ccomp": {
+      "type": "clausal complement",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "clf": {
+      "type": "classifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "compound": {
+      "type": "compound",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "conj": {
+      "type": "conjunct",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "cop": {
+      "type": "copula",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "csubj": {
+      "type": "clausal subject",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "dep": {
+      "type": "unspecified dependency",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "det": {
+      "type": "determiner",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "discourse": {
+      "type": "discourse element",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "dislocated": {
+      "type": "dislocated elements",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "expl": {
+      "type": "expletive",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "fixed": {
+      "type": "fixed multiword expression",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "flat": {
+      "type": "flat multiword expression",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "goeswith": {
+      "type": "goes with",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "iobj": {
+      "type": "indirect object",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "list": {
+      "type": "list",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "mark": {
+      "type": "marker",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "nmod": {
+      "type": "nominal modifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "nsubj": {
+      "type": "nominal subject",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "nummod": {
+      "type": "numeric modifier",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "obj": {
+      "type": "object",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "obl": {
+      "type": "oblique nominal",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "orphan": {
+      "type": "orphan",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "parataxis": {
+      "type": "parataxis",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "punct": {
+      "type": "punctuation",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "reparandum": {
+      "type": "overridden disfluency",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "root": {
+      "type": "root",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "vocative": {
+      "type": "vocative",
+      "description": "",
+      "examples": [
+      ]
+    },
+    "xcomp": {
+      "type": "open clausal complement",
+      "description": "",
+      "examples": [
+      ]
+    }
+  }
+}

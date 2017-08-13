@@ -5,11 +5,12 @@ export default class Token {
     this._word = word;
   }
 
-  parse() {
-  }
-
   toString() {
     return this._word;
+  }
+
+  index() {
+    return this._index;
   }
 
   word() {
@@ -20,13 +21,18 @@ export default class Token {
     return this._lemma;
   }
 
+  pos() {
+    return Service.getTokenPosInfo(this._pos);
+  }
+
+  parse() {
+    return this._parse;
+  }
+
   ner() {
     return this._ner;
   }
 
-  pos() {
-    return Service.getTokenPosInfo(this);
-  }
 }
 
 /**
@@ -41,6 +47,7 @@ export default class Token {
  */
 Token.fromJson = function (data) {
   const instance = new this();
+  instance._index = data.index;
   instance._word = data.word;
   instance._originalText = data.originalText;
   instance._characterOffsetBegin = data.characterOffsetBegin;

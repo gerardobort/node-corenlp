@@ -1,0 +1,94 @@
+https://nlp.stanford.edu/software/dependencies_manual.pdf
+
+(ROOT
+  (sentence
+    (sn (fe \")
+      (spec (da0000 El))
+      (grup.nom (nc0s000 pájaro)
+        (sp
+          (prep
+            (grup.adv (aq0000 veloz)))
+          (sn
+            (sn
+              (grup.a (aq0000 come)))
+            (sn
+              (grup.nom (np00000 kiwi))))
+          (fp .)))
+      (fe \"))))
+
+>> TODO check:
+>> tokenize,ssplit,pos,lemma,ner,parse,mention,entitymentions,coref,kbp
+
+Multi-word expression expansion
+(ROOT // Sentence root
+  (sentence // Main sentence
+    (sn (_ ") // Noun phrase
+      (spec (_ El) // Specifier
+      (group.nom (_ pájaro) // Noun group
+        (sp // Prepositional phrase
+
+
+// dep: D -> D has a correlation with the PoS tag, but different
+// governor: I -> I represents the index of the gobernor in the tokens list
+// governorGloss: L -> L represents the word that is the gobernor
+// dependent: N -> N represents the index in the tokens list (starting from 1)
+// dependentGloss: A -> A represents the word in the tokens lise for the N position.
+
+            "basicDependencies": [
+                {
+                    "dep": "ROOT",
+                    "governor": 0,
+                    "governorGloss": "ROOT",
+                    "dependent": 3,
+                    "dependentGloss": "pájaro"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 1,
+                    "dependentGloss": "\""
+                },
+                {
+                    "dep": "det",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 2,
+                    "dependentGloss": "El"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 4,
+                    "dependentGloss": "veloz"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 6,
+                    "governorGloss": "kiwi",
+                    "dependent": 5,
+                    "dependentGloss": "come"
+                },
+                {
+                    "dep": "appos",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 6,
+                    "dependentGloss": "kiwi"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 7,
+                    "dependentGloss": "."
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 8,
+                    "dependentGloss": "\""
+                }
+            ],

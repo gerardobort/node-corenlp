@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -Rf dist",
     "compile": "gulp",
-    "test": "mocha test/index.js --compilers js:babel-core/register --require babel-polyfill"
+    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort src/*.spec.js src/**/*.spec.js --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "mocha": "^3.5.0",
+    "nyc": "^11.1.0",
     "sinon": "^3.1.0",
     "sinon-chai": "^2.12.0"
   },
