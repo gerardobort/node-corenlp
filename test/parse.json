@@ -1,0 +1,280 @@
+{
+    "sentences": [
+        {
+            "index": 0,
+            "parse": "(ROOT\n  (sentence\n    (sn (fe \")\n      (spec (da0000 El))\n      (grup.nom (nc0s000 pájaro)\n        (sp\n          (prep\n            (grup.adv (aq0000 veloz)))\n          (sn\n            (sn\n              (grup.a (aq0000 come)))\n            (sn\n              (grup.nom (np00000 kiwi))))\n          (fp .)))\n      (fe \"))))",
+            "basicDependencies": [
+                {
+                    "dep": "ROOT",
+                    "governor": 0,
+                    "governorGloss": "ROOT",
+                    "dependent": 3,
+                    "dependentGloss": "pájaro"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 1,
+                    "dependentGloss": "\""
+                },
+                {
+                    "dep": "det",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 2,
+                    "dependentGloss": "El"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 4,
+                    "dependentGloss": "veloz"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 6,
+                    "governorGloss": "kiwi",
+                    "dependent": 5,
+                    "dependentGloss": "come"
+                },
+                {
+                    "dep": "appos",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 6,
+                    "dependentGloss": "kiwi"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 7,
+                    "dependentGloss": "."
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 8,
+                    "dependentGloss": "\""
+                }
+            ],
+            "enhancedDependencies": [
+                {
+                    "dep": "ROOT",
+                    "governor": 0,
+                    "governorGloss": "ROOT",
+                    "dependent": 3,
+                    "dependentGloss": "pájaro"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 1,
+                    "dependentGloss": "\""
+                },
+                {
+                    "dep": "det",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 2,
+                    "dependentGloss": "El"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 4,
+                    "dependentGloss": "veloz"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 6,
+                    "governorGloss": "kiwi",
+                    "dependent": 5,
+                    "dependentGloss": "come"
+                },
+                {
+                    "dep": "appos",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 6,
+                    "dependentGloss": "kiwi"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 7,
+                    "dependentGloss": "."
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 8,
+                    "dependentGloss": "\""
+                }
+            ],
+            "enhancedPlusPlusDependencies": [
+                {
+                    "dep": "ROOT",
+                    "governor": 0,
+                    "governorGloss": "ROOT",
+                    "dependent": 3,
+                    "dependentGloss": "pájaro"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 1,
+                    "dependentGloss": "\""
+                },
+                {
+                    "dep": "det",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 2,
+                    "dependentGloss": "El"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 4,
+                    "dependentGloss": "veloz"
+                },
+                {
+                    "dep": "amod",
+                    "governor": 6,
+                    "governorGloss": "kiwi",
+                    "dependent": 5,
+                    "dependentGloss": "come"
+                },
+                {
+                    "dep": "appos",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 6,
+                    "dependentGloss": "kiwi"
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 7,
+                    "dependentGloss": "."
+                },
+                {
+                    "dep": "punct",
+                    "governor": 3,
+                    "governorGloss": "pájaro",
+                    "dependent": 8,
+                    "dependentGloss": "\""
+                }
+            ],
+            "tokens": [
+                {
+                    "index": 1,
+                    "word": "\"",
+                    "originalText": "\"",
+                    "lemma": "\"",
+                    "characterOffsetBegin": 0,
+                    "characterOffsetEnd": 1,
+                    "pos": "fe",
+                    "ner": "O",
+                    "before": "",
+                    "after": ""
+                },
+                {
+                    "index": 2,
+                    "word": "El",
+                    "originalText": "El",
+                    "lemma": "el",
+                    "characterOffsetBegin": 1,
+                    "characterOffsetEnd": 3,
+                    "pos": "da0000",
+                    "ner": "O",
+                    "before": "",
+                    "after": " "
+                },
+                {
+                    "index": 3,
+                    "word": "pájaro",
+                    "originalText": "pájaro",
+                    "lemma": "pájaro",
+                    "characterOffsetBegin": 4,
+                    "characterOffsetEnd": 10,
+                    "pos": "nc0s000",
+                    "ner": "O",
+                    "before": " ",
+                    "after": " "
+                },
+                {
+                    "index": 4,
+                    "word": "veloz",
+                    "originalText": "veloz",
+                    "lemma": "veloz",
+                    "characterOffsetBegin": 11,
+                    "characterOffsetEnd": 16,
+                    "pos": "aq0000",
+                    "ner": "O",
+                    "before": " ",
+                    "after": " "
+                },
+                {
+                    "index": 5,
+                    "word": "come",
+                    "originalText": "come",
+                    "lemma": "come",
+                    "characterOffsetBegin": 17,
+                    "characterOffsetEnd": 21,
+                    "pos": "aq0000",
+                    "ner": "ORG",
+                    "before": " ",
+                    "after": " "
+                },
+                {
+                    "index": 6,
+                    "word": "kiwi",
+                    "originalText": "kiwi",
+                    "lemma": "kiwi",
+                    "characterOffsetBegin": 22,
+                    "characterOffsetEnd": 26,
+                    "pos": "np00000",
+                    "ner": "ORG",
+                    "before": " ",
+                    "after": ""
+                },
+                {
+                    "index": 7,
+                    "word": ".",
+                    "originalText": ".",
+                    "lemma": ".",
+                    "characterOffsetBegin": 26,
+                    "characterOffsetEnd": 27,
+                    "pos": "fp",
+                    "ner": "O",
+                    "before": "",
+                    "after": ""
+                },
+                {
+                    "index": 8,
+                    "word": "\"",
+                    "originalText": "\"",
+                    "lemma": "\"",
+                    "characterOffsetBegin": 27,
+                    "characterOffsetEnd": 28,
+                    "pos": "fe",
+                    "ner": "O",
+                    "before": "",
+                    "after": ""
+                }
+            ]
+        }
+    ]
+}

@@ -1,15 +1,18 @@
-import Annotable from './annotable';
+import Annotable, { Tokenize, Lemma, Parse, DepParse } from './annotable';
 import Token from './token';
+import Governor from './governor';
 import _ from 'lodash';
 
 export default class Sentence extends Annotable {
   constructor(text) {
     super(text);
     this._tokens = [];
+    this._governors = [];
     this._features = [];
   }
 
   parse() {
+    return this._parse;
   }
 
   toString() {
@@ -17,10 +20,16 @@ export default class Sentence extends Annotable {
   }
 
   words() {
+    if (!this.hasAnnotator(Tokenize)) {
+      throw new Error('Asked for words on Sentence, but there are unmet annotator dependencies.');
+    }
     return this._tokens.map(token => token.word());
   }
 
   word(index) {
+    if (!this.hasAnnotator(Tokenize)) {
+      throw new Error('Asked for a word on Sentence, but there are unmet annotator dependencies.');
+    }
     return this._tokens[index].word();
   }
 
@@ -35,6 +44,9 @@ export default class Sentence extends Annotable {
   }
 
   lemmas() {
+    if (!this.hasAnnotator(Lemma)) {
+      throw new Error('Asked for lemmas on Sentence, but there are unmet annotator dependencies.');
+    }
     return this._tokens.map(token => token.lemma());
   }
 
@@ -48,7 +60,18 @@ export default class Sentence extends Annotable {
   nerTag(index) {
   }
 
-  governor() {
+  governors() {
+    if (!this.hasAnnotator(DepParse)) {
+      throw new Error('Asked for governors on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._governors;
+  }
+
+  governor(index) {
+    if (!this.hasAnnotator(DepParse)) {
+      throw new Error('Asked for a governor on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._governors[index];
   }
 
   incommingDependencyLabel(index) {
@@ -75,11 +98,22 @@ export default class Sentence extends Annotable {
 
   fromJson(data, isSentence = false) {
     const sentence = isSentence ? data : _.head(data.sentences);
-    this._tokens = sentence.tokens.map(tok => Token.fromJson(tok));
-    // from: relation annotator: basicDependencies, enhancedDependencies, enhancedPlusPlusDependencies
-    this._basicDependencies = sentence.basicDependencies;
-    this._enhancedDependencies = sentence.enhancedDependencies;
-    this._enhancedPlusPlusDependencies = sentence.enhancedPlusPlusDependencies;
+    if (sentence.tokens) {
+      this.addAnnotator(Tokenize);
+      this._tokens = sentence.tokens.map(tok => Token.fromJson(tok));
+    }
+    if (sentence.parse) {
+      this.addAnnotator(Parse);
+      this._parse = sentence.parse;
+    }
+    if (sentence.basicDependencies) {
+      this.addAnnotator(DepParse);
+      this._governors = sentence.basicDependencies.map(gov => new Governor(gov.dep, this._tokens[gov.governor-1], this._tokens[gov.dependent-1]));
+      // from: relation annotator: basicDependencies, enhancedDependencies, enhancedPlusPlusDependencies
+      this._basicDependencies = sentence.basicDependencies;
+      this._enhancedDependencies = sentence.enhancedDependencies;
+      this._enhancedPlusPlusDependencies = sentence.enhancedPlusPlusDependencies;
+    }
     return this;
   }
 }

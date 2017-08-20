@@ -10,6 +10,13 @@ https://stanfordnlp.github.io/CoreNLP/simple.html
 
 https://stanfordnlp.github.io/CoreNLP/annotators.html
 
+### Full API
+
+### Typed dependencies (DepParse Annotator)
+
+http://universaldependencies.org/u/dep/index.html
+https://nlp.stanford.edu/software/dependencies_manual.pdf
+
 ## CoreNLP Reference
 
 https://github.com/stanfordnlp/CoreNLP
