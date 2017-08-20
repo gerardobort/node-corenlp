@@ -16,9 +16,10 @@ const debug = data => {
 
 export default {
 
-  getAnnotationData: (text, annotators) => Connector.get({
-      text,
+  getAnnotationData: (text, annotators, options = {}) => Connector.get({
       annotators,
+      text,
+      options,
       language: config.language,
     }),
 
