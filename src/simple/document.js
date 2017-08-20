@@ -2,8 +2,20 @@ import Annotable, { SSplit } from './annotable';
 import Sentence from './sentence';
 import _ from 'lodash';
 
+/**
+ * The CoreNLP API JSON structure representing a document
+ * @typedef DocumentJSON
+ * @property {number} index
+ * @property {Array.<Sentence>} sentences
+ */
+
+/**
+ * Class representing a Document (@see SimpleCoreNLP.Document).
+ * @extends Annotable
+ */
 export default class Document extends Annotable {
   /**
+   * Create a Document
    * @param {string} text
    */
   constructor(text) {
@@ -12,11 +24,16 @@ export default class Document extends Annotable {
     this._features = [];
   }
 
+  /**
+   * Get a string representation
+   * @return {string} document
+   */
   toString() {
     return this._text || this._sentences.map(sent => sent.toString()).join('. ');
   }
 
   /**
+   * Get a list of sentences
    * @returns {Array.<Sentence>} sentences - The document sentences
    */
   sentences() {
@@ -27,6 +44,7 @@ export default class Document extends Annotable {
   }
 
   /**
+   * Get the sentence for a given index
    * @param {number} index - The position of the sentence to get
    * @returns {Sentence} sentence - The document sentences
    */
@@ -35,6 +53,7 @@ export default class Document extends Annotable {
   }
 
   /**
+   * TODO
    * requirements: tokenize, ssplit, pos, lemma, ner, parse
    * https://stanfordnlp.github.io/CoreNLP/dcoref.html
    * @returns {Promise.<DeterministicCorefAnnotator>} dcoref 
@@ -43,7 +62,8 @@ export default class Document extends Annotable {
   }
 
   /**
-   * @param {Object} data - The document data, as returned by CoreNLP API service
+   * Update an instance of Document with data provided by a JSON
+   * @param {DocumentJSON} data - The document data, as returned by CoreNLP API service
    * @returns {Document} document - The current document instance
    */
   fromJson(data) {
@@ -53,14 +73,14 @@ export default class Document extends Annotable {
     }
     return this;
   }
-}
 
-/**
- * @typedef Document
- * @property {number} index
- * @property {Array.<Sentence>} sentences
- */
-Document.fromJson = function (data) {
-  const instance = new this();
-  return instance.fromJson(data);
-};
+  /**
+   * Get an instance of Document from a given JSON
+   * @param {DocumentJSON} data - The document data, as returned by CoreNLP API service
+   * @returns {Document} document - A new Document instance
+   */
+  static fromJson(data) {
+    const instance = new this();
+    return instance.fromJson(data);
+  }
+}

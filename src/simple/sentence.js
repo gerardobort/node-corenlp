@@ -3,7 +3,22 @@ import Token from './token';
 import Governor from './governor';
 import _ from 'lodash';
 
+/**
+ * The CoreNLP API JSON structure representing a sentence
+ * @typedef SentenceJSON
+ * @property {number} index
+ * @property {Array.<Token>} tokens
+ */
+
+/**
+ * Class representing a Sentence (@see SimpleCoreNLP.Sentence).
+ * @extends Annotable
+ */
 export default class Sentence extends Annotable {
+  /**
+   * Create a Sentence
+   * @param {string} text
+   */
   constructor(text) {
     super(text);
     this._tokens = [];
@@ -11,14 +26,26 @@ export default class Sentence extends Annotable {
     this._features = [];
   }
 
-  parse() {
-    return this._parse;
-  }
-
+  /**
+   * Get a string representation
+   * @return {string} sentence
+   */
   toString() {
     return this._text || this._tokens.map(token => token.toString()).join(' ');
   }
 
+  /**
+   * Get a string representation of the parse tree structure
+   * @return {string} parse
+   */
+  parse() {
+    return this._parse;
+  }
+
+  /**
+   * Get an array of string representations of the sentence words
+   * @return {Array.<string>} words
+   */
   words() {
     if (!this.hasAnnotator(Tokenize)) {
       throw new Error('Asked for words on Sentence, but there are unmet annotator dependencies.');
@@ -26,6 +53,10 @@ export default class Sentence extends Annotable {
     return this._tokens.map(token => token.word());
   }
 
+  /**
+   * Get a string representations of the Nth word of the sentence
+   * @return {Arra.<string>} words
+   */
   word(index) {
     if (!this.hasAnnotator(Tokenize)) {
       throw new Error('Asked for a word on Sentence, but there are unmet annotator dependencies.');
@@ -96,6 +127,12 @@ export default class Sentence extends Annotable {
   algorithms() {
   }
 
+  /**
+   * Update an instance of Sentence with data provided by a JSON
+   * @param {SentenceJSON} data - The document data, as returned by CoreNLP API service
+   * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence of a full document
+   * @returns {Sentence} document - The current document instance
+   */
   fromJson(data, isSentence = false) {
     const sentence = isSentence ? data : _.head(data.sentences);
     if (sentence.tokens) {
@@ -116,14 +153,16 @@ export default class Sentence extends Annotable {
     }
     return this;
   }
-}
 
-/**
- * @typedef Sentence
- * @property {number} index
- * @property {Array.<Token>} tokens
- */
-Sentence.fromJson = function (data, isSentence = false) {
-  const instance = new this();
-  return instance.fromJson(data, isSentence);
-};
+
+  /**
+   * Get an instance of Sentence from a given JSON
+   * @param {SentenceJSON} data - The document data, as returned by CoreNLP API service
+   * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence of a full document
+   * @returns {Sentence} document - A new Sentence instance
+   */
+  static fromJson(data, isSentence = false) {
+    const instance = new this();
+    return instance.fromJson(data, isSentence);
+  }
+}
