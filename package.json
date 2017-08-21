@@ -4,9 +4,11 @@
   "description": "A NodeJS CoreNLP library",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -Rf dist",
+    "clean": "rm -Rf dist corenlp *.tmp.json",
+    "corenlp:download": "./scripts/corenlp-download",
+    "corenlp:server": "./scripts/corenlp-server",
     "compile": "gulp",
-    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort src/*.spec.js src/**/*.spec.js --compilers js:babel-core/register"
+    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort src/*.spec.js src/**/*.spec.js --compilers js:babel-core/register --timeout 30000"
   },
   "repository": {
     "type": "git",
@@ -59,8 +61,11 @@
     }
   },
   "dependencies": {
+    "child-process-promise": "^2.2.1",
+    "load-json-file": "^3.0.0",
     "lodash": "^4.17.4",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "tmp-file": "^2.0.1"
   }
 }

@@ -4,5 +4,7 @@ dist
 package-lock.json
 .*.swo
 .*.swp
+*.tmp.json
+corenlp
 coverage
 .nyc_output

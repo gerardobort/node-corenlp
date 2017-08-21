@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Start CoreNLP Server
+
+if [ -f `dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/build.xml ]; then
+  java -Xmx4g \
+    -cp '`dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/*' \
+    edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
+    -serverProperties StanfordCoreNLP-spanish.properties \
+    -port 9000 \
+    -timeout 30000
+else
+   echo "CoreNLP not found in corenlp/.  Did you run \`npm run corenlp:download\`?"
+fi

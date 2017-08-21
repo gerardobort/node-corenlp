@@ -4,24 +4,28 @@ const config = {
   dsn: 'http://localhost:9000',
 };
 
-export default {
+export default class Connector {
+  constructor({ dsn = config.dsn }) {
+    this.dsn = dsn;
+  }
 
   /**
    * @returns {Promise.<Object>}
    */
-  get: ({ annotators, text, options, language }) => {
+  get({ annotators, text, options, language }) {
     const properties = {
       annotators: annotators.join(),
       ...options,
       outputFormat: 'json',
     };
-    // console.log('Annptators', `${config.dsn}/?properties=${JSON.stringify(properties)}&pipelineLanguage=${language}`);
-    return rp({
+    const rpOpts = {
       method: 'POST',
-      uri: `${config.dsn}/?properties=${JSON.stringify(properties)}&pipelineLanguage=${language}`,
+      uri: `${this.dsn}/?properties=${JSON.stringify(properties)}&pipelineLanguage=${language}`,
       body: text,
       json: true,
-    })
-  },
+    };
+
+    return rp(rpOpts);
+  }
 
 };
