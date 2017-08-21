@@ -27,5 +27,4 @@ export default class Connector {
 
     return rp(rpOpts);
   }
-
-};
+}

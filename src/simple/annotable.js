@@ -17,7 +17,7 @@ export class Annotator {
     this._options = options;
     this._dependencies = dependencies;
   }
-  
+
   /**
    * Get a string representation
    * @return {string} annotator
@@ -44,7 +44,8 @@ export class Annotator {
     if (value === null) {
       return this._options[key];
     }
-    return this._options[key] = value;
+    this._options[key] = value;
+    return value;
   }
 
   /**
@@ -56,16 +57,24 @@ export class Annotator {
   }
 
   /**
-   * Get a list of annotators dependencies, following by this annotator, all this as a list of strings
+   * Get a list of annotators dependencies, following by this annotator, all this as
+   * a list of strings
    * This is useful to fulfill the `annotators` param in CoreNLP API properties.
    * @return {Array.<string>} pipeline
    */
   pipeline() {
-    return _.uniq(_.flatten(this.dependencies().map(annotator => annotator.pipeline())).concat([this.toString()]));
+    return _.uniq(
+      _.flatten(
+        this.dependencies()
+          .map(annotator => annotator.pipeline()),
+      )
+        .concat([this.toString()]),
+    );
   }
 
   /**
-   * Get a n object of all the Annotator options including the current and all its dependencies, prefixed by the annotator names
+   * Get a n object of all the Annotator options including the current and all its 
+   * dependencies, prefixed by the annotator names
    * This is useful to fulfill the options params in CoreNLP API properties.
    * @return {Array.<string>} pipelineOptions
    */
@@ -74,7 +83,7 @@ export class Annotator {
       this.dependencies().map(annotator => annotator.pipelineOptions())
         .concat(Object.keys(this.options()).map(opt => ({ [`${this}.${opt}`]: this.option(opt) }))),
       (ac, option) => ({ ...ac, ...option }),
-      {}
+      {},
     );
   }
 }
@@ -116,8 +125,8 @@ export default class Annotable {
   }
 
   async applyAnnotator(annotator) {
-    console.log('TEST', annotator.pipelineOptions());
-    this.fromJson(await Service.getAnnotationData(this._text, annotator.pipeline(), annotator.pipelineOptions()));
+    this.fromJson(await Service.getAnnotationData(
+      this._text, annotator.pipeline(), annotator.pipelineOptions()));
     this.addAnnotators(annotator.dependencies());
     this.addAnnotator(annotator);
   }

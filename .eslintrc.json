@@ -1,0 +1,16 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+      "no-underscore-dangle": "off",
+      "no-restricted-syntax": "off",
+      "no-unused-expressions": "off"
+    },
+    "globals": {
+      "context": true,
+      "describe": true,
+      "before": true,
+      "beforeEach": true,
+      "it": true,
+      "expect": true
+    }
+}

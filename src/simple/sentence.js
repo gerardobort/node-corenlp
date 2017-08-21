@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import Annotable, { Tokenize, Lemma, Parse, DepParse } from './annotable';
 import Token from './token';
 import Governor from './governor';
-import _ from 'lodash';
 
 /**
  * The CoreNLP API JSON structure representing a sentence
@@ -68,9 +68,11 @@ export default class Sentence extends Annotable {
     return this._tokens.values();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   posTags() {
   }
 
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   posTag(index) {
   }
 
@@ -85,9 +87,11 @@ export default class Sentence extends Annotable {
     return this._tokens[index].lemma();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   nerTags() {
   }
 
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   nerTag(index) {
   }
 
@@ -105,18 +109,23 @@ export default class Sentence extends Annotable {
     return this._governors[index];
   }
 
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   incommingDependencyLabel(index) {
   }
 
+  // eslint-disable-next-line class-methods-use-this
   natlogPolarities() {
   }
 
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarity(index) {
   }
 
+  // eslint-disable-next-line class-methods-use-this
   openie() {
   }
 
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   openieTriples(index) {
   }
 
@@ -124,13 +133,15 @@ export default class Sentence extends Annotable {
    *
    * @returns {SentenceAlgorithms}
    */
+  // eslint-disable-next-line class-methods-use-this
   algorithms() {
   }
 
   /**
    * Update an instance of Sentence with data provided by a JSON
    * @param {SentenceJSON} data - The document data, as returned by CoreNLP API service
-   * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence of a full document
+   * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence
+   * of a full document
    * @returns {Sentence} document - The current document instance
    */
   fromJson(data, isSentence = false) {
@@ -145,8 +156,9 @@ export default class Sentence extends Annotable {
     }
     if (sentence.basicDependencies) {
       this.addAnnotator(DepParse);
-      this._governors = sentence.basicDependencies.map(gov => new Governor(gov.dep, this._tokens[gov.governor-1], this._tokens[gov.dependent-1]));
-      // from: relation annotator: basicDependencies, enhancedDependencies, enhancedPlusPlusDependencies
+      this._governors = sentence.basicDependencies.map(gov =>
+        new Governor(gov.dep, this._tokens[gov.governor - 1], this._tokens[gov.dependent - 1]));
+      // @see relation annotator...
       this._basicDependencies = sentence.basicDependencies;
       this._enhancedDependencies = sentence.enhancedDependencies;
       this._enhancedPlusPlusDependencies = sentence.enhancedPlusPlusDependencies;
@@ -158,7 +170,8 @@ export default class Sentence extends Annotable {
   /**
    * Get an instance of Sentence from a given JSON
    * @param {SentenceJSON} data - The document data, as returned by CoreNLP API service
-   * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence of a full document
+   * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence of a
+   * full document
    * @returns {Sentence} document - A new Sentence instance
    */
   static fromJson(data, isSentence = false) {

@@ -1,19 +1,11 @@
-import Annotable, {
+import {
   Annotator,
-  Tokenize,
-  SSplit,
-  POS,
-  Lemma,
-  NER,
-  Parse,
-  DepParse,
-  Relation,
 } from './annotable';
 
-describe('Annotator', function () {
+describe('Annotator', () => {
   let annotator;
 
-  beforeEach(function() {
+  beforeEach(() => {
     annotator = new Annotator('tokenize', {
       whitespace: true,
       keepeol: false,
@@ -21,10 +13,9 @@ describe('Annotator', function () {
     });
   });
 
-  context('Pipeline setup', function() {
-
-    describe('options / option', function() {
-      it('should return the given options', function () {
+  context('Pipeline setup', () => {
+    describe('options / option', () => {
+      it('should return the given options', () => {
         expect(annotator.options()).to.deep.equal({
           whitespace: true,
           keepeol: false,
@@ -32,35 +23,35 @@ describe('Annotator', function () {
         });
       });
 
-      it('should return the given option', function () {
+      it('should return the given option', () => {
         expect(annotator.option('whitespace')).to.be.true;
         expect(annotator.option('keepeol')).to.be.false;
         expect(annotator.option('verbose')).to.be.true;
       });
 
-      it('should set the given option', function () {
+      it('should set the given option', () => {
         expect(annotator.option('keepeol')).to.be.false;
         expect(annotator.option('keepeol', 'testset')).to.equal('testset');
         expect(annotator.option('keepeol')).to.equal('testset');
       });
     });
 
-    describe('dependencies', function() {
-      it('should return the given dependencies', function () {
+    describe('dependencies', () => {
+      it('should return the given dependencies', () => {
         const dep1 = new Annotator('testdep', { testopt: true, testopt2: 'test' });
         const dep2 = new Annotator('testdep2', { testopt: true, testopt2: 'test' });
         annotator = new Annotator('tokenize', { whitespace: true, keepeol: false, verbose: true }, [dep1, dep2]);
-        expect(annotator.dependencies()).to.deep.equal([ dep1, dep2 ]);
+        expect(annotator.dependencies()).to.deep.equal([dep1, dep2]);
       });
     });
 
-    describe('pipeline', function() {
-      it('should return the given dependencies', function () {
+    describe('pipeline', () => {
+      it('should return the given dependencies', () => {
         annotator = new Annotator('tokenize', { whitespace: true, keepeol: false, verbose: true }, [
           new Annotator('testdep', { testopt: true, testopt2: 'test' }),
           new Annotator('testdep2', { testopt: true, testopt2: 'test' }, [
             new Annotator('testdep3', { testopt: true, testopt2: 'test' }, [
-              new Annotator('testdep4', { testopt: true, testopt2: 'test' })
+              new Annotator('testdep4', { testopt: true, testopt2: 'test' }),
             ]),
           ]),
         ]);
@@ -74,8 +65,8 @@ describe('Annotator', function () {
       });
     });
 
-    describe('pipelineOptions', function() {
-      it('should return the options of the current annotator', function () {
+    describe('pipelineOptions', () => {
+      it('should return the options of the current annotator', () => {
         expect(annotator.pipelineOptions()).to.deep.equal({
           'tokenize.whitespace': true,
           'tokenize.keepeol': false,
@@ -83,7 +74,7 @@ describe('Annotator', function () {
         });
       });
 
-      it('should return the options of the current annotator and its dependencies', function () {
+      it('should return the options of the current annotator and its dependencies', () => {
         annotator = new Annotator('tokenize', { whitespace: true, keepeol: false, verbose: true }, [
           new Annotator('testdep', { testopt: true, testopt2: 'test' }),
           new Annotator('testdep2', { testopt: true, testopt2: 'test' }),
@@ -100,12 +91,12 @@ describe('Annotator', function () {
         });
       });
 
-      it('should return the options of the current annotator and its dependencies\' dependencies', function () {
+      it('should return the options of the current annotator and its dependencies\' dependencies', () => {
         annotator = new Annotator('tokenize', { whitespace: true, keepeol: false, verbose: true }, [
           new Annotator('testdep', { testopt: true, testopt2: 'test' }),
           new Annotator('testdep2', { testopt: true, testopt2: 'test' }, [
             new Annotator('testdep3', { testopt: true, testopt2: 'test' }, [
-              new Annotator('testdep4', { testopt: true, testopt2: 'test' })
+              new Annotator('testdep4', { testopt: true, testopt2: 'test' }),
             ]),
           ]),
         ]);
@@ -127,17 +118,16 @@ describe('Annotator', function () {
     });
   });
 
-  context('Other methods', function() {
-    describe('toString', function() {
-      it('should return the given name', function () {
+  context('Other methods', () => {
+    describe('toString', () => {
+      it('should return the given name', () => {
         expect(annotator.toString()).to.equals('tokenize');
       });
     });
   });
-
 });
 
-describe.skip('Annotable', function () {
-  it('should...', function () {
+describe.skip('Annotable', () => {
+  it('should...', () => {
   });
 });
