@@ -2,39 +2,39 @@ import Document from './document';
 import Sentence from './sentence';
 import Annotable from './annotable';
 
-describe('Document', function () {
+describe('Document', () => {
   let doc;
 
-  beforeEach(function() {
+  beforeEach(() => {
     doc = new Document('loren ipsum dolor sit amet');
   });
 
-  context('SimpleCoreNLP.Document interface', function() {
-    it('should follow the SimpleCoreNLP.Document contract', function () {
+  context('SimpleCoreNLP.Document interface', () => {
+    it('should follow the SimpleCoreNLP.Document contract', () => {
       expect(doc).to.have.property('sentences').that.is.a('function');
       expect(doc).to.have.property('sentence').that.is.a('function');
       expect(doc).to.have.property('coref').that.is.a('function');
     });
 
-    describe('constructor', function() {
-      it('should receive a text', function () {
+    describe('constructor', () => {
+      it('should receive a text', () => {
         expect(doc.toString()).to.equals('loren ipsum dolor sit amet');
       });
     });
 
-    it('should extend from Annotable', function () {
+    it('should extend from Annotable', () => {
       expect(doc).to.be.an.instanceof(Annotable);
     });
   });
 
-  context('Other methods', function() {
-    describe('toString', function() {
-      it('should return the given text when it is initialized manually', function () {
+  context('Other methods', () => {
+    describe('toString', () => {
+      it('should return the given text when it is initialized manually', () => {
         expect(doc.toString()).to.equals('loren ipsum dolor sit amet');
       });
 
-      it('should return the computed text when it is initialized by the JSON API', function () {
-        const doc = Document.fromJson({
+      it('should return the computed text when it is initialized by the JSON API', () => {
+        const doc2 = Document.fromJson({
           sentences: [
             {
               tokens: [
@@ -51,17 +51,17 @@ describe('Document', function () {
             },
           ],
         });
-        expect(doc.toString()).to.equals('loren ipsum. dolor sit amet');
+        expect(doc2.toString()).to.equals('loren ipsum. dolor sit amet');
       });
     });
 
-    describe('sentences / sentence', function() {
-      it('should throw an error if there is no annotator', function () {
+    describe('sentences / sentence', () => {
+      it('should throw an error if there is no annotator', () => {
         expect(() => doc.sentences()).to.throw(Error, /unmet annotator dependencies/);
         expect(() => doc.sentence(0)).to.throw(Error, /unmet annotator dependencies/);
       });
 
-      it('should return the sentences, by first applying ssplit annotator', async function () {
+      it('should return the sentences, by first applying ssplit annotator', async () => {
         expect(() => doc.sentences()).to.throw(Error, /unmet annotator dependencies/);
         await doc.applySSplit(); // TODO mock this
         expect(doc.sentences()).to.be.an('array');
@@ -69,8 +69,8 @@ describe('Document', function () {
         expect(doc.sentence(0)).to.be.instanceof(Sentence);
       });
 
-      it('should return the sentences when it is initialized by the JSON API', async function () {
-        const doc = Document.fromJson({
+      it('should return the sentences when it is initialized by the JSON API', async () => {
+        const doc2 = Document.fromJson({
           sentences: [
             {
               tokens: [
@@ -87,19 +87,19 @@ describe('Document', function () {
             },
           ],
         });
-        expect(doc.sentences()).to.be.an('array');
-        expect(doc.sentences()).to.have.property('0').that.is.instanceof(Sentence);
-        expect(doc.sentence(0)).to.be.instanceof(Sentence);
+        expect(doc2.sentences()).to.be.an('array');
+        expect(doc2.sentences()).to.have.property('0').that.is.instanceof(Sentence);
+        expect(doc2.sentence(0)).to.be.instanceof(Sentence);
       });
     });
 
-    describe.skip('coref', function() {
-      it('should...', function () {
+    describe.skip('coref', () => {
+      it('should...', () => {
       });
     });
 
-    describe('fromJson', function() {
-      beforeEach(function() {
+    describe('fromJson', () => {
+      beforeEach(() => {
         doc = Document.fromJson({
           sentences: [
             {
@@ -119,7 +119,7 @@ describe('Document', function () {
         });
       });
 
-      it('should initialize sentences properly', function () {
+      it('should initialize sentences properly', () => {
         expect(doc.sentences()).to.be.an('array');
         expect(doc.sentences()).to.have.property('0').that.is.instanceof(Sentence);
       });

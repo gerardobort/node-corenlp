@@ -1,6 +1,5 @@
 import Annotable, { SSplit } from './annotable';
 import Sentence from './sentence';
-import _ from 'lodash';
 
 /**
  * The CoreNLP API JSON structure representing a document
@@ -58,6 +57,7 @@ export default class Document extends Annotable {
    * https://stanfordnlp.github.io/CoreNLP/dcoref.html
    * @returns {Promise.<DeterministicCorefAnnotator>} dcoref 
    */
+  // eslint-disable-next-line class-methods-use-this
   coref() {
   }
 

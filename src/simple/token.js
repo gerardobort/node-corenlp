@@ -76,5 +76,4 @@ export default class Token {
     instance._ner = data.ner;
     return instance;
   }
-
 }

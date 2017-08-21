@@ -1,7 +1,7 @@
 import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
-import Annotable from './simple/annotable';
+import Annotable, { Annotator } from './simple/annotable';
 import Service from './simple/service';
 import Connector from './connector';
 import ConnectorCli from './connector-cli';
@@ -17,6 +17,8 @@ export default {
   },
   Connector,
   ConnectorCli,
+  Annotable,
+  Annotator,
   Document,
   Sentence,
   Token,
