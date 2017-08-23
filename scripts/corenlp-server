@@ -4,7 +4,7 @@
 
 if [ -f `dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/build.xml ]; then
   java -Xmx4g \
-    -cp '`dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/*' \
+    -cp "`dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/*" \
     edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
     -serverProperties StanfordCoreNLP-spanish.properties \
     -port 9000 \
