@@ -1,8 +1,10 @@
 import chai from 'chai';
+import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import SimpleCoreNLP from '../src';
 
 global.expect = chai.expect;
+global.sinon = sinon;
 chai.use(sinonChai);
 
 SimpleCoreNLP.setup(
