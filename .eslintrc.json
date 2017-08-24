@@ -11,6 +11,7 @@
       "before": true,
       "beforeEach": true,
       "it": true,
-      "expect": true
+      "expect": true,
+      "sinon": true
     }
 }

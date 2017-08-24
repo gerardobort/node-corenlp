@@ -2,6 +2,7 @@ import SimpleCoreNLP from '..';
 import Document from './document';
 import Sentence from './sentence';
 import Annotable from './annotable';
+import { WordsToSentenceAnnotator } from './annotator';
 
 describe('Document', () => {
   let connectorMock;
@@ -80,7 +81,7 @@ describe('Document', () => {
             },
           ],
         }));
-        await doc.applySSplit();
+        await doc.applyAnnotator(WordsToSentenceAnnotator);
         expect(doc.sentences()).to.be.an('array');
         expect(doc.sentences()).to.have.property('0').that.is.instanceof(Sentence);
         expect(doc.sentence(0)).to.be.instanceof(Sentence);

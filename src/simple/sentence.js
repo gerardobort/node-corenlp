@@ -1,5 +1,11 @@
 import _ from 'lodash';
-import Annotable, { Tokenize, Lemma, Parse, DepParse } from './annotable';
+import Annotable from './annotable';
+import {
+  TokenizerAnnotator,
+  MorphaAnnotator,
+  ParserAnnotator,
+  DependencyParseAnnotator,
+} from './annotator';
 import Token from './token';
 import Governor from './governor';
 
@@ -47,7 +53,7 @@ export default class Sentence extends Annotable {
    * @return {Array.<string>} words
    */
   words() {
-    if (!this.hasAnnotator(Tokenize)) {
+    if (!this.hasAnnotator(TokenizerAnnotator)) {
       throw new Error('Asked for words on Sentence, but there are unmet annotator dependencies.');
     }
     return this._tokens.map(token => token.word());
@@ -58,7 +64,7 @@ export default class Sentence extends Annotable {
    * @return {Arra.<string>} words
    */
   word(index) {
-    if (!this.hasAnnotator(Tokenize)) {
+    if (!this.hasAnnotator(TokenizerAnnotator)) {
       throw new Error('Asked for a word on Sentence, but there are unmet annotator dependencies.');
     }
     return this._tokens[index].word();
@@ -77,7 +83,7 @@ export default class Sentence extends Annotable {
   }
 
   lemmas() {
-    if (!this.hasAnnotator(Lemma)) {
+    if (!this.hasAnnotator(MorphaAnnotator)) {
       throw new Error('Asked for lemmas on Sentence, but there are unmet annotator dependencies.');
     }
     return this._tokens.map(token => token.lemma());
@@ -96,14 +102,14 @@ export default class Sentence extends Annotable {
   }
 
   governors() {
-    if (!this.hasAnnotator(DepParse)) {
+    if (!this.hasAnnotator(DependencyParseAnnotator)) {
       throw new Error('Asked for governors on Sentence, but there are unmet annotator dependencies.');
     }
     return this._governors;
   }
 
   governor(index) {
-    if (!this.hasAnnotator(DepParse)) {
+    if (!this.hasAnnotator(DependencyParseAnnotator)) {
       throw new Error('Asked for a governor on Sentence, but there are unmet annotator dependencies.');
     }
     return this._governors[index];
@@ -147,15 +153,15 @@ export default class Sentence extends Annotable {
   fromJson(data, isSentence = false) {
     const sentence = isSentence ? data : _.head(data.sentences);
     if (sentence.tokens) {
-      this.addAnnotator(Tokenize);
+      this.addAnnotator(TokenizerAnnotator);
       this._tokens = sentence.tokens.map(tok => Token.fromJson(tok));
     }
     if (sentence.parse) {
-      this.addAnnotator(Parse);
+      this.addAnnotator(ParserAnnotator);
       this._parse = sentence.parse;
     }
     if (sentence.basicDependencies) {
-      this.addAnnotator(DepParse);
+      this.addAnnotator(DependencyParseAnnotator);
       this._governors = sentence.basicDependencies.map(gov =>
         new Governor(gov.dep, this._tokens[gov.governor - 1], this._tokens[gov.dependent - 1]));
       // @see relation annotator...
