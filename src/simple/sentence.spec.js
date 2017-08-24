@@ -1,8 +1,16 @@
+import SimpleCoreNLP from '..';
 import Sentence from './sentence';
 import Annotable from './annotable';
+import Token from './token';
 
 describe('Sentence', () => {
+  let connectorMock;
   let sent;
+
+  before(() => {
+    connectorMock = { get: sinon.stub() };
+    SimpleCoreNLP.setup(connectorMock);
+  });
 
   beforeEach(() => {
     sent = new Sentence('loren ipsum dolor sit amet');
@@ -67,6 +75,15 @@ describe('Sentence', () => {
 
       it('should return the words, by first applying ssplit annotator', async () => {
         expect(() => sent.words()).to.throw(Error, /unmet annotator dependencies/);
+        connectorMock.get.returns(Promise.resolve({
+          sentences: [
+            {
+              tokens: [
+                { word: 'loren' },
+              ]
+            },
+          ],
+        }));
         await sent.applySSplit(); // TODO mock this
         expect(sent.words()).to.be.an('array');
         expect(sent.words()).to.have.property('0').that.is.a('string');

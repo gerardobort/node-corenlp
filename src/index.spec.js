@@ -1,8 +1,8 @@
 import SimpleCoreNLP from '.';
 
 // TODO move these tests to a different place, and refactor!
-
-describe('CoreNLP Library entry point', () => {
+// TODO use connectorMock
+describe.skip('CoreNLP Library entry point', () => {
   describe('SimpleCoreNLP.Document', async () => {
     let doc;
     before(async () => {
