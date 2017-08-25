@@ -1,4 +1,5 @@
-import Annotable, { SSplit } from './annotable';
+import Annotable from './annotable';
+import { WordsToSentenceAnnotator } from './annotator';
 import Sentence from './sentence';
 
 /**
@@ -36,7 +37,7 @@ export default class Document extends Annotable {
    * @returns {Array.<Sentence>} sentences - The document sentences
    */
   sentences() {
-    if (!this.hasAnnotator(SSplit)) {
+    if (!this.hasAnnotator(WordsToSentenceAnnotator)) {
       throw new Error('Asked for sentences on Document, but there are unmet annotator dependencies.');
     }
     return this._sentences;
@@ -68,7 +69,7 @@ export default class Document extends Annotable {
    */
   fromJson(data) {
     if (data.sentences) {
-      this.addAnnotator(SSplit);
+      this.addAnnotator(WordsToSentenceAnnotator);
       this._sentences = data.sentences.map(sent => Sentence.fromJson(sent, true));
     }
     return this;

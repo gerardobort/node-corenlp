@@ -1,7 +1,7 @@
 import SimpleCoreNLP from '..';
 import Sentence from './sentence';
 import Annotable from './annotable';
-import Token from './token';
+import { WordsToSentenceAnnotator } from './annotator';
 
 describe('Sentence', () => {
   let connectorMock;
@@ -80,11 +80,11 @@ describe('Sentence', () => {
             {
               tokens: [
                 { word: 'loren' },
-              ]
+              ],
             },
           ],
         }));
-        await sent.applySSplit(); // TODO mock this
+        await sent.applyAnnotator(WordsToSentenceAnnotator);
         expect(sent.words()).to.be.an('array');
         expect(sent.words()).to.have.property('0').that.is.a('string');
         expect(sent.word(0)).to.be.a('string');
