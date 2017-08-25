@@ -1,0 +1,185 @@
+{
+  "source": "http://web.mit.edu/6.863/www/PennTreebankTags.html",
+  "tagset": {
+    "CC": {
+      "group": "Coordinating conjunction",
+      "tag": "Coordinating conjunction",
+      "examples": []
+    },
+    "CD": {
+      "group": "Cardinal number",
+      "tag": "Cardinal number",
+      "examples": []
+    },
+    "DT": {
+      "group": "Determiner",
+      "tag": "Determiner",
+      "examples": []
+    },
+    "EX": {
+      "group": "Existential there",
+      "tag": "Existential there",
+      "examples": []
+    },
+    "FW": {
+      "group": "Foreign word",
+      "tag": "Foreign word",
+      "examples": []
+    },
+    "IN": {
+      "group": "Preposition or subordinating conjunction",
+      "tag": "Preposition or subordinating conjunction",
+      "examples": []
+    },
+    "JJ": {
+      "group": "Adjective",
+      "tag": "Adjective",
+      "examples": []
+    },
+    "JJR": {
+      "group": "Adjective, comparative",
+      "tag": "Adjective, comparative",
+      "examples": []
+    },
+    "JJS": {
+      "group": "Adjective, superlative",
+      "tag": "Adjective, superlative",
+      "examples": []
+    },
+    "LS": {
+      "group": "List item marker",
+      "tag": "List item marker",
+      "examples": []
+    },
+    "MD": {
+      "group": "Modal",
+      "tag": "Modal",
+      "examples": []
+    },
+    "NN": {
+      "group": "Noun, singular or mass",
+      "tag": "Noun, singular or mass",
+      "examples": []
+    },
+    "NNS": {
+      "group": "Noun, plural",
+      "tag": "Noun, plural",
+      "examples": []
+    },
+    "NNP": {
+      "group": "Proper noun, singular",
+      "tag": "Proper noun, singular",
+      "examples": []
+    },
+    "NNPS": {
+      "group": "Proper noun, plural",
+      "tag": "Proper noun, plural",
+      "examples": []
+    },
+    "PDT": {
+      "group": "Predeterminer",
+      "tag": "Predeterminer",
+      "examples": []
+    },
+    "POS": {
+      "group": "Possessive ending",
+      "tag": "Possessive ending",
+      "examples": []
+    },
+    "PRP": {
+      "group": "Personal pronoun",
+      "tag": "Personal pronoun",
+      "examples": []
+    },
+    "PRP$": {
+      "group": "Possessive pronoun (prolog version PRP-S)",
+      "tag": "Possessive pronoun (prolog version PRP-S)",
+      "examples": []
+    },
+    "RB": {
+      "group": "Adverb",
+      "tag": "Adverb",
+      "examples": []
+    },
+    "RBR": {
+      "group": "Adverb, comparative",
+      "tag": "Adverb, comparative",
+      "examples": []
+    },
+    "RBS": {
+      "group": "Adverb, superlative",
+      "tag": "Adverb, superlative",
+      "examples": []
+    },
+    "RP": {
+      "group": "Particle",
+      "tag": "Particle",
+      "examples": []
+    },
+    "SYM": {
+      "group": "Symbol",
+      "tag": "Symbol",
+      "examples": []
+    },
+    "TO": {
+      "group": "to",
+      "tag": "to",
+      "examples": []
+    },
+    "UH": {
+      "group": "Interjection",
+      "tag": "Interjection",
+      "examples": []
+    },
+    "VB": {
+      "group": "Verb, base form",
+      "tag": "Verb, base form",
+      "examples": []
+    },
+    "VBD": {
+      "group": "Verb, past tense",
+      "tag": "Verb, past tense",
+      "examples": []
+    },
+    "VBG": {
+      "group": "Verb, gerund or present participle",
+      "tag": "Verb, gerund or present participle",
+      "examples": []
+    },
+    "VBN": {
+      "group": "Verb, past participle",
+      "tag": "Verb, past participle",
+      "examples": []
+    },
+    "VBP": {
+      "group": "Verb, non-3rd person singular present",
+      "tag": "Verb, non-3rd person singular present",
+      "examples": []
+    },
+    "VBZ": {
+      "group": "Verb, 3rd person singular present",
+      "tag": "Verb, 3rd person singular present",
+      "examples": []
+    },
+    "WDT": {
+      "group": "Wh-determiner",
+      "tag": "Wh-determiner",
+      "examples": []
+    },
+    "WP": {
+      "group": "Wh-pronoun",
+      "tag": "Wh-pronoun",
+      "examples": []
+    },
+    "WP$": {
+      "group": "Possessive wh-pronoun (prolog version WP-S)",
+      "tag": "Possessive wh-pronoun (prolog version WP-S)",
+      "examples": []
+    },
+    "WRB": {
+      "group": "Wh-adverb",
+      "tag": "Wh-adverb",
+      "examples": []
+    }
+  }
+}
