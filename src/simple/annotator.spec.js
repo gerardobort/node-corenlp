@@ -167,10 +167,10 @@ describe('Annotator', () => {
       it('should have the proper default options', () => {
         expect(TokenizerAnnotator.options()).to.deep.equal({
           language: 'Unspecified',
-          class: null,
+          // class: null,
           whitespace: false,
           keepeol: false,
-          options: null,
+          // options: null,
           verbose: false,
         });
       });
@@ -216,7 +216,7 @@ describe('Annotator', () => {
       it('should have the proper default options', () => {
         expect(NERClassifierCombiner.options()).to.deep.equal({
           useSUTime: true,
-          model: null,
+          // model: null,
           applyNumericClassifiers: true,
         });
       });

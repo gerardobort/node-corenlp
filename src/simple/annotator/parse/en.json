@@ -1,0 +1,111 @@
+{
+  "source": "http://web.mit.edu/6.863/www/PennTreebankTags.html",
+  "multiword": {
+    "S": {
+      "description": "simple declarative clause, i.e. one that is not introduced by a (possible empty) subordinating conjunction or a wh-word and that does not exhibit subject-verb inversion.",
+      "examples": []
+    },
+    "SBAR": {
+      "description": "Clause introduced by a (possibly empty) subordinating conjunction.",
+      "examples": []
+    },
+    "SBARQ": {
+      "description": "Direct question introduced by a wh-word or a wh-phrase. Indirect questions and relative clauses should be bracketed as SBAR, not SBARQ.",
+      "examples": []
+    },
+    "SINV": {
+      "description": "Inverted declarative sentence, i.e. one in which the subject follows the tensed verb or modal.",
+      "examples": []
+    },
+    "SQ": {
+      "description": "Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ.",
+      "examples": []
+    },
+    "ADJP": {
+      "description": "Adjective Phrase.",
+      "examples": []
+    },
+    "ADVP": {
+      "description": "Adverb Phrase.",
+      "examples": []
+    },
+    "CONJP": {
+      "description": "Conjunction Phrase.",
+      "examples": []
+    },
+    "FRAG": {
+      "description": "Fragment.",
+      "examples": []
+    },
+    "INTJ": {
+      "description": "Interjection. Corresponds approximately to the part-of-speech tag UH.",
+      "examples": []
+    },
+    "LST": {
+      "description": "List marker. Includes surrounding punctuation.",
+      "examples": []
+    },
+    "NAC": {
+      "description": "Not a Constituent; used to show the scope of certain prenominal modifiers within an NP.",
+      "examples": []
+    },
+    "NP": {
+      "description": "Noun Phrase. ",
+      "examples": []
+    },
+    "NX": {
+      "description": "Used within certain complex NPs to mark the head of the NP. Corresponds very roughly to N-bar level but used quite differently.",
+      "examples": []
+    },
+    "PP": {
+      "description": "Prepositional Phrase.",
+      "examples": []
+    },
+    "PRN": {
+      "description": "Parenthetical. ",
+      "examples": []
+    },
+    "PRT": {
+      "description": "Particle. Category for words that should be tagged RP. ",
+      "examples": []
+    },
+    "QP": {
+      "description": "Quantifier Phrase (i.e. complex measure/amount phrase); used within NP.",
+      "examples": []
+    },
+    "RRC": {
+      "description": "Reduced Relative Clause. ",
+      "examples": []
+    },
+    "UCP": {
+      "description": "Unlike Coordinated Phrase. ",
+      "examples": []
+    },
+    "VP": {
+      "description": "Vereb Phrase. ",
+      "examples": []
+    },
+    "WHADJP": {
+      "description": "Wh-adjective Phrase. Adjectival phrase containing a wh-adverb, as in how hot.",
+      "examples": []
+    },
+    "WHAVP": {
+      "description": "Wh-adverb Phrase. Introduces a clause with an NP gap. May be null (containing the 0 complementizer) or lexical, containing a wh-adverb such as how or why.",
+      "examples": []
+    },
+    "WHNP": {
+      "description": "Wh-noun Phrase. Introduces a clause with an NP gap. May be null (containing the 0 complementizer) or lexical, containing some wh-word, e.g. who, which book, whose daughter, none of which, or how many leopards.",
+      "examples": []
+    },
+    "WHPP": {
+      "description": "Wh-prepositional Phrase. Prepositional phrase containing a wh-noun phrase (such as of which or by whose authority) that either introduces a PP gap or is contained by a WHNP.",
+      "examples": []
+    },
+    "X": {
+      "description": "Unknown, uncertain, or unbracketable. X is often used for bracketing typos and in bracketing the...the-constructions.",
+      "examples": []
+    }
+  }
+}
+
+

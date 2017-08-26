@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Start CoreNLP Server
+# Start CoreNLP Server (spanish setup)
 
 if [ -f `dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/build.xml ]; then
   java -Xmx4g \

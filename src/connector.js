@@ -18,6 +18,7 @@ export default class Connector {
       ...options,
       outputFormat: 'json',
     };
+
     const rpOpts = {
       method: 'POST',
       uri: `${this.dsn}/?properties=${JSON.stringify(properties)}&pipelineLanguage=${language}`,

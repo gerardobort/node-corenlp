@@ -84,7 +84,7 @@ export default class Annotator {
   }
 
   /**
-   * Get a n object of all the Annotator options including the current and all its 
+   * Get an object of all the Annotator options including the current and all its 
    * dependencies, prefixed by the annotator names
    * This is useful to fulfill the options params in CoreNLP API properties.
    * @return {Array.<string>} pipelineOptions
@@ -110,10 +110,10 @@ export default class Annotator {
  */
 export const TokenizerAnnotator = new Annotator('tokenize', {
   language: 'Unspecified',
-  class: null,
+  // class: null, // throws error on CoreNLP server
   whitespace: false,
   keepeol: false,
-  options: null,
+  // options: null, // throws error on CoreNLP server
   verbose: false,
 });
 
@@ -172,7 +172,7 @@ export const MorphaAnnotator = new Annotator('lemma', {}, [
  */
 export const NERClassifierCombiner = new Annotator('ner', {
   useSUTime: true,
-  model: null,
+  // model: null, // throws error on CoreNLP server
   applyNumericClassifiers: true,
   // TODO resolve different options namespaces
   // sutime.markTimeRanges: false,

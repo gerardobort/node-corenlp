@@ -61,7 +61,7 @@ export default class Sentence extends Annotable {
 
   /**
    * Get a string representations of the Nth word of the sentence
-   * @return {Arra.<string>} words
+   * @return {string} word
    */
   word(index) {
     if (!this.hasAnnotator(TokenizerAnnotator)) {
@@ -133,6 +133,28 @@ export default class Sentence extends Annotable {
 
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   openieTriples(index) {
+  }
+
+  /**
+   * Get an array of token representations of the sentence words
+   * @return {Array.<Token>} tokens
+   */
+  tokens() {
+    if (!this.hasAnnotator(TokenizerAnnotator)) {
+      throw new Error('Asked for tokens on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._tokens;
+  }
+
+  /**
+   * Get the Nth token of the sentence
+   * @return {Token} token
+   */
+  token(index) {
+    if (!this.hasAnnotator(TokenizerAnnotator)) {
+      throw new Error('Asked for a token on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._tokens[index];
   }
 
   /**

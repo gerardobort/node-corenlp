@@ -82,7 +82,7 @@ describe('Annotable', () => {
         annotators: [],
         text: 'el pájaro veloz',
         options: {},
-        language: 'es',
+        language: 'spanish',
       });
       expect(annotable.fromJson).to.have.been.calledWith(jsonStub);
     });

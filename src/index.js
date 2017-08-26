@@ -5,6 +5,7 @@ import Annotable, { Annotator } from './simple/annotable';
 import Service from './simple/service';
 import Connector from './connector';
 import ConnectorCli from './connector-cli';
+import Tree from './simple/util/tree';
 
 /**
  * SimpleCoreNLP Interface
@@ -22,4 +23,5 @@ export default {
   Document,
   Sentence,
   Token,
+  Tree,
 };

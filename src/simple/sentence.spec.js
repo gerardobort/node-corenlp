@@ -1,6 +1,7 @@
 import SimpleCoreNLP from '..';
 import Sentence from './sentence';
 import Annotable from './annotable';
+import Token from './token';
 import { WordsToSentenceAnnotator } from './annotator';
 
 describe('Sentence', () => {
@@ -135,6 +136,42 @@ describe('Sentence', () => {
 
     describe.skip('openie / openieTriples', () => {
       it('should...', () => {
+      });
+    });
+
+    describe('tokens / token', () => {
+      it('should throw an error if there is no annotator', () => {
+        expect(() => sent.tokens()).to.throw(Error, /unmet annotator dependencies/);
+        expect(() => sent.token(0)).to.throw(Error, /unmet annotator dependencies/);
+      });
+
+      it('should return the tokens, by first applying ssplit annotator', async () => {
+        expect(() => sent.tokens()).to.throw(Error, /unmet annotator dependencies/);
+        connectorMock.get.returns(Promise.resolve({
+          sentences: [
+            {
+              tokens: [
+                { token: 'loren' },
+              ],
+            },
+          ],
+        }));
+        await sent.applyAnnotator(WordsToSentenceAnnotator);
+        expect(sent.tokens()).to.be.an('array');
+        expect(sent.tokens()).to.have.property('0').that.is.instanceof(Token);
+        expect(sent.token(0)).to.be.instanceof(Token);
+      });
+
+      it('should return the tokens when it is initialized by the JSON API', async () => {
+        const sent2 = Sentence.fromJson({
+          tokens: [
+            { token: 'loren' },
+            { token: 'ipsum' },
+          ],
+        }, true);
+        expect(sent2.tokens()).to.be.an('array');
+        expect(sent2.tokens()).to.have.property('0').that.is.instanceof(Token);
+        expect(sent2.token(0)).to.be.instanceof(Token);
       });
     });
 
