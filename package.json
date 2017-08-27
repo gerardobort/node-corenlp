@@ -8,6 +8,7 @@
     "corenlp:download": "./scripts/corenlp-download",
     "corenlp:server": "./scripts/corenlp-server",
     "compile": "gulp",
+    "prepublish": "npm run compile --",
     "lint": "eslint src/*.js src/**/*.js test/*.js",
     "lint:fix": "eslint src/*.js src/**/*.js test/*.js --fix",
     "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort src/*.spec.js src/**/*.spec.js --compilers js:babel-core/register --timeout 30000"
