@@ -28,6 +28,9 @@
   ],
   "author": "Gerardo Bort",
   "license": "GPLv3",
+  "files": [
+    "dist"
+  ],
   "bugs": {
     "url": "https://github.com/gerardobort/node-corenlp/issues"
   },
