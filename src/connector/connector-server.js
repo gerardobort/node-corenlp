@@ -4,7 +4,7 @@ const config = {
   dsn: 'http://localhost:9000',
 };
 
-export default class Connector {
+export default class ConnectorServer {
   constructor({ dsn = config.dsn }) {
     this.dsn = dsn;
   }

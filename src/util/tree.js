@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import Service from '../../service';
+import Service from '../service';
 
 export class Node {
   constructor(pos = '', word = '', children = [], paren = null) {
@@ -23,7 +22,7 @@ export class Node {
 
   token(token = null) {
     if (token) {
-      return this._token = token;
+      this._token = token;
     }
 
     return this._token;
@@ -43,7 +42,7 @@ export class Node {
 
   parent(paren = null) {
     if (paren) {
-      return this._parent = paren;
+      this._parent = paren;
     }
 
     return this._parent;
@@ -73,21 +72,21 @@ export default class Tree {
    */
   dump() {
     return JSON.stringify(this.rootNode, (key, val) => {
-        if (val instanceof Node) {
-          return val.children().length ? {
-              pos: val.pos(),
-              info: val.info(),
-              children: val.children(),
-            } : {
-              pos: val.pos(),
-              info: val.info(),
-              word: val.word(),
-              token: val.token(),
-            };
-        }
+      if (val instanceof Node) {
+        return val.children().length ? {
+          pos: val.pos(),
+          info: val.info(),
+          children: val.children(),
+        } : {
+          pos: val.pos(),
+          info: val.info(),
+          word: val.word(),
+          token: val.token(),
+        };
+      }
 
-        return val;
-      }, 2);
+      return val;
+    }, 2);
   }
 
   /**
@@ -95,9 +94,9 @@ export default class Tree {
    * @see {@link https://en.wikipedia.org/wiki/Depth-first_search|DFS}
    */
   visitDeepFirst(visitor, node = this.rootNode) {
-    node.children().forEach(childNode => {
+    node.children().forEach((childNode) => {
       this.visitDeepFirst(childNode);
-      visitor(childNode)
+      visitor(childNode);
     });
 
     visitor(node);
@@ -107,10 +106,10 @@ export default class Tree {
    * Performs Deep-first Search calling a visitor for each node, from right to left
    * @see {@link https://en.wikipedia.org/wiki/Depth-first_search|DFS}
    */
-  visitDeepFirstRight(visitor) {
-    node.children().reverse().forEach(childNode => {
+  visitDeepFirstRight(visitor, node = this.rootNode) {
+    node.children().reverse().forEach((childNode) => {
       this.visitDeepFirst(childNode);
-      visitor(childNode)
+      visitor(childNode);
     });
 
     visitor(node);
@@ -121,7 +120,7 @@ export default class Tree {
    * @see {@link https://en.wikipedia.org/wiki/Depth-first_search|DFS}
    */
   visitLeaves(visitor, node = this.rootNode) {
-    node.children().forEach(childNode => {
+    node.children().forEach((childNode) => {
       if (childNode.children().length) {
         this.visitLeaves(visitor, childNode);
       } else {
@@ -149,6 +148,7 @@ export default class Tree {
     const tree = Tree.fromString(parse, doubleLink);
     // link nodes with tokens
     let visitedLeaves = 0;
+    // eslint-disable-next-line no-plusplus
     tree.visitLeaves(node => node.token(sentence.token(visitedLeaves++)));
 
     return tree;
@@ -161,53 +161,56 @@ export default class Tree {
    * @returns {Tree} tree
    */
   static fromString(str, doubleLink = false) {
-    const buildTree = str => {
-      let currentNode = { children: [] };
-      const openNodes = [currentNode];
-      const l = str.length;
-      for (let i = 0; i < l; i++) {
-        if (str[i] === '(') {
-          currentNode = { str: '', children: [] };
-          openNodes[openNodes.length - 1].children.push(currentNode);
-          openNodes.push(currentNode);
-        } else if (str[i] === ')') {
-          cleanNode(currentNode);
-          openNodes.pop();
-          currentNode = openNodes[openNodes.length-1];
-        } else {
-          currentNode.str += str[i];
-        }
-      }
-      return currentNode.children[0];
-    };
-
-    const cleanNode = node => {
-      const str = node.str.trim();
-      const delimiterPos = str.indexOf(' ');
-      if (delimiterPos > -1) {
-        node.pos = str.substr(0, delimiterPos);
-        node.word = str.substr(delimiterPos + 1);
-      } else {
-        node.pos = str;
-      }
-    };
-
-    const transformTree = node => {
-      if (doubleLink) {
-        const parentNode = new Node(node.pos, node.word);
-        node.children.forEach(n => {
-          const childNode = transformTree(n);
-          childNode.parent(parentNode);
-          parentNode.appendChild(childNode);
-        });
-
-        return parentNode;
-      }
-
-      return new Node(node.pos, node.word, node.children.map(n => transformTree(n)));
-    };
-
-    return new Tree(transformTree(buildTree(str)));
+    return new Tree(this._transformTree(this._buildTree(str), doubleLink));
   }
 
+  static _buildTree(str) {
+    let currentNode = { children: [] };
+    const openNodes = [currentNode];
+    const l = str.length;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < l; i++) {
+      if (str[i] === '(') {
+        currentNode = { str: '', children: [] };
+        openNodes[openNodes.length - 1].children.push(currentNode);
+        openNodes.push(currentNode);
+      } else if (str[i] === ')') {
+        this._cleanNode(currentNode);
+        openNodes.pop();
+        currentNode = openNodes[openNodes.length - 1];
+      } else {
+        currentNode.str += str[i];
+      }
+    }
+    return currentNode.children[0];
+  }
+
+  static _cleanNode(node) {
+    const str = node.str.trim();
+    const delimiterPos = str.indexOf(' ');
+    if (delimiterPos > -1) {
+      // eslint-disable-next-line no-param-reassign
+      node.pos = str.substr(0, delimiterPos);
+      // eslint-disable-next-line no-param-reassign
+      node.word = str.substr(delimiterPos + 1);
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      node.pos = str;
+    }
+  }
+
+  static _transformTree(node, doubleLink) {
+    if (doubleLink) {
+      const parentNode = new Node(node.pos, node.word);
+      node.children.forEach((n) => {
+        const childNode = this._transformTree(n);
+        childNode.parent(parentNode);
+        parentNode.appendChild(childNode);
+      });
+
+      return parentNode;
+    }
+
+    return new Node(node.pos, node.word, node.children.map(n => this._transformTree(n)));
+  }
 }

@@ -1,27 +1,41 @@
 import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
-import Annotable, { Annotator } from './simple/annotable';
+import Annotable from './simple/annotable';
+import Annotator, { annotator } from './simple/annotator';
 import Service from './service';
-import Connector from './connector';
-import ConnectorCli from './connector-cli';
-import Tree from './simple/util/tree';
+import ConnectorServer from './connector/connector-server';
+import ConnectorCli from './connector/connector-cli';
+import Tree from './util/tree';
 
 /**
- * SimpleCoreNLP Interface
- * https://stanfordnlp.github.io/CoreNLP/simple.html
+ * CoreNLP NodeJS Interface
  */
 export default {
-  setup(connector = Service.connector, language = Service.language) {
-    Service.connector = connector;
-    Service.language = language;
+  setup(language = null, connector = null) {
+    Service.language = language || Service.language;
+    Service.connector = connector || Service.connector;
   },
-  Connector,
-  ConnectorCli,
-  Annotable,
-  Annotator,
-  Document,
-  Sentence,
-  Token,
-  Tree,
+
+  connector: {
+    ConnectorServer,
+    ConnectorCli,
+  },
+
+  /**
+   * https://stanfordnlp.github.io/CoreNLP/simple.html
+   */
+  simple: {
+    Annotable,
+    Annotator,
+    Document,
+    Sentence,
+    Token,
+    // namespace for default annotators
+    annotator,
+  },
+
+  util: {
+    Tree,
+  },
 };

@@ -1,4 +1,4 @@
-import Connector from './connector';
+import ConnectorServer from './connector/connector-server';
 import depInfo from './simple/annotator/depparse/dependencies.json';
 
 const LANGUAGE_TO_ISO2 = {
@@ -11,9 +11,9 @@ const LANGUAGE_TO_ISO2 = {
 export default {
 
   /**
-   * @param {Connector|ConnectorCli}
+   * @param {ConnectorServer|ConnectorCli}
    */
-  connector: new Connector({}),
+  connector: new ConnectorServer({}),
 
   /**
    * @param {('English'|'French'|'German'|'Spanish'|'Unspecified'|'Whitesapce')}

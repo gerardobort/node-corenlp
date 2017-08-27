@@ -1,124 +1,63 @@
-import SimpleCoreNLP from '.';
+import CoreNLP from '.';
+import Document from './simple/document';
+import Sentence from './simple/sentence';
+import Token from './simple/token';
+import Annotable from './simple/annotable';
+import Annotator, { annotator } from './simple/annotator';
+import ConnectorServer from './connector/connector-server';
+import ConnectorCli from './connector/connector-cli';
+import Tree from './util/tree';
 
-// TODO move these tests to a different place, and refactor!
-// TODO use connectorMock
-describe.skip('CoreNLP Library entry point', () => {
-  describe('SimpleCoreNLP.Document', async () => {
-    let doc;
-    before(async () => {
-      doc = new SimpleCoreNLP.Document('El pájaro veloz come kiwi. Los árboles se mecen sobre la faz de la tierra.');
-      await doc.applySSplit();
+describe('CoreNLP Library entry point', () => {
+  describe('CoreNLP', () => {
+    describe('setup', () => {
+      it('should have setup method', async () => {
+        expect(CoreNLP).to.have.property('setup').that.is.a('function');
+      });
     });
 
-    it('should split a document into sentences: SimpleCoreNLP.SentencesAnnotation', async () => {
-      expect(doc.sentences()).to.be.an('array');
-    });
-
-    describe('SimpleCoreNLP.SentencesAnnotation', async () => {
-      it('should be iterable: SimpleCoreNLP.Sentence', async () => {
-        for (const sent of doc.sentences()) {
-          expect(sent).to.be.instanceof(SimpleCoreNLP.Sentence);
-        }
-        expect([...doc.sentences()][0]).to.be.instanceof(SimpleCoreNLP.Sentence);
-        expect([...doc.sentences()][1]).to.be.instanceof(SimpleCoreNLP.Sentence);
-        expect(doc.sentence(0)).to.be.instanceof(SimpleCoreNLP.Sentence);
-        expect(doc.sentence(1)).to.be.instanceof(SimpleCoreNLP.Sentence);
+    describe('connector', () => {
+      it('should have ConnectorServer', async () => {
+        expect(CoreNLP.connector).to.have.property('ConnectorServer').that.equals(ConnectorServer);
       });
 
-      describe('SimpleCoreNLP.Sentence', async () => {
-        it('should cast to the sentence text: String', async () => {
-          expect(doc.sentence(0).toString()).to.equals('" El pájaro veloz come kiwi .');
-          expect(doc.sentence(1).toString()).to.equals('Los árboles se mecen sobre la faz de la tierra . "');
+      it('should have ConnectorCli', async () => {
+        expect(CoreNLP.connector).to.have.property('ConnectorCli').that.equals(ConnectorCli);
+      });
+    });
+
+    describe('simple', () => {
+      it('should have Annotable', async () => {
+        expect(CoreNLP.simple).to.have.property('Annotable').that.equals(Annotable);
+      });
+
+      it('should have Annotator', async () => {
+        expect(CoreNLP.simple).to.have.property('Annotator').that.equals(Annotator);
+      });
+
+      it('should have Document', async () => {
+        expect(CoreNLP.simple).to.have.property('Document').that.equals(Document);
+      });
+
+      it('should have Sentence', async () => {
+        expect(CoreNLP.simple).to.have.property('Sentence').that.equals(Sentence);
+      });
+
+      it('should have Token', async () => {
+        expect(CoreNLP.simple).to.have.property('Token').that.equals(Token);
+      });
+
+      describe('annotator', () => {
+        it('should have annotators', async () => {
+          expect(CoreNLP.simple).to.have.property('annotator').that.equals(annotator);
         });
       });
     });
-  });
 
-  describe('SimpleCoreNLP.Sentence', async () => {
-    let sent;
-    before(async () => {
-      sent = new SimpleCoreNLP.Sentence('El pájaro veloz come kiwi.');
-      await sent.applyLemma();
-    });
-
-    it('should lemmatize a sentence: SimpleCoreNLP.LemmaAnnotation', async () => {
-      expect(sent.lemmas()).to.be.an('array');
-    });
-
-    describe('SimpleCoreNLP.LemmaAnnotation', async () => {
-      describe('SimpleCoreNLP.Sentence', async () => {
-        it('should cast to the sentence text: String', async () => {
-          expect(sent.toString()).to.equals('El pájaro veloz come kiwi.');
-        });
-
-        it('should provide per token info', async () => {
-          for (const token of sent) {
-            expect(token).to.be.instanceof(SimpleCoreNLP.Token);
-          }
-          for (const word of sent.words()) {
-            expect(word).to.be.a('string');
-          }
-          for (const lemma of sent.lemmas()) {
-            expect(lemma).to.be.a('string');
-          }
-        });
+    describe('util', () => {
+      it('should have Tree', async () => {
+        expect(CoreNLP.util).to.have.property('Tree').that.equals(Tree);
       });
-    });
-  });
-
-  describe('SimpleCoreNLP.NERAnnotation', async () => {
-    let sent;
-    before(async () => {
-      sent = new SimpleCoreNLP.Sentence('El pájaro veloz come kiwi.');
-      await sent.applyNER();
-    });
-
-    it('should provide per token info', async () => {
-      for (const token of sent) {
-        expect(token).to.be.instanceof(SimpleCoreNLP.Token);
-      }
-    });
-  });
-
-  describe('SimpleCoreNLP.ParseAnnotation', async () => {
-    let sent;
-    before(async () => {
-      sent = new SimpleCoreNLP.Sentence('El pájaro veloz come kiwi.');
-      await sent.applyParse();
-    });
-
-    it('should provide per token info', async () => {
-      for (const token of sent) {
-        expect(token).to.be.instanceof(SimpleCoreNLP.Token);
-      }
-    });
-  });
-
-  describe('SimpleCoreNLP.DepParseAnnotation', async () => {
-    let sent;
-    before(async () => {
-      sent = new SimpleCoreNLP.Sentence('El pájaro veloz come kiwi.');
-      await sent.applyDepParse();
-    });
-
-    it('should provide per token info', async () => {
-      for (const token of sent) {
-        expect(token).to.be.instanceof(SimpleCoreNLP.Token);
-      }
-    });
-  });
-
-  describe.skip('SimpleCoreNLP.RelationAnnotation', async () => {
-    let sent;
-    before(async () => {
-      sent = new SimpleCoreNLP.Sentence('El pájaro veloz come kiwi.');
-      await sent.applyRelation();
-    });
-
-    it('should provide per token info', async () => {
-      for (const token of sent) {
-        expect(token).to.be.instanceof(SimpleCoreNLP.Token);
-      }
     });
   });
 });

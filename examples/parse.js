@@ -1,23 +1,22 @@
-import SimpleCoreNLP from '../src';
-import { ParserAnnotator } from '../src/simple/annotator';
+import CoreNLP from '../src';
 
-SimpleCoreNLP.setup(null, 'English');
-const sent = new SimpleCoreNLP.Sentence('The little dog runs so fast.');
-sent.applyAnnotator(ParserAnnotator)
+CoreNLP.setup('English');
+const sent = new CoreNLP.simple.Sentence('The little dog runs so fast.');
+sent.applyAnnotator(CoreNLP.simple.annotator.ParserAnnotator)
   .then(() => {
     console.log('parse', sent.parse());
-    console.log(SimpleCoreNLP.Tree.fromSentence(sent).dump());
+    console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
   })
   .catch(err => {
     console.log('err', err);
   });
 
-const doc = new SimpleCoreNLP.Document('The little dog runs so fast. The cat is in the kitchen.');
-doc.applyAnnotator(ParserAnnotator)
+const doc = new CoreNLP.simple.Document('The little dog runs so fast. The cat is in the kitchen.');
+doc.applyAnnotator(CoreNLP.simple.annotator.ParserAnnotator)
   .then(() => {
     doc.sentences().forEach(sent => {
       console.log('parse', sent.parse());
-      console.log(SimpleCoreNLP.Tree.fromSentence(sent).dump());
+      console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
     });
   })
   .catch(err => {
