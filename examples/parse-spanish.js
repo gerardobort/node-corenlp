@@ -1,9 +1,8 @@
 import CoreNLP from '../src';
-import { ParserAnnotator } from '../src/simple/annotator';
 
 CoreNLP.setup('Spanish');
 const sent = new CoreNLP.simple.Sentence('El pájaro veloz come kiwi.');
-sent.applyAnnotator(ParserAnnotator)
+sent.applyAnnotator(CoreNLP.simple.annotator.ParserAnnotator)
   .then(() => {
     console.log('parse', sent.parse());
     console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
