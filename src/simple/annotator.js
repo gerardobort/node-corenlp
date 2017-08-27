@@ -258,3 +258,16 @@ export const DeterministicCorefAnnotator = new Annotator('dcoref', {}, [
   DependencyParseAnnotator,
   RelationExtractorAnnotator,
 ]);
+
+// expose default annotators through the class statically
+export const annotator = {
+  TokenizerAnnotator,
+  WordsToSentenceAnnotator,
+  POSTaggerAnnotator,
+  MorphaAnnotator,
+  NERClassifierCombiner,
+  ParserAnnotator,
+  DependencyParseAnnotator,
+  RelationExtractorAnnotator,
+  DeterministicCorefAnnotator,
+};

@@ -1,4 +1,4 @@
-import SimpleCoreNLP from '..';
+import CoreNLP from '..';
 import Sentence from './sentence';
 import Annotable from './annotable';
 import Token from './token';
@@ -10,15 +10,15 @@ describe('Sentence', () => {
 
   before(() => {
     connectorMock = { get: sinon.stub() };
-    SimpleCoreNLP.setup(connectorMock);
+    CoreNLP.setup(null, connectorMock);
   });
 
   beforeEach(() => {
     sent = new Sentence('loren ipsum dolor sit amet');
   });
 
-  context('SimpleCoreNLP.Sentence interface', () => {
-    it('should follow the SimpleCoreNLP.Sentence contract', () => {
+  context('CoreNLP.Sentence interface', () => {
+    it('should follow the CoreNLP.Sentence contract', () => {
       expect(sent).to.have.property('parse').that.is.a('function');
       expect(sent).to.have.property('words').that.is.a('function');
       expect(sent).to.have.property('word').that.is.a('function');

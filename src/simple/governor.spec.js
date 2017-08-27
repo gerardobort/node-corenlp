@@ -8,8 +8,8 @@ describe('Governor', () => {
     governor = new Governor('det', new Token('pájaro'), new Token('él'));
   });
 
-  context('SimpleCoreNLP.Governor interface', () => {
-    it('should follow the SimpleCoreNLP.Governor contract', () => {
+  context('CoreNLP.Governor interface', () => {
+    it('should follow the CoreNLP.Governor contract', () => {
       // no contract
     });
 

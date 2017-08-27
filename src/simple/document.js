@@ -10,7 +10,7 @@ import Sentence from './sentence';
  */
 
 /**
- * Class representing a Document (@see SimpleCoreNLP.Document).
+ * Class representing a Document (@see CoreNLP.Document).
  * @extends Annotable
  */
 export default class Document extends Annotable {

@@ -17,7 +17,7 @@ import Governor from './governor';
  */
 
 /**
- * Class representing a Sentence (@see SimpleCoreNLP.Sentence).
+ * Class representing a Sentence (@see CoreNLP.Sentence).
  * @extends Annotable
  */
 export default class Sentence extends Annotable {

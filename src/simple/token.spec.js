@@ -7,8 +7,8 @@ describe('Token', () => {
     token = new Token('loren');
   });
 
-  context('SimpleCoreNLP.Token interface', () => {
-    it('should follow the SimpleCoreNLP.Token contract', () => {
+  context('CoreNLP.Token interface', () => {
+    it('should follow the CoreNLP.Token contract', () => {
       // no contract
     });
 

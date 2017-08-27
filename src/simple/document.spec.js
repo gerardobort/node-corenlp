@@ -1,4 +1,4 @@
-import SimpleCoreNLP from '..';
+import CoreNLP from '..';
 import Document from './document';
 import Sentence from './sentence';
 import Annotable from './annotable';
@@ -10,15 +10,15 @@ describe('Document', () => {
 
   before(() => {
     connectorMock = { get: sinon.stub() };
-    SimpleCoreNLP.setup(connectorMock);
+    CoreNLP.setup(null, connectorMock);
   });
 
   beforeEach(() => {
     doc = new Document('loren ipsum dolor sit amet');
   });
 
-  context('SimpleCoreNLP.Document interface', () => {
-    it('should follow the SimpleCoreNLP.Document contract', () => {
+  context('CoreNLP.Document interface', () => {
+    it('should follow the CoreNLP.Document contract', () => {
       expect(doc).to.have.property('sentences').that.is.a('function');
       expect(doc).to.have.property('sentence').that.is.a('function');
       expect(doc).to.have.property('coref').that.is.a('function');

@@ -9,7 +9,7 @@ describe('Annotable', () => {
 
   before(() => {
     connectorMock = { get: sinon.stub() };
-    SimpleCoreNLP.setup(connectorMock);
+    SimpleCoreNLP.setup(null, connectorMock);
   });
 
   beforeEach(() => {
