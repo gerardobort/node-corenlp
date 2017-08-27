@@ -1,5 +1,5 @@
-import Connector from '../connector';
-import depInfo from './annotator/depparse/dependencies.json';
+import Connector from './connector';
+import depInfo from './simple/annotator/depparse/dependencies.json';
 
 const LANGUAGE_TO_ISO2 = {
   English: 'en',
@@ -32,7 +32,7 @@ export default {
   getTokenPosInfo(pos) {
     try {
       // eslint-disable-next-line global-require, import/no-dynamic-require
-      return require(`./annotator/pos/${LANGUAGE_TO_ISO2[this.language]}.json`)
+      return require(`./simple/annotator/pos/${LANGUAGE_TO_ISO2[this.language]}.json`)
         .tagset[pos];
     } catch (err) {
       throw new Error(`Unable to getTokenPosInfo for the language ${this.language}`);
@@ -42,7 +42,7 @@ export default {
   getSentenceParseInfo(group) {
     try {
       // eslint-disable-next-line global-require, import/no-dynamic-require
-      return require(`./annotator/parse/${LANGUAGE_TO_ISO2[this.language]}.json`)
+      return require(`./simple/annotator/parse/${LANGUAGE_TO_ISO2[this.language]}.json`)
         .multiword[group];
     } catch (err) {
       throw new Error(`Unable to getSentenceParseInfo for the language ${this.language}`);

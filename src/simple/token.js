@@ -1,4 +1,4 @@
-import Service from './service';
+import Service from '../service';
 
 /**
  * The CoreNLP API JSON structure representing a token

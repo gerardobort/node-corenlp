@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import Service from '../service';
+import Service from '../../service';
 
 export class Node {
   constructor(pos = '', word = '', children = [], paren = null) {
