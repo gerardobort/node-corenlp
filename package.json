@@ -1,6 +1,6 @@
 {
   "name": "corenlp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A NodeJS CoreNLP library",
   "main": "dist/index.js",
   "scripts": {
