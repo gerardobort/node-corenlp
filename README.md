@@ -14,7 +14,19 @@ npm i --save corenlp
 
 ### 2. Download Stanford CoreNLP
 
-Check the Stanford's project download section at: https://stanfordnlp.github.io/CoreNLP/download.html
+Via `npm`, run this command from your own project after having installed this library:
+
+```bash
+npm explore corenlp -- npm run corenlp:download
+```
+
+Once downloaded you can easily start the server by running
+
+```bash
+npm explore corenlp -- npm run corenlp:server
+```
+
+Or you can manually download the project from the Stanford's CoreNLP download section at: https://stanfordnlp.github.io/CoreNLP/download.html
 You may want to download, apart of the full package, other language models (see more on that page).
 
 
@@ -42,7 +54,7 @@ CoreNLP expects by default the StanfordCoreNLP package to be placed (unzipped) i
 ```javascript
 import CoreNLP from 'corenlp';
 
-CoreNLP.setup('English', new CoreNLP.connector.ConnectorCli({
+CoreNLP.setup('Spanish', new CoreNLP.connector.ConnectorCli({
   // specify the paths relative to your project root
   classPath: 'corenlp/stanford-corenlp-full-2017-06-09/*',
   mainClass: 'edu.stanford.nlp.pipeline.StanfordCoreNLP',
