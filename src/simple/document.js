@@ -21,7 +21,6 @@ export default class Document extends Annotable {
   constructor(text) {
     super(text);
     this._sentences = [];
-    this._features = [];
   }
 
   /**
@@ -73,6 +72,13 @@ export default class Document extends Annotable {
       this._sentences = data.sentences.map(sent => Sentence.fromJson(sent, true));
     }
     return this;
+  }
+
+  toJSON() {
+    return {
+      text: this._text,
+      sentences: this._sentences,
+    };
   }
 
   /**

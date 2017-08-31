@@ -47,6 +47,15 @@ export class Node {
 
     return this._parent;
   }
+
+  toJSON() {
+    return {
+      pos: this._pos,
+      word: this._word,
+      token: this._token,
+      children: this._children,
+    };
+  }
 }
 
 /**

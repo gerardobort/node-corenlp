@@ -29,7 +29,6 @@ export default class Sentence extends Annotable {
     super(text);
     this._tokens = [];
     this._governors = [];
-    this._features = [];
   }
 
   /**
@@ -163,6 +162,15 @@ export default class Sentence extends Annotable {
    */
   // eslint-disable-next-line class-methods-use-this
   algorithms() {
+  }
+
+  toJSON() {
+    return {
+      text: this._text,
+      tokens: this._tokens,
+      governors: this._governors,
+      parse: this._parse,
+    };
   }
 
   /**

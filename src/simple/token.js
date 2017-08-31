@@ -56,6 +56,21 @@ export default class Token {
     return this._ner;
   }
 
+  toJSON() {
+    return {
+      index: this._index,
+      word: this._word,
+      originalText: this._originalText,
+      characterOffsetBegin: this._characterOffsetBegin,
+      characterOffsetEnd: this._characterOffsetEnd,
+      before: this._before,
+      indexafteafter: this._after,
+      pos: this._pos,
+      lemma: this._lemma,
+      ner: this._ner,
+    };
+  }
+
   /**
    * Get an instance of Token from a given JSON
    * @param {TokenJSON} data - The token data, as returned by CoreNLP API service
