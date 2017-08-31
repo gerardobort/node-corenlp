@@ -51,14 +51,19 @@ export default class Governor {
   }
 
   dep() {
+    return this._dep;
+  }
+
+  depInfo() {
     return Service.getGovernorDepInfo(this._dep);
   }
 
   toJSON() {
     return {
+      dep: this.dep(),
+      depInfo: this.depInfo(),
       governorToken: this._governorToken,
       dependentToken: this._dependentToken,
-      dep: this.dep(),
     };
   }
 }

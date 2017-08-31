@@ -12,7 +12,7 @@ export class Node {
     return this._pos;
   }
 
-  info() {
+  posInfo() {
     if (this._children.length) {
       return Service.getSentenceParseInfo(this._pos);
     }
@@ -51,6 +51,7 @@ export class Node {
   toJSON() {
     return {
       pos: this._pos,
+      posInfo: this.posInfo(),
       word: this._word,
       token: this._token,
       children: this._children,

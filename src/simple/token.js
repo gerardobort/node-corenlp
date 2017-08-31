@@ -45,6 +45,10 @@ export default class Token {
   }
 
   pos() {
+    return this._pos;
+  }
+
+  posInfo() {
     return Service.getTokenPosInfo(this._pos);
   }
 
@@ -65,7 +69,8 @@ export default class Token {
       characterOffsetEnd: this._characterOffsetEnd,
       before: this._before,
       indexafteafter: this._after,
-      pos: this.pos(),
+      pos: this._pos,
+      posInfo: this.pos(),
       lemma: this._lemma,
       ner: this._ner,
     };
