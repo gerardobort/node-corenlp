@@ -1,5 +1,7 @@
 # NodeJS CoreNLP Library
 
+[![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp)
+
 *This project is under active development, please stay tuned for updates.  More documentation and examples are comming.*
 
 This library connects to Stanford CoreNLP either via HTTP or by spawning processes.  The first (HTTP) is the preferred method since it requires CoreNLP to initialize just once to serve many requests, it also avoids extra I/O given that the CLI method need to write temporary files to run.
