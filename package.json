@@ -75,7 +75,7 @@
     "load-json-file": "^3.0.0",
     "lodash": "^4.17.4",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1",
+    "request-promise-native": "^1.0.4",
     "tmp-file": "^2.0.1"
   }
 }

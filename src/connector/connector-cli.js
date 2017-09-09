@@ -36,7 +36,7 @@ export default class ConnectorCli {
       '-outputFormat', 'json',
     ];
 
-    return tmpFile(`"${text}"`).then(file =>
+    return tmpFile(text).then(file =>
       exec(`java ${params.concat([`-file ${file.path}`]).join(' ')}`)
         .then((result) => {
           const stdout = result.stdout || result.stderr;
