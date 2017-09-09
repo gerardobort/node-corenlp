@@ -21,6 +21,12 @@ export default class ConnectorServer {
 
     let baseUrl = this.dsn;
     let queryString = `pipelineLanguage=${language}&properties=${JSON.stringify(properties)}`;
+
+    /**
+     * @todo
+     * Refactor this different case as a strategy not dependant on the connector necessarily.
+     * The conenctor should support extensibility to special cases like `tokensregex`.
+     */
     if (annotators.indexOf('regexner') > -1) {
       // https://stanfordnlp.github.io/CoreNLP/corenlp-server.html#query-tokensregex-tokensregex
       baseUrl += '/tokensregex';

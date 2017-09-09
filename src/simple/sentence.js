@@ -1,11 +1,9 @@
 import _ from 'lodash';
 import Annotable from './annotable';
-import {
-  TokenizerAnnotator,
-  MorphaAnnotator,
-  ParserAnnotator,
-  DependencyParseAnnotator,
-} from './annotator';
+import TokenizerAnnotator from './annotator/tokenize';
+import MorphaAnnotator from './annotator/lemma';
+import ParserAnnotator from './annotator/parse';
+import DependencyParseAnnotator from './annotator/depparse';
 import Token from './token';
 import Governor from './governor';
 

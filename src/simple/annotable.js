@@ -15,57 +15,59 @@ export default class Annotable {
 
   /**
    * Marks an annotator as a met dependency
-   * @param {Annotator} annotator
+   * @param {Annotator|function} annotator
    */
   addAnnotator(annotator) {
-    this._annotators[annotator.toString()] = annotator;
+    const annotatorInstance = annotator.getInstance();
+    this._annotators[annotatorInstance.toString()] = annotatorInstance;
   }
 
   /**
    * Marks multiple annotators as a met dependencies
-   * @param {Array.<Annotator>} annotators
+   * @param {Array.<Annotator|function>} annotators
    */
   addAnnotators(annotators) {
-    annotators.forEach(annotator => this.addAnnotator(annotator));
+    annotators.forEach(annotator => this.addAnnotator(annotator.getInstance()));
   }
 
   /**
    * Unmarks an annotator as a met dependency
-   * @param {Annotator} annotator
+   * @param {Annotator|function} annotator
    */
   removeAnnotator(annotator) {
-    delete this._annotators[annotator.toString()];
+    delete this._annotators[annotator.getInstance().toString()];
   }
 
   /**
    * Tells you if an annotator is a met dependency
-   * @param {Annotator} annotator
+   * @param {Annotator|function} annotator
    * @returns {boolean} hasAnnotator
    */
   hasAnnotator(annotator) {
-    return !!this._annotators[annotator.toString()];
+    return !!this._annotators[annotator.getInstance().toString()];
   }
 
   /**
    * Tells you if at least on of a list of annotators is a met dependency
-   * @param {Array.<Annotator>} annotators
+   * @param {Array.<Annotator|function>} annotators
    * @returns {boolean} hasAnyAnnotator
    */
   hasAnyAnnotator(annotators) {
     return annotators.some(annotator =>
       // eslint-disable-next-line no-bitwise
-      !!~Object.keys(this._annotators).indexOf(annotator.toString()));
+      !!~Object.keys(this._annotators).indexOf(annotator.getInstance().toString()));
   }
 
   /**
    * Calls the service and loads the associated response metadata into the Annotable model
    * @async
-   * @param {Annotator} annotator
+   * @param {Annotator|function} annotator
    */
   async applyAnnotator(annotator) {
+    const annotatorInstance = annotator.getInstance();
     this.fromJson(await Service.getAnnotationData(
-      this._text, annotator.pipeline(), annotator.pipelineOptions()));
-    this.addAnnotators(annotator.dependencies());
-    this.addAnnotator(annotator);
+      this._text, annotatorInstance.pipeline(), annotatorInstance.pipelineOptions()));
+    this.addAnnotators(annotatorInstance.dependencies());
+    this.addAnnotator(annotatorInstance);
   }
 }

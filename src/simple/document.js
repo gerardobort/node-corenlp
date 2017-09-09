@@ -1,5 +1,5 @@
 import Annotable from './annotable';
-import { WordsToSentenceAnnotator } from './annotator';
+import WordsToSentenceAnnotator from './annotator/ssplit';
 import Sentence from './sentence';
 
 /**

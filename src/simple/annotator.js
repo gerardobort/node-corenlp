@@ -77,7 +77,7 @@ export default class Annotator {
     return _.uniq(
       _.flatten(
         this.dependencies()
-          .map(annotator => annotator.pipeline()),
+          .map(annotator => annotator.getInstance().pipeline()),
       )
         .concat([this.toString()]),
     );
@@ -91,183 +91,26 @@ export default class Annotator {
    */
   pipelineOptions() {
     return _.reduce(
-      this.dependencies().map(annotator => annotator.pipelineOptions())
+      this.dependencies().map(annotator => annotator.getInstance().pipelineOptions())
         .concat(Object.keys(this.options()).map(opt => ({ [`${this}.${opt}`]: this.option(opt) }))),
       (ac, option) => ({ ...ac, ...option }),
       {},
     );
   }
+
+  /**
+   * Allows for composition (an Annotator could be either a Class or an Instance indiferently) 
+   * @see {@link Annotator::getInstance()}
+   * @returns {Annotator} annotator instance
+   */
+  getInstance() {
+    return this;
+  }
+
+  /**
+   * @returns {Annotator} annotator instance
+   */
+  static getInstance() {
+    return new Annotator();
+  }
 }
-
-// Predefined annotators @see {@link https://stanfordnlp.github.io/CoreNLP/annotators.html}
-
-/**
- * TokenizerAnnotator
- * requirements: tokenize
- * @external TokenizerAnnotator
- * Identifies {@link Token}s
- * @see {@link https://stanfordnlp.github.io/CoreNLP/tokenize.html|TokenizerAnnotator}
- */
-export const TokenizerAnnotator = new Annotator('tokenize', {
-  language: 'Unspecified',
-  // class: null, // throws error on CoreNLP server
-  whitespace: false,
-  keepeol: false,
-  // options: null, // throws error on CoreNLP server
-  verbose: false,
-});
-
-/**
- * WordsToSentenceAnnotator
- * requirements: tokenize, ssplit
- * @external WordsToSentenceAnnotator
- * Combines multiple {@link Token}s into sentences
- * @see {@link https://stanfordnlp.github.io/CoreNLP/ssplit.html|WordsToSentenceAnnotator}
- */
-export const WordsToSentenceAnnotator = new Annotator('ssplit', {
-  eolonly: false,
-  isOneSentence: false,
-  newlineIsSentenceBreak: 'never',
-  boundaryMultiTokenRegex: null,
-  boundaryTokenRegex: '\\.|[!?]+',
-  boundariesToDiscard: null,
-  htmlBoundariesToDiscard: null,
-  tokenPatternsToDiscard: null,
-  boundaryFollowersRegex: null,
-}, [
-  TokenizerAnnotator,
-]);
-
-/**
- * POSTaggerAnnotator
- * requirements: tokenize, ssplit, pos
- * @external POSTaggerAnnotator
- * Hydrates {@link Token.pos()}
- * @see {@link https://stanfordnlp.github.io/CoreNLP/pos.html|POSTaggerAnnotator}
- */
-export const POSTaggerAnnotator = new Annotator('pos', {}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-]);
-
-/**
- * MorphaAnnotator
- * requirements: tokenize, ssplit, pos, lemma
- * @external MorphaAnnotator
- * Hydrates {@link Token.lemma()}
- * @see {@link https://stanfordnlp.github.io/CoreNLP/lemma.html|MorphaAnnotator}
- */
-export const MorphaAnnotator = new Annotator('lemma', {}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-]);
-
-/**
- * NERClassifierCombiner
- * requirements: tokenize, ssplit, pos, lemma, ner
- * @external NERClassifierCombiner
- * Hydrates {@link Token.ner()}
- * @see {@link https://stanfordnlp.github.io/CoreNLP/ner.html|NERClassifierCombiner}
- */
-export const NERClassifierCombiner = new Annotator('ner', {
-  useSUTime: true,
-  // model: null, // throws error on CoreNLP server
-  applyNumericClassifiers: true,
-  // TODO resolve different options namespaces
-  // sutime.markTimeRanges: false,
-  // sutime.includeRange: false.
-}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-  MorphaAnnotator,
-]);
-
-/**
- * ParserAnnotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse
- * @external ParserAnnotator
- * Hydrates {@link Token.parse()}
- * @see {@link https://stanfordnlp.github.io/CoreNLP/parse.html|ParserAnnotator}
- */
-export const ParserAnnotator = new Annotator('parse', {
-  // model: null,
-  // maxlen: null,
-  // flags: null,
-  // originalDependencies: null,
-  // kbest: null,
-  // keepPunct: null,
-}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-  MorphaAnnotator,
-  NERClassifierCombiner,
-]);
-
-/**
- * DependencyParseAnnotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse, depparse
- * @external DependencyParseAnnotator
- * Hydrates {@link Sentence.governors()}
- * @see {@link https://stanfordnlp.github.io/CoreNLP/depparse.html|DependencyParseAnnotator}
- */
-export const DependencyParseAnnotator = new Annotator('depparse', {
-  // model: null,
-}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-  MorphaAnnotator,
-  NERClassifierCombiner,
-  ParserAnnotator,
-]);
-
-/**
- * RelationExtractorAnnotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse, depparse, relation
- * @external RelationExtractorAnnotator
- * TODO ??
- * @see {@link https://stanfordnlp.github.io/CoreNLP/relation.html|RelationExtractorAnnotator}
- */
-export const RelationExtractorAnnotator = new Annotator('relation', {}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-  MorphaAnnotator,
-  NERClassifierCombiner,
-  ParserAnnotator,
-  DependencyParseAnnotator,
-]);
-
-/**
- * DeterministicCorefAnnotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse
- * @external DeterministicCorefAnnotator
- * TODO ??
- * @see {@link https://stanfordnlp.github.io/CoreNLP/coref.html|DeterministicCorefAnnotator}
- */
-export const DeterministicCorefAnnotator = new Annotator('dcoref', {}, [
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-  MorphaAnnotator,
-  NERClassifierCombiner,
-  ParserAnnotator,
-  DependencyParseAnnotator,
-  RelationExtractorAnnotator,
-]);
-
-// expose default annotators through the class statically
-export const annotator = {
-  TokenizerAnnotator,
-  WordsToSentenceAnnotator,
-  POSTaggerAnnotator,
-  MorphaAnnotator,
-  NERClassifierCombiner,
-  ParserAnnotator,
-  DependencyParseAnnotator,
-  RelationExtractorAnnotator,
-  DeterministicCorefAnnotator,
-};

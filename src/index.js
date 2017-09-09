@@ -2,7 +2,16 @@ import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
 import Annotable from './simple/annotable';
-import Annotator, { annotator } from './simple/annotator';
+import Annotator from './simple/annotator';
+import TokenizerAnnotator from './simple/annotator/tokenize';
+import WordsToSentenceAnnotator from './simple/annotator/ssplit';
+import POSTaggerAnnotator from './simple/annotator/pos';
+import MorphaAnnotator from './simple/annotator/lemma';
+import NERClassifierCombiner from './simple/annotator/ner';
+import ParserAnnotator from './simple/annotator/parse';
+import DependencyParseAnnotator from './simple/annotator/depparse';
+import RelationExtractorAnnotator from './simple/annotator/relation';
+import RegexNERAnnotator from './simple/annotator/regexner';
 import Service from './service';
 import ConnectorServer from './connector/connector-server';
 import ConnectorCli from './connector/connector-cli';
@@ -32,7 +41,18 @@ export default {
     Sentence,
     Token,
     // namespace for default annotators
-    annotator,
+    // Predefined annotators @see {@link https://stanfordnlp.github.io/CoreNLP/annotators.html}
+    annotator: {
+      TokenizerAnnotator,
+      WordsToSentenceAnnotator,
+      POSTaggerAnnotator,
+      MorphaAnnotator,
+      NERClassifierCombiner,
+      ParserAnnotator,
+      DependencyParseAnnotator,
+      RelationExtractorAnnotator,
+      RegexNERAnnotator,
+    },
   },
 
   util: {
