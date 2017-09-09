@@ -7,9 +7,12 @@ export CORENLP_RELESASE_DATE=2017-06-09
 export CORENLP_PATH=`dirname $0`/../corenlp/stanford-corenlp-full-$CORENLP_RELESASE_DATE
 export CORENLP_MODEL_LANGUAGE=spanish
 
+# alternatively use.... that would prevent using default models of english
+# -cp $CORENLP_PATH/stanford-corenlp-$CORENLP_VERSION.jar:$CORENLP_PATH/stanford-$CORENLP_MODEL_LANGUAGE-corenlp-$CORENLP_RELESASE_DATE-models.jar \
+
 if [ -f $CORENLP_PATH/build.xml ]; then
   java -Xmx4g \
-    -cp $CORENLP_PATH/stanford-corenlp-$CORENLP_VERSION.jar:$CORENLP_PATH/stanford-$CORENLP_MODEL_LANGUAGE-corenlp-$CORENLP_RELESASE_DATE-models.jar \
+    -cp "$CORENLP_PATH/*" \
     edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
     -serverProperties StanfordCoreNLP-spanish.properties \
     -port 9000 \
