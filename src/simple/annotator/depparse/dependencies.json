@@ -163,6 +163,12 @@
       "examples": [
       ]
     },
+    "dobj": {
+      "type": "direct object",
+      "description": "",
+      "examples": [
+      ]
+    },
     "nummod": {
       "type": "numeric modifier",
       "description": "",

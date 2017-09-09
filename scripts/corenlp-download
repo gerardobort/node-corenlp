@@ -2,10 +2,15 @@
 
 # Download CoreNLP
 
+export CORENLP_VERSION=3.8.0
+export CORENLP_RELESASE_DATE=2017-06-09
+export CORENLP_PATH=`dirname $0`/../corenlp/stanford-corenlp-full-$CORENLP_RELESASE_DATE
+export CORENLP_MODEL_LANGUAGE=spanish
+
 mkdir `dirname $0`/../corenlp; \
 pushd `dirname $0`/../corenlp; \
-wget https://nlp.stanford.edu/software/stanford-spanish-corenlp-2017-06-09-models.jar; \
-wget https://nlp.stanford.edu/software/stanford-corenlp-full-2017-06-09.zip; \
-unzip stanford-corenlp-full-2017-06-09.zip && rm stanford-corenlp-full-2017-06-09.zip; \
-mv stanford-spanish-corenlp-2017-06-09-models.jar stanford-corenlp-full-2017-06-09; \
+wget https://nlp.stanford.edu/software/stanford-$CORENLP_MODEL_LANGUAGE-corenlp-$CORENLP_RELESASE_DATE-models.jar; \
+wget https://nlp.stanford.edu/software/stanford-corenlp-full-$CORENLP_RELESASE_DATE.zip; \
+unzip stanford-corenlp-full-$CORENLP_RELESASE_DATE.zip && rm stanford-corenlp-full-$CORENLP_RELESASE_DATE.zip; \
+mv stanford-spanish-corenlp-$CORENLP_RELESASE_DATE-models.jar stanford-corenlp-full-$CORENLP_RELESASE_DATE; \
 popd

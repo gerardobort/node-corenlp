@@ -4,7 +4,8 @@
   "description": "A NodeJS CoreNLP library",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -Rf dist corenlp *.tmp.json",
+    "clean": "rm -Rf dist *.tmp.json",
+    "corenlp:clean": "rm -Rf corenlp",
     "corenlp:download": "./scripts/corenlp-download",
     "corenlp:server": "./scripts/corenlp-server",
     "compile": "gulp",

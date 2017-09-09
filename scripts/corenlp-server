@@ -2,9 +2,14 @@
 
 # Start CoreNLP Server (spanish setup)
 
-if [ -f `dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/build.xml ]; then
+export CORENLP_VERSION=3.8.0
+export CORENLP_RELESASE_DATE=2017-06-09
+export CORENLP_PATH=`dirname $0`/../corenlp/stanford-corenlp-full-$CORENLP_RELESASE_DATE
+export CORENLP_MODEL_LANGUAGE=spanish
+
+if [ -f $CORENLP_PATH/build.xml ]; then
   java -Xmx4g \
-    -cp "`dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/*" \
+    -cp $CORENLP_PATH/stanford-corenlp-$CORENLP_VERSION.jar:$CORENLP_PATH/stanford-$CORENLP_MODEL_LANGUAGE-corenlp-$CORENLP_RELESASE_DATE-models.jar \
     edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
     -serverProperties StanfordCoreNLP-spanish.properties \
     -port 9000 \
