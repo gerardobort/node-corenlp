@@ -9,9 +9,10 @@
     "corenlp:server": "./scripts/corenlp-server",
     "compile": "gulp",
     "prepublish": "npm run lint && npm run test && npm run compile",
-    "lint": "eslint src/*.js src/**/*.js test/*.js",
-    "lint:fix": "eslint src/*.js src/**/*.js test/*.js --fix",
-    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort src/*.spec.js src/**/*.spec.js --compilers js:babel-core/register --timeout 30000"
+    "lint": "eslint 'src/**/*.js' 'test/*.js'",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort 'src/**/*.spec.js' --compilers js:babel-core/register --timeout 30000",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",

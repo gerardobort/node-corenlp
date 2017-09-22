@@ -1,7 +1,5 @@
 import CoreNLP from '../src';
 
-CoreNLP.setup('Spanish');
-
 // https://stanfordnlp.github.io/CoreNLP/regexner.html
 const RegexNERAnnotator = new CoreNLP.simple.Annotator('regexner', {
     validpospattern: `(([ner:PERSON]*) /es/ /una/ /buena/ /persona/)`,
@@ -19,10 +17,14 @@ const RegexNERAnnotator = new CoreNLP.simple.Annotator('regexner', {
     CoreNLP.simple.annotator.NERClassifierCombiner,
   ]);
 
+const props = new CoreNLP.Properties();
+props.setProperty('annotators', 'tokenize,ssplit,pos,lemma,ner,parse');
 const sent = new CoreNLP.simple.Sentence('Juan Carlos es una buena persona');
-sent.applyAnnotator(RegexNERAnnotator)
-  .then(() => {
-    //console.log('parse', sent);
+const pipeline = new CoreNLP.Pipeline(props, 'Spanish');
+
+pipeline.annotate(sent)
+  .then((sent) => {
+    console.log('parse', sent);
   })
   .catch(err => {
     console.log('err', err);

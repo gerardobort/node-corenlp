@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 
@@ -31,8 +30,8 @@ export default class WordsToSentenceAnnotator extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-      ]
+        new TokenizerAnnotator(),
+      ],
     );
   }
 }

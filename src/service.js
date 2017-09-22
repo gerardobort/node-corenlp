@@ -1,53 +1,46 @@
-import ConnectorServer from './connector/connector-server';
 import depInfo from './simple/annotator/depparse/dependencies.json';
 
-const LANGUAGE_TO_ISO2 = {
-  English: 'en',
-  French: 'fr',
-  German: 'de',
-  Spanish: 'es',
-};
-
-export default {
-
+export default class Service {
   /**
-   * @param {ConnectorServer|ConnectorCli}
+   * Create a Service
+   * @param {ConnectorServer|ConnectorCli} connector
+   * @param {('English'|'French'|'German'|'Spanish'|'Unspecified'|'Whitesapce')} [language]
    */
-  connector: new ConnectorServer({}),
-
-  /**
-   * @param {('English'|'French'|'German'|'Spanish'|'Unspecified'|'Whitesapce')}
-   */
-  language: 'Spanish',
+  constructor(connector, language = 'Unspecified') {
+    this._connector = connector;
+    this._language = language;
+  }
 
   getAnnotationData(text, annotators, options = {}) {
-    return this.connector.get({
+    return this._connector.get({
       annotators,
       text,
       options,
-      language: this.language.toLowerCase(),
+      language: this._language.toLowerCase(),
     });
-  },
+  }
 
-  getTokenPosInfo(pos) {
+  static getTokenPosInfo(pos, languageISO) {
     try {
       // eslint-disable-next-line global-require, import/no-dynamic-require
-      return require(`./simple/annotator/pos/${LANGUAGE_TO_ISO2[this.language]}.json`)
+      return require(`./simple/annotator/pos/${languageISO}.json`)
         .tagset[pos];
     } catch (err) {
-      throw new Error(`Unable to getTokenPosInfo for the language ${this.language}`);
+      return undefined;
     }
-  },
+  }
 
-  getSentenceParseInfo(group) {
+  static getSentenceParseInfo(group, languageISO) {
     try {
       // eslint-disable-next-line global-require, import/no-dynamic-require
-      return require(`./simple/annotator/parse/${LANGUAGE_TO_ISO2[this.language]}.json`)
+      return require(`./simple/annotator/parse/${languageISO}.json`)
         .multiword[group];
     } catch (err) {
-      throw new Error(`Unable to getSentenceParseInfo for the language ${this.language}`);
+      return undefined;
     }
-  },
+  }
 
-  getGovernorDepInfo: dep => depInfo.dependencies[dep],
-};
+  static getGovernorDepInfo(dep) {
+    return depInfo.dependencies[dep];
+  }
+}

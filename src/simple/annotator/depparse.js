@@ -1,11 +1,7 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
 import POSTaggerAnnotator from './pos';
-import MorphaAnnotator from './lemma';
-import NERClassifierCombiner from './ner';
-import ParserAnnotator from './parse';
 
 /**
  * Class representing an DependencyParseAnnotator.
@@ -28,13 +24,10 @@ export default class DependencyParseAnnotator extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-        WordsToSentenceAnnotator,
-        POSTaggerAnnotator,
-        MorphaAnnotator,
-        NERClassifierCombiner,
-        ParserAnnotator,
-      ]
+        new TokenizerAnnotator(),
+        new WordsToSentenceAnnotator(),
+        new POSTaggerAnnotator(),
+      ],
     );
   }
 }

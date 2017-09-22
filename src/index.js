@@ -1,3 +1,5 @@
+import Properties from './properties';
+import Pipeline from './pipeline';
 import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
@@ -21,15 +23,14 @@ import Tree from './util/tree';
  * CoreNLP NodeJS Interface
  */
 export default {
-  setup(language = null, connector = null) {
-    Service.language = language || Service.language;
-    Service.connector = connector || Service.connector;
-  },
-
   connector: {
     ConnectorServer,
     ConnectorCli,
   },
+
+  Properties,
+  Pipeline,
+  Service,
 
   /**
    * https://stanfordnlp.github.io/CoreNLP/simple.html

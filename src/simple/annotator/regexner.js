@@ -1,10 +1,6 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
-import POSTaggerAnnotator from './pos';
-import MorphaAnnotator from './lemma';
-import NERClassifierCombiner from './ner';
 
 /**
  * Class representing an RegexNERAnnotator.
@@ -21,9 +17,9 @@ export default class RegexNERAnnotator extends Annotator {
    */
   constructor(options = {}) {
     super(
-      'regexger',
+      'regexner',
       {
-        validpospattern: `(([ner:PERSON]*) /es/ /una/ /buena/ /persona/)`,
+        validpospattern: '(([ner:PERSON]*) /es/ /una/ /buena/ /persona/)',
         // ignorecase: null,
         // mapping: null,
         // mapping.header: null,
@@ -37,12 +33,9 @@ export default class RegexNERAnnotator extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-        WordsToSentenceAnnotator,
-        POSTaggerAnnotator,
-        MorphaAnnotator,
-        NERClassifierCombiner,
-      ]
+        new TokenizerAnnotator(),
+        new WordsToSentenceAnnotator(),
+      ],
     );
   }
 }

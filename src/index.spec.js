@@ -19,9 +19,9 @@ import Tree from './util/tree';
 
 describe('CoreNLP Library entry point', () => {
   describe('CoreNLP', () => {
-    describe('setup', () => {
-      it('should have setup method', async () => {
-        expect(CoreNLP).to.have.property('setup').that.is.a('function');
+    describe('constructor', () => {
+      it('should have a constructor method', async () => {
+        expect(CoreNLP).to.have.property('constructor').that.is.a('function');
       });
     });
 

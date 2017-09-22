@@ -1,14 +1,15 @@
-import Annotator from '../annotator';
 import NERClassifierCombiner from './ner';
 
 describe('Annotator', () => {
   let annotator;
 
   describe('NERClassifierCombiner', () => {
-    beforeEach(() => annotator = new NERClassifierCombiner());
+    beforeEach(() => {
+      annotator = new NERClassifierCombiner();
+    });
 
     it('should have a proper pipeline', () => {
-      expect(annotator.pipeline()).to.deep.equal(['tokenize', 'ssplit', 'pos', 'lemma', 'ner']);
+      expect(annotator.pipeline()).to.deep.equal(['tokenize', 'ssplit', 'ner']);
     });
 
     it('should have the proper default options', () => {
