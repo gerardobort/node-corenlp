@@ -1,5 +1,6 @@
 import SimpleCoreNLP from '..';
 import Annotable from './annotable';
+import Annotator from './annotator';
 
 describe('Annotable', () => {
   let connectorMock;
@@ -15,19 +16,21 @@ describe('Annotable', () => {
   beforeEach(() => {
     annotable = new Annotable('el pájaro veloz');
     annotable.fromJson = sinon.stub();
-    annotatorMock1 = {
+    annotatorMock1 = new Annotator();
+    Object.assign(annotatorMock1, {
       toString: sinon.stub().returns('ANNOTATOR_MOCK'),
       pipeline: sinon.stub().returns([]),
       pipelineOptions: sinon.stub().returns({}),
       dependencies: sinon.stub().returns([]),
-    };
+    });
 
-    annotatorMock2 = {
+    annotatorMock2 = new Annotator();
+    Object.assign(annotatorMock2, {
       toString: sinon.stub().returns('ANNOTATOR_MOCK_2'),
       pipeline: sinon.stub(),
       pipelineOptions: sinon.stub(),
       dependencies: sinon.stub(),
-    };
+    });
   });
 
   describe('addAnnotator / hasAnnotator', () => {

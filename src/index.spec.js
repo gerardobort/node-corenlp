@@ -3,7 +3,16 @@ import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
 import Annotable from './simple/annotable';
-import Annotator, { annotator } from './simple/annotator';
+import Annotator from './simple/annotator';
+import TokenizerAnnotator from './simple/annotator/tokenize';
+import WordsToSentenceAnnotator from './simple/annotator/ssplit';
+import POSTaggerAnnotator from './simple/annotator/pos';
+import MorphaAnnotator from './simple/annotator/lemma';
+import NERClassifierCombiner from './simple/annotator/ner';
+import ParserAnnotator from './simple/annotator/parse';
+import DependencyParseAnnotator from './simple/annotator/depparse';
+import RelationExtractorAnnotator from './simple/annotator/relation';
+import RegexNERAnnotator from './simple/annotator/regexner';
 import ConnectorServer from './connector/connector-server';
 import ConnectorCli from './connector/connector-cli';
 import Tree from './util/tree';
@@ -49,7 +58,17 @@ describe('CoreNLP Library entry point', () => {
 
       describe('annotator', () => {
         it('should have annotators', async () => {
-          expect(CoreNLP.simple).to.have.property('annotator').that.equals(annotator);
+          expect(CoreNLP.simple).to.have.property('annotator').that.deep.equals({
+            TokenizerAnnotator,
+            WordsToSentenceAnnotator,
+            POSTaggerAnnotator,
+            MorphaAnnotator,
+            NERClassifierCombiner,
+            ParserAnnotator,
+            DependencyParseAnnotator,
+            RelationExtractorAnnotator,
+            RegexNERAnnotator,
+          });
         });
       });
     });

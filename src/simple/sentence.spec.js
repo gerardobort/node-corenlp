@@ -2,7 +2,7 @@ import CoreNLP from '..';
 import Sentence from './sentence';
 import Annotable from './annotable';
 import Token from './token';
-import { WordsToSentenceAnnotator } from './annotator';
+import WordsToSentenceAnnotator from './annotator/ssplit';
 
 describe('Sentence', () => {
   let connectorMock;

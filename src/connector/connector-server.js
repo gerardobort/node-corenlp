@@ -19,9 +19,24 @@ export default class ConnectorServer {
       outputFormat: 'json',
     };
 
+    let baseUrl = this.dsn;
+    let queryString = `pipelineLanguage=${language}&properties=${JSON.stringify(properties)}`;
+
+    /**
+     * @todo
+     * Refactor this different case as a strategy not dependant on the connector necessarily.
+     * The conenctor should support extensibility to special cases like `tokensregex`.
+     */
+    if (annotators.indexOf('regexner') > -1) {
+      // https://stanfordnlp.github.io/CoreNLP/corenlp-server.html#query-tokensregex-tokensregex
+      baseUrl += '/tokensregex';
+      queryString += `&pattern=${encodeURI(properties['regexner.validpospattern'])}`;
+      delete properties['regexner.validpospattern'];
+    }
+
     const rpOpts = {
       method: 'POST',
-      uri: `${this.dsn}/?properties=${JSON.stringify(properties)}&pipelineLanguage=${language}`,
+      uri: `${baseUrl}?${queryString}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       },
