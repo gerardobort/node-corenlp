@@ -121,12 +121,9 @@ In summary, this NodeJS library aims to replicate the CoreNLP Simple Java interf
 Properties
 Pipeline
 Service
-ConnectorCli
-ConnectorServer
+ConnectorServer                   # https://stanfordnlp.github.io/CoreNLP/corenlp-server.html
+ConnectorCli                      # https://stanfordnlp.github.io/CoreNLP/cmdline.html
 CoreNLP
-  connector
-    ConnectorServer               # https://stanfordnlp.github.io/CoreNLP/corenlp-server.html
-    ConnectorCli                  # https://stanfordnlp.github.io/CoreNLP/cmdline.html
   simple                          # https://stanfordnlp.github.io/CoreNLP/simple.html
     Annotable
     Annotator
