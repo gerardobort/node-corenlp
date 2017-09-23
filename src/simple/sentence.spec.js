@@ -1,17 +1,9 @@
-import CoreNLP from '..';
 import Sentence from './sentence';
 import Annotable from './annotable';
 import Token from './token';
-import WordsToSentenceAnnotator from './annotator/ssplit';
 
 describe('Sentence', () => {
-  let connectorMock;
   let sent;
-
-  before(() => {
-    connectorMock = { get: sinon.stub() };
-    CoreNLP.setup(null, connectorMock);
-  });
 
   beforeEach(() => {
     sent = new Sentence('loren ipsum dolor sit amet');
@@ -76,7 +68,7 @@ describe('Sentence', () => {
 
       it('should return the words, by first applying ssplit annotator', async () => {
         expect(() => sent.words()).to.throw(Error, /unmet annotator dependencies/);
-        connectorMock.get.returns(Promise.resolve({
+        sent.fromJson({
           sentences: [
             {
               tokens: [
@@ -84,8 +76,7 @@ describe('Sentence', () => {
               ],
             },
           ],
-        }));
-        await sent.applyAnnotator(WordsToSentenceAnnotator);
+        });
         expect(sent.words()).to.be.an('array');
         expect(sent.words()).to.have.property('0').that.is.a('string');
         expect(sent.word(0)).to.be.a('string');
@@ -147,7 +138,7 @@ describe('Sentence', () => {
 
       it('should return the tokens, by first applying ssplit annotator', async () => {
         expect(() => sent.tokens()).to.throw(Error, /unmet annotator dependencies/);
-        connectorMock.get.returns(Promise.resolve({
+        sent.fromJson({
           sentences: [
             {
               tokens: [
@@ -155,8 +146,7 @@ describe('Sentence', () => {
               ],
             },
           ],
-        }));
-        await sent.applyAnnotator(WordsToSentenceAnnotator);
+        });
         expect(sent.tokens()).to.be.an('array');
         expect(sent.tokens()).to.have.property('0').that.is.instanceof(Token);
         expect(sent.token(0)).to.be.instanceof(Token);

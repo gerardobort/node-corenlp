@@ -77,7 +77,7 @@ export default class Annotator {
     return _.uniq(
       _.flatten(
         this.dependencies()
-          .map(annotator => annotator.getInstance().pipeline()),
+          .map(annotator => annotator.pipeline()),
       )
         .concat([this.toString()]),
     );
@@ -91,26 +91,10 @@ export default class Annotator {
    */
   pipelineOptions() {
     return _.reduce(
-      this.dependencies().map(annotator => annotator.getInstance().pipelineOptions())
+      this.dependencies().map(annotator => annotator.pipelineOptions())
         .concat(Object.keys(this.options()).map(opt => ({ [`${this}.${opt}`]: this.option(opt) }))),
       (ac, option) => ({ ...ac, ...option }),
       {},
     );
-  }
-
-  /**
-   * Allows for composition (an Annotator could be either a Class or an Instance indiferently) 
-   * @see {@link Annotator::getInstance()}
-   * @returns {Annotator} annotator instance
-   */
-  getInstance() {
-    return this;
-  }
-
-  /**
-   * @returns {Annotator} annotator instance
-   */
-  static getInstance() {
-    return new Annotator();
   }
 }

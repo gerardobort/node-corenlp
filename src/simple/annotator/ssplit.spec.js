@@ -1,11 +1,12 @@
-import Annotator from '../annotator';
-import POSTaggerAnnotator from './pos';
+import WordsToSentenceAnnotator from './ssplit';
 
 describe('Annotator', () => {
   let annotator;
 
   describe('WordsToSentenceAnnotator', () => {
-    beforeEach(() => annotator = new WordsToSentenceAnnotator());
+    beforeEach(() => {
+      annotator = new WordsToSentenceAnnotator();
+    });
 
     it('should have a proper pipeline', () => {
       expect(annotator.pipeline()).to.deep.equal(['tokenize', 'ssplit']);

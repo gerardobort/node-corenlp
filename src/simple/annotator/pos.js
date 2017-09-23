@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
@@ -23,9 +22,9 @@ export default class POSTaggerAnnotator extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-        WordsToSentenceAnnotator,
-      ]
+        new TokenizerAnnotator(),
+        new WordsToSentenceAnnotator(),
+      ],
     );
   }
 }

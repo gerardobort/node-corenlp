@@ -1,17 +1,9 @@
-import CoreNLP from '..';
 import Document from './document';
 import Sentence from './sentence';
 import Annotable from './annotable';
-import WordsToSentenceAnnotator from './annotator/ssplit';
 
 describe('Document', () => {
-  let connectorMock;
   let doc;
-
-  before(() => {
-    connectorMock = { get: sinon.stub() };
-    CoreNLP.setup(null, connectorMock);
-  });
 
   beforeEach(() => {
     doc = new Document('loren ipsum dolor sit amet');
@@ -71,7 +63,7 @@ describe('Document', () => {
 
       it('should return the sentences, by first applying ssplit annotator', async () => {
         expect(() => doc.sentences()).to.throw(Error, /unmet annotator dependencies/);
-        connectorMock.get.returns(Promise.resolve({
+        doc.fromJson({
           sentences: [
             {
               tokens: [
@@ -80,8 +72,7 @@ describe('Document', () => {
               ],
             },
           ],
-        }));
-        await doc.applyAnnotator(WordsToSentenceAnnotator);
+        });
         expect(doc.sentences()).to.be.an('array');
         expect(doc.sentences()).to.have.property('0').that.is.instanceof(Sentence);
         expect(doc.sentence(0)).to.be.instanceof(Sentence);

@@ -1,9 +1,6 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
-import POSTaggerAnnotator from './pos';
-import MorphaAnnotator from './lemma';
 
 /**
  * Class representing an NERClassifierCombiner.
@@ -31,11 +28,9 @@ export default class NERClassifierCombiner extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-        WordsToSentenceAnnotator,
-        POSTaggerAnnotator,
-        MorphaAnnotator,
-      ]
+        new TokenizerAnnotator(),
+        new WordsToSentenceAnnotator(),
+      ],
     );
   }
 }

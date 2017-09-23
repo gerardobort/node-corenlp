@@ -1,5 +1,3 @@
-import Service from '../service';
-
 /**
  * Class representing an Annotable.
  */
@@ -14,12 +12,36 @@ export default class Annotable {
   }
 
   /**
+   * Get a string representation of the raw text
+   * @return {string} text
+   */
+  text() {
+    return this._text;
+  }
+
+  /**
+   * Sets the language ISO (given by the pipeline during the annotation process)
+   * This is solely to keep track of the language chosen for further analysis
+   * @return {string} text
+   */
+  setLanguageISO(iso) {
+    this._language = iso;
+  }
+
+  /**
+   * Retrieves the language ISO
+   * @return {string} text
+   */
+  getLanguageISO() {
+    return this._language;
+  }
+
+  /**
    * Marks an annotator as a met dependency
    * @param {Annotator|function} annotator
    */
   addAnnotator(annotator) {
-    const annotatorInstance = annotator.getInstance();
-    this._annotators[annotatorInstance.toString()] = annotatorInstance;
+    this._annotators[annotator.toString()] = annotator;
   }
 
   /**
@@ -27,7 +49,7 @@ export default class Annotable {
    * @param {Array.<Annotator|function>} annotators
    */
   addAnnotators(annotators) {
-    annotators.forEach(annotator => this.addAnnotator(annotator.getInstance()));
+    annotators.forEach(annotator => this.addAnnotator(annotator));
   }
 
   /**
@@ -35,7 +57,7 @@ export default class Annotable {
    * @param {Annotator|function} annotator
    */
   removeAnnotator(annotator) {
-    delete this._annotators[annotator.getInstance().toString()];
+    delete this._annotators[annotator.toString()];
   }
 
   /**
@@ -44,7 +66,7 @@ export default class Annotable {
    * @returns {boolean} hasAnnotator
    */
   hasAnnotator(annotator) {
-    return !!this._annotators[annotator.getInstance().toString()];
+    return !!this._annotators[annotator.toString()];
   }
 
   /**
@@ -55,19 +77,6 @@ export default class Annotable {
   hasAnyAnnotator(annotators) {
     return annotators.some(annotator =>
       // eslint-disable-next-line no-bitwise
-      !!~Object.keys(this._annotators).indexOf(annotator.getInstance().toString()));
-  }
-
-  /**
-   * Calls the service and loads the associated response metadata into the Annotable model
-   * @async
-   * @param {Annotator|function} annotator
-   */
-  async applyAnnotator(annotator) {
-    const annotatorInstance = annotator.getInstance();
-    this.fromJson(await Service.getAnnotationData(
-      this._text, annotatorInstance.pipeline(), annotatorInstance.pipelineOptions()));
-    this.addAnnotators(annotatorInstance.dependencies());
-    this.addAnnotator(annotatorInstance);
+      !!~Object.keys(this._annotators).indexOf(annotator.toString()));
   }
 }

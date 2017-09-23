@@ -133,6 +133,12 @@
       "examples": [
       ]
     },
+    "dobj": {
+      "type": "direct object",
+      "description": "",
+      "examples": [
+      ]
+    },
     "iobj": {
       "type": "indirect object",
       "description": "",

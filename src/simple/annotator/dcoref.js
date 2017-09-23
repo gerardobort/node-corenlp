@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
@@ -6,8 +5,6 @@ import POSTaggerAnnotator from './pos';
 import MorphaAnnotator from './lemma';
 import NERClassifierCombiner from './ner';
 import ParserAnnotator from './parse';
-import DependencyParseAnnotator from './depparse';
-import RelationExtractorAnnotator from './relation';
 
 /**
  * Class representing an DeterministicCorefAnnotator.
@@ -29,15 +26,13 @@ export default class DeterministicCorefAnnotator extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-        WordsToSentenceAnnotator,
-        POSTaggerAnnotator,
-        MorphaAnnotator,
-        NERClassifierCombiner,
-        ParserAnnotator,
-        DependencyParseAnnotator,
-        RelationExtractorAnnotator,
-      ]
+        new TokenizerAnnotator(),
+        new WordsToSentenceAnnotator(),
+        new POSTaggerAnnotator(),
+        new MorphaAnnotator(),
+        new NERClassifierCombiner(),
+        new ParserAnnotator(),
+      ],
     );
   }
 }

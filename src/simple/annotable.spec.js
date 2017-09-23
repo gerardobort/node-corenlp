@@ -1,17 +1,10 @@
-import SimpleCoreNLP from '..';
 import Annotable from './annotable';
 import Annotator from './annotator';
 
 describe('Annotable', () => {
-  let connectorMock;
   let annotable;
   let annotatorMock1;
   let annotatorMock2;
-
-  before(() => {
-    connectorMock = { get: sinon.stub() };
-    SimpleCoreNLP.setup(null, connectorMock);
-  });
 
   beforeEach(() => {
     annotable = new Annotable('el pájaro veloz');
@@ -63,31 +56,6 @@ describe('Annotable', () => {
       expect(annotable.hasAnyAnnotator([annotatorMock2])).to.be.true;
       expect(annotable.hasAnyAnnotator([annotatorMock1, annotatorMock2])).to.be.true;
       expect(annotable.hasAnnotator(annotatorMock1)).to.be.false;
-    });
-  });
-
-  describe('applyAnnotator', () => {
-    it('should call the service asynchronously and load the annotator metas', async () => {
-      const jsonStub = {
-        sentences: [
-          {
-            tokens: [
-              { word: 'loren' },
-              { word: 'ipsum' },
-            ],
-          },
-        ],
-      };
-      connectorMock.get.returns(Promise.resolve(jsonStub));
-
-      await annotable.applyAnnotator(annotatorMock1);
-      expect(connectorMock.get).to.have.been.calledWith({
-        annotators: [],
-        text: 'el pájaro veloz',
-        options: {},
-        language: 'spanish',
-      });
-      expect(annotable.fromJson).to.have.been.calledWith(jsonStub);
     });
   });
 });

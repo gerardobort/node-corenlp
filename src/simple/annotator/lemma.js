@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
@@ -24,10 +23,10 @@ export default class MorphaAnnotator extends Annotator {
         ...options,
       },
       [
-        TokenizerAnnotator,
-        WordsToSentenceAnnotator,
-        POSTaggerAnnotator,
-      ]
+        new TokenizerAnnotator(),
+        new WordsToSentenceAnnotator(),
+        new POSTaggerAnnotator(),
+      ],
     );
   }
 }

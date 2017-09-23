@@ -1,4 +1,9 @@
-import CoreNLP from '.';
+import CoreNLP, {
+  Properties,
+  Pipeline,
+  ConnectorServer,
+  ConnectorCli,
+} from '.';
 import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
@@ -13,25 +18,23 @@ import ParserAnnotator from './simple/annotator/parse';
 import DependencyParseAnnotator from './simple/annotator/depparse';
 import RelationExtractorAnnotator from './simple/annotator/relation';
 import RegexNERAnnotator from './simple/annotator/regexner';
-import ConnectorServer from './connector/connector-server';
-import ConnectorCli from './connector/connector-cli';
 import Tree from './util/tree';
 
 describe('CoreNLP Library entry point', () => {
   describe('CoreNLP', () => {
-    describe('setup', () => {
-      it('should have setup method', async () => {
-        expect(CoreNLP).to.have.property('setup').that.is.a('function');
+    describe('constructor', () => {
+      it('should have a constructor method', async () => {
+        expect(CoreNLP).to.have.property('constructor').that.is.a('function');
       });
     });
 
     describe('connector', () => {
       it('should have ConnectorServer', async () => {
-        expect(CoreNLP.connector).to.have.property('ConnectorServer').that.equals(ConnectorServer);
+        expect(ConnectorServer).to.be.a('function');
       });
 
       it('should have ConnectorCli', async () => {
-        expect(CoreNLP.connector).to.have.property('ConnectorCli').that.equals(ConnectorCli);
+        expect(ConnectorCli).to.be.a('function');
       });
     });
 
@@ -76,6 +79,80 @@ describe('CoreNLP Library entry point', () => {
     describe('util', () => {
       it('should have Tree', async () => {
         expect(CoreNLP.util).to.have.property('Tree').that.equals(Tree);
+      });
+    });
+
+    describe('Integration Test', () => {
+      context('Using ConnectorServer', async () => {
+        it('should allow to initialize a pipeline and run annotations', async () => {
+          const connector = new ConnectorServer({ dsn: 'http://localhost:9000' });
+          sinon.stub(connector, 'get').returns(Promise.resolve({
+            sentences: [{
+              tokens: [
+                {
+                  word: 'Hello',
+                  pos: 'UH',
+                  ner: 'O',
+                },
+                {
+                  word: 'world',
+                  pos: 'NN',
+                  ner: 'O',
+                },
+              ],
+            }],
+          }));
+          const props = new Properties({
+            annotators: 'tokenize,ssplit',
+          });
+          const pipeline = new Pipeline(props, 'English', connector);
+          const sent = new CoreNLP.simple.Sentence('Hello world');
+          await pipeline.annotate(sent);
+          expect(sent.word(0)).to.equal('Hello');
+          expect(sent.word(1)).to.equal('world');
+          expect(sent.token(0).pos()).to.equal('UH');
+          expect(sent.token(1).pos()).to.equal('NN');
+          expect(sent.token(0).ner()).to.equal('O');
+          expect(sent.token(1).ner()).to.equal('O');
+        });
+      });
+
+      context('Using ConnectorCli', async () => {
+        it('should allow to initialize a pipeline and run annotations', async () => {
+          const connector = new ConnectorCli({
+            classPath: 'corenlp/stanford-corenlp-full-2017-06-09/*',
+            mainClass: 'edu.stanford.nlp.pipeline.StanfordCoreNLP',
+            props: 'StanfordCoreNLP-spanish.properties',
+          });
+          sinon.stub(connector, 'get').returns(Promise.resolve({
+            sentences: [{
+              tokens: [
+                {
+                  word: 'Hello',
+                  pos: 'UH',
+                  ner: 'O',
+                },
+                {
+                  word: 'world',
+                  pos: 'NN',
+                  ner: 'O',
+                },
+              ],
+            }],
+          }));
+          const props = new Properties({
+            annotators: 'tokenize,ssplit',
+          });
+          const pipeline = new Pipeline(props, 'English', connector);
+          const sent = new CoreNLP.simple.Sentence('Hello world');
+          await pipeline.annotate(sent);
+          expect(sent.word(0)).to.equal('Hello');
+          expect(sent.word(1)).to.equal('world');
+          expect(sent.token(0).pos()).to.equal('UH');
+          expect(sent.token(1).pos()).to.equal('NN');
+          expect(sent.token(0).ner()).to.equal('O');
+          expect(sent.token(1).ner()).to.equal('O');
+        });
       });
     });
   });

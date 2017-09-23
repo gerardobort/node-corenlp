@@ -12,25 +12,23 @@ import ParserAnnotator from './simple/annotator/parse';
 import DependencyParseAnnotator from './simple/annotator/depparse';
 import RelationExtractorAnnotator from './simple/annotator/relation';
 import RegexNERAnnotator from './simple/annotator/regexner';
-import Service from './service';
-import ConnectorServer from './connector/connector-server';
-import ConnectorCli from './connector/connector-cli';
 import Tree from './util/tree';
+import _Properties from './properties';
+import _Pipeline from './pipeline';
+import _Service from './service';
+import _ConnectorCli from './connector/connector-cli';
+import _ConnectorServer from './connector/connector-server';
+
+export const Properties = _Properties;
+export const Pipeline = _Pipeline;
+export const Service = _Service;
+export const ConnectorCli = _ConnectorCli;
+export const ConnectorServer = _ConnectorServer;
 
 /**
  * CoreNLP NodeJS Interface
  */
 export default {
-  setup(language = null, connector = null) {
-    Service.language = language || Service.language;
-    Service.connector = connector || Service.connector;
-  },
-
-  connector: {
-    ConnectorServer,
-    ConnectorCli,
-  },
-
   /**
    * https://stanfordnlp.github.io/CoreNLP/simple.html
    */

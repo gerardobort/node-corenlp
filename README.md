@@ -34,7 +34,7 @@ You may want to download, apart of the full package, other language models (see 
 
 ### 3. Configure Stanford CoreNLP
 
-#### 3.1. Use CoreNLP as HTTP Server
+#### 3.1. Using StanfordCoreNLPServer
 
 ```bash
 # Run the server using all jars in the current directory (e.g., the CoreNLP home directory)
@@ -44,9 +44,13 @@ java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -t
 CoreNLP connects by default via StanfordCoreNLPServer, using port 9000.  You can also opt to setup the connection differently:
 
 ```javascript
-import CoreNLP from 'corenlp';
+import CoreNLP, { Properties, Pipeline, ConnectorServer } from 'corenlp';
 
-CoreNLP.setup('English', new CoreNLP.connector.ConnectorServer({ dsn: 'http://localhost:9000' }));
+const connector = new ConnectorServer({ dsn: 'http://localhost:9000' });
+const props = new Properties({
+  annotators: 'tokenize,ssplit,pos,lemma,ner,parse',
+});
+const pipeline = new Pipeline(props, 'English', connector);
 ```
 
 #### 3.2. Use CoreNLP via CLI
@@ -54,25 +58,31 @@ CoreNLP.setup('English', new CoreNLP.connector.ConnectorServer({ dsn: 'http://lo
 CoreNLP expects by default the StanfordCoreNLP package to be placed (unzipped) inside the path `${YOUR_NPM_PROJECT_ROOT}/corenlp/`.  You can also opt to setup the CLI interface differently:
 
 ```javascript
-import CoreNLP from 'corenlp';
+import CoreNLP, { Properties, Pipeline, ConnectorCli } from 'corenlp';
 
-CoreNLP.setup('Spanish', new CoreNLP.connector.ConnectorCli({
-  // specify the paths relative to your project root
-  classPath: 'corenlp/stanford-corenlp-full-2017-06-09/*',
-  mainClass: 'edu.stanford.nlp.pipeline.StanfordCoreNLP',
-  props: 'StanfordCoreNLP-spanish.properties',
-}));
+const connector = new ConnectorCli({
+  classPath: 'corenlp/stanford-corenlp-full-2017-06-09/*', // specify the paths relative to your npm project root
+  mainClass: 'edu.stanford.nlp.pipeline.StanfordCoreNLP', // optional
+  props: 'StanfordCoreNLP-spanish.properties', // optional
+});
+const props = new Properties({
+  annotators: 'tokenize,ssplit,pos,lemma,ner,parse',
+});
+const pipeline = new Pipeline(props, 'English', connector);
 ```
 
 ### 4. Use it
 
 ```javascript
-// ...
+// ... initialize pipeline first (see above)
 
 const sent = new CoreNLP.simple.Sentence('Hello world');
-sent.applyAnnotator(CoreNLP.simple.annotator.TokenizerAnnotator)
-  .then(() => {
+pipeline.annotate(sent)
+  .then(sent => {
     console.log(sent.words());
+  })
+  .catch(err => {
+    console.log('err', err);
   });
 ```
 
@@ -84,29 +94,16 @@ NOTE2: The examples below assumes `es6` syntax, if you use require, use as follo
 ### English
 
 ```javascript
-import CoreNLP from 'corenlp';
+import CoreNLP, { Properties, Pipeline } from 'corenlp';
 
-CoreNLP.setup('English'); // check method docs for more setup options
+const props = new Properties({
+  annotators: 'tokenize,ssplit,pos,lemma,ner,parse',
+});
+const pipeline = new Pipeline(props, 'English'); // uses ConnectorServer by default
+
 const sent = new CoreNLP.simple.Sentence('The little dog runs so fast.');
-sent.applyAnnotator(CoreNLP.simple.annotator.ParserAnnotator)
-  .then(() => {
-    console.log('parse', sent.parse());
-    console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
-  })
-  .catch(err => {
-    console.log('err', err);
-  });
-```
-
-### Spanish
-
-```javascript
-import CoreNLP from 'corenlp';
-
-CoreNLP.setup('Spanish'); // check method docs for more setup options
-const sent = new CoreNLP.simple.Sentence('El pájaro veloz come kiwi.');
-sent.applyAnnotator(CoreNLP.simple.annotator.ParserAnnotator)
-  .then(() => {
+pipeline.annotate(sent)
+  .then(sent => {
     console.log('parse', sent.parse());
     console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
   })
@@ -121,6 +118,11 @@ We will update this section soon.  In the meantime, you can browse the project c
 In summary, this NodeJS library aims to replicate the CoreNLP Simple Java interface but in Javascript.  There are some minor differences however, for example the need to call `applyAnnotator` asynchronously.
 
 ```bash
+Properties
+Pipeline
+Service
+ConnectorCli
+ConnectorServer
 CoreNLP
   connector
     ConnectorServer               # https://stanfordnlp.github.io/CoreNLP/corenlp-server.html

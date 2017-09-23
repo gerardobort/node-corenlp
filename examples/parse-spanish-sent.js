@@ -4,13 +4,13 @@ import CoreNLP from '../src';
 
 const props = new CoreNLP.Properties();
 props.setProperty('annotators', 'tokenize,ssplit,pos,lemma,ner,parse');
-const pipeline = new CoreNLP.Pipeline(props, 'English');
+const pipeline = new CoreNLP.Pipeline(props, 'Spanish');
 
-const sent = new CoreNLP.simple.Sentence('The little dog runs so fast.');
+const sent = new CoreNLP.simple.Sentence('Jorge quiere cinco empanadas de queso y carne.');
 pipeline.annotate(sent)
   .then((sent) => {
     console.log('parse', sent.parse());
-    console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
+    console.log(CoreNLP.util.Tree.fromSentence(sent, pipeline.getService()).dump());
   })
   .catch(err => {
     console.log('err', err);
