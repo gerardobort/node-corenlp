@@ -20,6 +20,45 @@ export default class Service {
     });
   }
 
+  getTokensRegexData(text, pattern, annotators, options = {}) {
+    return this._connector.get({
+      annotators,
+      text,
+      options: {
+        ...options,
+        'tokensregex.pattern': pattern,
+      },
+      language: this._language.toLowerCase(),
+      utility: 'tokensregex',
+    });
+  }
+
+  getSemgrexData(text, pattern, annotators, options = {}) {
+    return this._connector.get({
+      annotators,
+      text,
+      options: {
+        ...options,
+        'semgrex.pattern': pattern,
+      },
+      language: this._language.toLowerCase(),
+      utility: 'semgrex',
+    });
+  }
+
+  getTregexData(text, pattern, annotators, options = {}) {
+    return this._connector.get({
+      annotators,
+      text,
+      options: {
+        ...options,
+        'tregex.pattern': pattern,
+      },
+      language: this._language.toLowerCase(),
+      utility: 'tregex',
+    });
+  }
+
   static getTokenPosInfo(pos, languageISO) {
     try {
       // eslint-disable-next-line global-require, import/no-dynamic-require
