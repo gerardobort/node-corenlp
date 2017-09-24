@@ -1,0 +1,69 @@
+quiero	ORDER
+tomates?	INGREDIENT
+toma tes?	INGREDIENT
+lechugas?	INGREDIENT
+pollos?	INGREDIENT
+pancetas?	INGREDIENT
+pepinos?	INGREDIENT
+carnes?	INGREDIENT
+cebollas?	INGREDIENT
+morrón|morrones	INGREDIENT
+anchoa	INGREDIENT
+roquefort	INGREDIENT
+quesos?	INGREDIENT
+provolone	INGREDIENT
+aceitunas?	INGREDIENT
+hielo	INGREDIENT
+azucar	INGREDIENT
+condimentos?	CONDIMENT
+oregano	CONDIMENT
+mayonesa	CONDIMENT
+k(e|é)tchup	CONDIMENT	2.0
+mostaza	CONDIMENT
+barbacoa	CONDIMENT
+salsa golf	CONDIMENT
+sal	CONDIMENT
+pimienta	CONDIMENT
+vinagre	CONDIMENT
+aceite	CONDIMENT
+picante	CONDIMENT
+centavos?	CURRENCY
+menú	MEAL
+comida	MEAL
+papas?	MEAL
+papitas?	MEAL
+sánguche	MEAL
+hamburguesas?	MEAL
+ensaladas?	MEAL
+empanadas?	MEAL
+pizzas?	MEAL
+gaseosas?	DRINK
+jugos?	DRINK
+birras?	DRINK
+agua	DRINK
+pomelo	DRINK
+naranja	DRINK
+fanta	DRINK
+manaos	DRINK
+coca	DRINK
+coca cola	DRINK
+coca light	DRINK
+cono	DESSERT
+helado	DESSERT
+vainilla	DESSERT
+dulce de leche	DESSERT
+chocolate	DESSERT
+cine	PLACE
+deja	ORDER_ADD
+agrega	ORDER_ADD
+con	ORDER_ADD
+pone	ORDER_ADD
+ponele	ORDER_ADD
+pongas	ORDER_ADD
+saca	ORDER_REMOVE
+quita	ORDER_REMOVE
+sin	ORDER_REMOVE
+cambia	ORDER_REPLACE
+reemplaza	ORDER_REPLACE
+agranda	ORDER_MUTATE
+achica	ORDER_MUTATE

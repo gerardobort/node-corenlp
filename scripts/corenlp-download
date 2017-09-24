@@ -4,8 +4,8 @@
 
 mkdir `dirname $0`/../corenlp; \
 pushd `dirname $0`/../corenlp; \
-wget https://nlp.stanford.edu/software/stanford-spanish-corenlp-2017-06-09-models.jar; \
-wget https://nlp.stanford.edu/software/stanford-corenlp-full-2017-06-09.zip; \
+curl -O https://nlp.stanford.edu/software/stanford-spanish-corenlp-2017-06-09-models.jar; \
+curl -O https://nlp.stanford.edu/software/stanford-corenlp-full-2017-06-09.zip; \
 unzip stanford-corenlp-full-2017-06-09.zip && rm stanford-corenlp-full-2017-06-09.zip; \
 mv stanford-spanish-corenlp-2017-06-09-models.jar stanford-corenlp-full-2017-06-09; \
 popd

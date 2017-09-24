@@ -10,6 +10,12 @@ import depparse from './simple/annotator/depparse';
 import relation from './simple/annotator/relation';
 import regexner from './simple/annotator/regexner';
 
+import {
+  TokensRegexAnnotator,
+  SemgrexAnnotator,
+  TregexAnnotator,
+} from './simple/expression';
+
 const ANNOTATORS_BY_KEY = {
   tokenize,
   ssplit,
@@ -71,6 +77,55 @@ export default class Pipeline {
     annotable.addAnnotators(this._getAnnotators());
 
     return annotable;
+  }
+
+  async annotateTokensRegex(annotable) {
+    annotable.fromJson(await this._service.getTokensRegexData(
+      annotable.text(),
+      annotable.pattern(),
+      this._getAnnotatorsKeys(),
+      this._getAnnotatrosOptions()));
+
+    annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
+    annotable.addAnnotator(TokensRegexAnnotator);
+
+    return annotable;
+  }
+
+  async annotateSemgrex(annotable) {
+    annotable.fromJson(await this._service.getSemgrexData(
+      annotable.text(),
+      annotable.pattern(),
+      this._getAnnotatorsKeys(),
+      this._getAnnotatrosOptions()));
+
+    annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
+    annotable.addAnnotator(SemgrexAnnotator);
+
+    return annotable;
+  }
+
+  async annotateTregex(annotable) {
+    annotable.fromJson(await this._service.getTregexData(
+      annotable.text(),
+      annotable.pattern(),
+      this._getAnnotatorsKeys(),
+      this._getAnnotatrosOptions()));
+
+    annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
+    annotable.addAnnotator(TregexAnnotator);
+
+    return annotable;
+  }
+
+  async _semgrex(text, pattern) {
+    const data = await this._service.getSemgrexData(
+      text,
+      pattern,
+      this._getAnnotatorsKeys(),
+      this._getAnnotatrosOptions());
+
+    return data;
   }
 
   /**

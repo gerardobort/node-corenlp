@@ -1,6 +1,7 @@
 import Document from './simple/document';
 import Sentence from './simple/sentence';
 import Token from './simple/token';
+import Expression from './simple/expression';
 import Annotable from './simple/annotable';
 import Annotator from './simple/annotator';
 import TokenizerAnnotator from './simple/annotator/tokenize';
@@ -38,6 +39,7 @@ export default {
     Document,
     Sentence,
     Token,
+    Expression,
     // namespace for default annotators
     // Predefined annotators @see {@link https://stanfordnlp.github.io/CoreNLP/annotators.html}
     annotator: {

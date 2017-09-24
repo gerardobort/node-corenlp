@@ -1,14 +1,13 @@
-import CoreNLP from '../src';
+// NOTE: run with babel-node
+import CoreNLP, { Properties, Pipeline } from '../src';
 
-// Simple (https://stanfordnlp.github.io/CoreNLP/simple.html)
-
-const props = new CoreNLP.Properties();
+const props = new Properties();
 props.setProperty('annotators', 'tokenize,ssplit,pos,lemma,ner,parse');
-const pipeline = new CoreNLP.Pipeline(props, 'English');
+const pipeline = new Pipeline(props, 'English');
 
 const sent = new CoreNLP.simple.Sentence('The little dog runs so fast.');
 pipeline.annotate(sent)
-  .then((sent) => {
+  .then(sent => {
     console.log('parse', sent.parse());
     console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
   })
