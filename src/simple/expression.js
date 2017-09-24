@@ -1,48 +1,6 @@
 import Annotable from './annotable';
 import Annotator from './annotator';
-
-/**
- * A Match of either `TokensRegex`, `Semrgex` or `Tregex`.
- * @typedef Match
- * @property {number} begin - word begin position, starting from zero
- * @property {number} end - word end position, starting from zero (no match ends at 0)
- * @property {string} text - matched text
- * @property {string} $[label] - any label, as defined in the expression pattern
- */
-export class Match {
-  /**
-   * Returns the text for the given labeled word
-   * @param {string} labelName - The labeed name
-   * @returns {string} text - The text that matched that label
-   */
-  label(labelName) {
-    return this._data[`_${labelName}`];
-  }
-
-  /**
-   * Update an instance of Expression with data provided by a JSON
-   * @param {ExpressionJSON} data - The expression data, as returned by CoreNLP API service
-   * @returns {Expression} expression - The current expression instance
-   */
-  fromJson(data) {
-    this._data = data;
-    return this;
-  }
-
-  toJSON() {
-    return { ...this._data };
-  }
-
-  /**
-   * Get an instance of Match from a given JSON
-   * @param {MatchJSON} data - The match data, as returned by CoreNLP API service
-   * @returns {Match} match - A new Match instance
-   */
-  static fromJson(data) {
-    const instance = new this();
-    return instance.fromJson(data);
-  }
-}
+import ExpressionSentence from './expression-sentence';
 
 export class TokensRegexAnnotator extends Annotator { }
 export class SemgrexAnnotator extends Annotator { }
@@ -54,7 +12,7 @@ export class TregexAnnotator extends Annotator { }
  * `Semrgex` and `Tregex`.
  * @typedef ExpressionJSON
  * @property {number} index
- * @property {Array.<Array.<Match>>} sentences
+ * @property {Array.<Array.<ExpressionSentenceMatch>>} sentences
  */
 
 /**
@@ -78,7 +36,7 @@ export default class Expression extends Annotable {
    * @return {string} expression
    */
   toString() {
-    return this._text || this._sentences.map(sent => sent.toString()).join('. ');
+    return this._text;
   }
 
   /**
@@ -91,7 +49,7 @@ export default class Expression extends Annotable {
 
   /**
    * Get a list of sentences
-   * @returns {Array.<Sentence>} sentences - The expression sentences
+   * @returns {Array.<ExpressionSentence>} sentences - The expression sentences
    */
   sentences() {
     return this._sentences;
@@ -100,10 +58,22 @@ export default class Expression extends Annotable {
   /**
    * Get the sentence for a given index
    * @param {number} index - The position of the sentence to get
-   * @returns {Sentence} sentence - The expression sentences
+   * @returns {ExpressionSentence} sentence - An expression sentence
    */
   sentence(index) {
     return this.sentences()[index];
+  }
+
+  /**
+   * Hydrate the Expression instance with Token objects from an annotated Document
+   * @see {@link ExpressionSentence#mergeTokensFromSentence}
+   * @param {Document} document - An annotated document from where to extract the tokens
+   * @returns {Expression} expression - The current expression instance
+   */
+  mergeTokensFromDocument(document) {
+    document.sentences().forEach((sentence, i) =>
+      this.sentence(i).mergeTokensFromSentence(sentence));
+    return this;
   }
 
   /**
@@ -113,10 +83,8 @@ export default class Expression extends Annotable {
    */
   fromJson(data) {
     if (data.sentences) {
-      this._sentences = data.sentences.map(sent =>
-        Object.keys(sent).map(matchIndex =>
-          (matchIndex !== 'length' ? Match.fromJson(sent[matchIndex]) : false))
-          .filter(Boolean));
+      this._sentences = data.sentences
+        .map(sent => ExpressionSentence.fromJson(sent));
     }
     return this;
   }
@@ -124,7 +92,7 @@ export default class Expression extends Annotable {
   toJSON() {
     return {
       text: this._text,
-      sentences: this._sentences,
+      sentences: this._sentences, // TODO this._sentences is an array of array of objects
     };
   }
 

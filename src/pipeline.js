@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Service from './service';
 import ConnectorServer from './connector/connector-server';
 import tokenize from './simple/annotator/tokenize';
@@ -9,6 +10,7 @@ import parse from './simple/annotator/parse';
 import depparse from './simple/annotator/depparse';
 import relation from './simple/annotator/relation';
 import regexner from './simple/annotator/regexner';
+import Document from './simple/document';
 
 import {
   TokensRegexAnnotator,
@@ -79,7 +81,28 @@ export default class Pipeline {
     return annotable;
   }
 
-  async annotateTokensRegex(annotable) {
+  /**
+   * @param {Array.<Annotator>} requiredAnnotators
+   */
+  assert(methodName = '', requiredAnnotators = []) {
+    if (_.difference(
+      requiredAnnotators.map(Annotator => (new Annotator()).toString()),
+      this._getAnnotatorsKeys()).length > 0) {
+      throw new Error(`Assert: ${methodName} requires ${requiredAnnotators.join()} within the annotators list.`);
+    }
+  }
+
+  /**
+   * Annotates the given Expression instance with matching groups and/or Tokens
+   * @param {Expression} expression - An annotable expression containing a TokensRegex pattern
+   * @param {boolean} [annotateExpression] - Whether to hydrate the annotations with tokens or not.
+   * IMPORTANT: The optional parameter `annotateExpression` if true, will run the CoreNLP pipeline
+   *            twice.  First for the TokensRegex annotation, and one more for the standard pipeline
+   *            Token annotations (pos, ner, lemma, etc).
+   * @returns {Expression} expression - The current expression instance
+   */
+  async annotateTokensRegex(annotable, annotateExpression = false) {
+    this.assert('TokensRegex', [tokenize, ssplit]);
     annotable.fromJson(await this._service.getTokensRegexData(
       annotable.text(),
       annotable.pattern(),
@@ -89,10 +112,23 @@ export default class Pipeline {
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotator(TokensRegexAnnotator);
 
+    if (annotateExpression) {
+      return this._annotateExpression(annotable);
+    }
     return annotable;
   }
 
-  async annotateSemgrex(annotable) {
+  /**
+   * Annotates the given Expression instance with matching groups and/or Tokens
+   * @param {Expression} expression - An annotable expression containing a Semgrex pattern
+   * @param {boolean} [annotateExpression] - Whether to hydrate the annotations with tokens or not.
+   * IMPORTANT: The optional parameter `annotateExpression` if true, will run the CoreNLP pipeline
+   *            twice.  First for the Semgrex annotation, and one more for the standard pipeline
+   *            Token annotations (pos, ner, lemma, etc).
+   * @returns {Expression} expression - The current expression instance
+   */
+  async annotateSemgrex(annotable, annotateExpression = false) {
+    this.assert('Semgrex', [tokenize, ssplit, depparse]);
     annotable.fromJson(await this._service.getSemgrexData(
       annotable.text(),
       annotable.pattern(),
@@ -102,10 +138,23 @@ export default class Pipeline {
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotator(SemgrexAnnotator);
 
+    if (annotateExpression) {
+      return this._annotateExpression(annotable);
+    }
     return annotable;
   }
 
-  async annotateTregex(annotable) {
+  /**
+   * Annotates the given Expression instance with matching groups and/or Tokens
+   * @param {Expression} expression - An annotable expression containing a Tregex pattern
+   * @param {boolean} [annotateExpression] - Whether to hydrate the annotations with tokens or not.
+   * IMPORTANT: The optional parameter `annotateExpression` if true, will run the CoreNLP pipeline
+   *            twice.  First for the Tregex annotation, and one more for the standard pipeline
+   *            Token annotations (pos, ner, lemma, etc).
+   * @returns {Expression} expression - The current expression instance
+   */
+  async annotateTregex(annotable, annotateExpression = false) {
+    this.assert('Tregex', [tokenize, ssplit, parse]);
     annotable.fromJson(await this._service.getTregexData(
       annotable.text(),
       annotable.pattern(),
@@ -115,8 +164,23 @@ export default class Pipeline {
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotator(TregexAnnotator);
 
+    if (annotateExpression) {
+      return this._annotateExpression(annotable);
+    }
     return annotable;
   }
+
+
+  /**
+   * @description
+   * Runs the default pipeline over the same text of the expression, and merges the results
+   */
+  async _annotateExpression(annotableExpression) {
+    const doc = await this.annotate(new Document(annotableExpression.text()));
+    annotableExpression.mergeTokensFromDocument(doc);
+    return annotableExpression;
+  }
+
 
   async _semgrex(text, pattern) {
     const data = await this._service.getSemgrexData(
