@@ -9,6 +9,13 @@ const config = {
 };
 
 export default class ConnectorCli {
+  /**
+   * Create a ConnectorCli
+   * @param {Object} config
+   * @param {string} config.classPath - The path to the Jar files to be included
+   * @param {string} config.mainClass - The name of the Java class that represents the main program
+   * @param {string} config.props The - path to the properties file (for example, language specific)
+   */
   constructor({
     classPath = config.classPath,
     mainClass = config.mainClass,

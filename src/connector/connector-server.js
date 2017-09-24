@@ -5,14 +5,26 @@ const config = {
 };
 
 export default class ConnectorServer {
+  /**
+   * Create a ConnectorServer
+   * @param {Object} config
+   * @param {string} config.dsn - The StanfordCoreNLPServer dsn (example: 'http://localhost:9000')
+   */
   constructor({ dsn = config.dsn }) {
     this.dsn = dsn;
   }
 
   /**
+   * @param {Object} config
+   * @param {Array.<string>} config.annotators - The list of annotators that edfines the pipeline
+   * @param {string} config.text - The text to run the pipeline against
+   * @param {Object} config.options - Additinal options (properties) for the pipeline
+   * @param {string} config.language - Language full name in CamelCase (eg. Spanish)
+   * @param {(''|'tokensregex'|'semgrex'|'tregex')} [utility] - Name of the utility to use
+   * NOTE: most of the utilities receives properties, these should be passed via the options param
    * @returns {Promise.<Object>}
    */
-  get({ annotators, text, options, language }) {
+  get({ annotators, text, options, language, utility = '' }) {
     const properties = {
       annotators: annotators.join(),
       ...options,
@@ -23,15 +35,21 @@ export default class ConnectorServer {
     let queryString = `pipelineLanguage=${language}&properties=${JSON.stringify(properties)}`;
 
     /**
-     * @todo
-     * Refactor this different case as a strategy not dependant on the connector necessarily.
-     * The conenctor should support extensibility to special cases like `tokensregex`.
+     * @description
+     * The conenctor should support extensibility to special tools:
+     * - For example, Semgrex is an utility that runs in a separate url Hanlder
+     *   in StanfordCoreNLPServer
+     *   This url is /semgrex, and apart of the normal options, it expects the 
+     *   query-string `pattern` as a must.  This `pattern` option is taken here from 
+     *   the options object, form the key `semgrex.pattern`.
      */
-    if (annotators.indexOf('regexner') > -1) {
+    if (utility) {
       // https://stanfordnlp.github.io/CoreNLP/corenlp-server.html#query-tokensregex-tokensregex
-      baseUrl += '/tokensregex';
-      queryString += `&pattern=${encodeURI(properties['regexner.validpospattern'])}`;
-      delete properties['regexner.validpospattern'];
+      baseUrl += `/${utility}`;
+      queryString += `&${Object.keys(options)
+        .filter(opt => opt.indexOf((`${utility}.`) === 0))
+        .map(opt => `${opt.replace(`${utility}.`, '')}=${encodeURI(options[opt])}`)
+        .join('&')}`;
     }
 
     const rpOpts = {
