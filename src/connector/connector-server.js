@@ -10,8 +10,9 @@ export default class ConnectorServer {
    * @param {Object} config
    * @param {string} config.dsn - The StanfordCoreNLPServer dsn (example: 'http://localhost:9000')
    */
-  constructor({ dsn = config.dsn }) {
-    this.dsn = dsn;
+  constructor({ dsn = config.dsn } = { }) {
+    this._dsn = dsn;
+    this._rp = rp;
   }
 
   /**
@@ -31,7 +32,7 @@ export default class ConnectorServer {
       outputFormat: 'json',
     };
 
-    let baseUrl = this.dsn;
+    let baseUrl = this._dsn;
     let queryString = `pipelineLanguage=${language}&properties=${JSON.stringify(properties)}`;
 
     /**
@@ -47,11 +48,16 @@ export default class ConnectorServer {
       // https://stanfordnlp.github.io/CoreNLP/corenlp-server.html#query-tokensregex-tokensregex
       baseUrl += `/${utility}`;
       queryString += `&${Object.keys(options)
-        .filter(opt => opt.indexOf((`${utility}.`) === 0))
+        .filter(opt => opt.indexOf(`${utility}.`) === 0)
         .map(opt => `${opt.replace(`${utility}.`, '')}=${encodeURI(options[opt])}`)
         .join('&')}`;
     }
 
+    return this._makeRequest(baseUrl, queryString, text);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _makeRequest(baseUrl, queryString, text) {
     const rpOpts = {
       method: 'POST',
       uri: `${baseUrl}?${queryString}`,
@@ -62,6 +68,6 @@ export default class ConnectorServer {
       json: true,
     };
 
-    return rp(rpOpts);
+    return this._rp(rpOpts);
   }
 }

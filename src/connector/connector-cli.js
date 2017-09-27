@@ -20,10 +20,13 @@ export default class ConnectorCli {
     classPath = config.classPath,
     mainClass = config.mainClass,
     props = config.props,
-  }) {
-    this.classPath = classPath;
-    this.mainClass = mainClass;
-    this.props = props;
+  } = { }) {
+    this._classPath = classPath;
+    this._mainClass = mainClass;
+    this._props = props;
+    this._tmpFile = tmpFile;
+    this._exec = exec;
+    this._loadJSONFile = loadJSONFile;
   }
 
   /**
@@ -36,19 +39,19 @@ export default class ConnectorCli {
     // TODO language
   }) {
     const params = [
-      '-cp', `'${this.classPath}'`,
-      `${this.mainClass}`,
-      '-props', `${this.props}`,
+      '-cp', `'${this._classPath}'`,
+      `${this._mainClass}`,
+      '-props', `${this._props}`,
       '-annotators', `${annotators.join()}`,
       '-outputFormat', 'json',
     ];
 
-    return tmpFile(text).then(file =>
-      exec(`java ${params.concat([`-file ${file.path}`]).join(' ')}`)
+    return this._tmpFile(text).then(file =>
+      this._exec(`java ${params.concat([`-file ${file.path}`]).join(' ')}`)
         .then((result) => {
           const stdout = result.stdout || result.stderr;
           const outfile = stdout.match(/writing to (.*\.json)/)[1];
-          return loadJSONFile(outfile);
+          return this._loadJSONFile(outfile);
         }));
   }
 }
