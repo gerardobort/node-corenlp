@@ -1,20 +1,17 @@
 // NOTE: run with babel-node
 import path from 'path';
-import CoreNLP, { Properties, Pipeline } from '../src';
+import CoreNLP, { Properties, Pipeline, ConnectorServer } from '../src';
 
 const props = new Properties();
-props.setProperty('annotators', 'tokenize,ssplit,depparse,regexner');
-// IMPORTANT: when using ConnectorServer, this option needs to be set
-// from serverProperties or per-language properties file, because otherwise gets overriden and doesn't work
-// - the `regexner.tag` file is provided along with this example
-props.setProperty('regexner.mapping', path.resolve('./regexner.tag'));
-props.setProperty('regexner.ignorecase', true);
-const expression = new CoreNLP.simple.Expression('Me encantan las empanadas de carne picante', '{ner:INGREDIENT}');
+props.setProperty('annotators', 'tokenize,ssplit,regexner,depparse');
+const expression = new CoreNLP.simple.Expression(
+  'Me gusta la hamburguesa de carne.',
+  '{ner:MEAL}=meal > {ner:INGREDIENT}=ingredient');
 const pipeline = new Pipeline(props, 'Spanish');
 
-pipeline.annotateSemgrex(expression)
-  .then(data => {
-    console.log('semgrex data', JSON.stringify(data, null, '\t'));
+pipeline.annotateSemgrex(expression, true)
+  .then(expression => {
+    console.log('semgrex sentence0 match0', JSON.stringify(expression.sentence(0).match(0), null, '\t'));
   })
   .catch(err => {
     console.log('err', err);
@@ -22,16 +19,55 @@ pipeline.annotateSemgrex(expression)
 
 /*
 OUTPUT:
-semgrex data {
-  "text": "Me encantan las empanadas de carne picante",
-  "sentences": [
-    [
-      {
-        "text": "carne",
-        "begin": 5,
-        "end": 6
-      }
-    ]
-  ]
+semgrex sentence0 match0 {
+  "text": "hamburguesa",
+  "begin": 3,
+  "end": 4,
+  "$meal": {
+    "text": "hamburguesa",
+    "begin": 3,
+    "end": 4,
+    "token": {
+      "index": 4,
+      "word": "hamburguesa",
+      "originalText": "hamburguesa",
+      "characterOffsetBegin": 12,
+      "characterOffsetEnd": 23,
+      "before": " ",
+      "indexafteafter": " ",
+      "pos": "nc0s000",
+      "posInfo": "nc0s000",
+      "ner": "MEAL"
+    }
+  },
+  "$ingredient": {
+    "text": "carne",
+    "begin": 5,
+    "end": 6,
+    "token": {
+      "index": 6,
+      "word": "carne",
+      "originalText": "carne",
+      "characterOffsetBegin": 27,
+      "characterOffsetEnd": 32,
+      "before": " ",
+      "indexafteafter": "",
+      "pos": "nc0s000",
+      "posInfo": "nc0s000",
+      "ner": "INGREDIENT"
+    }
+  },
+  "token": {
+    "index": 4,
+    "word": "hamburguesa",
+    "originalText": "hamburguesa",
+    "characterOffsetBegin": 12,
+    "characterOffsetEnd": 23,
+    "before": " ",
+    "indexafteafter": " ",
+    "pos": "nc0s000",
+    "posInfo": "nc0s000",
+    "ner": "MEAL"
+  }
 }
 */
