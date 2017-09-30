@@ -17,13 +17,14 @@ export default class Governor {
   /**
    * Create a Governor
    * @param {string} dep
-   * @param {Token} governorToken
    * @param {Token} dependentToken
+   * @param {Token} [governorToken]
    */
-  constructor(dep, governorToken, dependentToken) {
+  // constructor(dep, dependentToken, governorToken = Token.fromJSON({ index: 0, word: 'ROOT' })) {
+  constructor(dep, dependentToken, governorToken = null) {
     this._dep = dep;
-    this._governorToken = governorToken;
     this._dependentToken = dependentToken;
+    this._governorToken = governorToken;
   }
 
   /**
@@ -39,7 +40,7 @@ export default class Governor {
   }
 
   governorGloss() {
-    return this._governorToken.word();
+    return this._governorToken ? this._governorToken.word() : '';
   }
 
   dependent() {
@@ -47,7 +48,7 @@ export default class Governor {
   }
 
   dependentGloss() {
-    return this._dependentToken.word();
+    return this._dependentToken.word() ? this._dependentToken.word() : '';
   }
 
   dep() {
@@ -60,10 +61,23 @@ export default class Governor {
 
   toJSON() {
     return {
-      dep: this.dep(),
-      depInfo: this.depInfo(),
-      governorToken: this._governorToken,
-      dependentToken: this._dependentToken,
+      dep: this._dep,
+      governor: this._governorToken ? this._governorToken.index() : 0,
+      governorGloss: this._governorToken ? this._governorToken.word() : 'ROOT',
+      dependent: this._dependentToken.index(),
+      dependentGloss: this._dependentToken.word(),
     };
+  }
+
+  /**
+   * Get an instance of Governor from a given JSON
+   * 
+   * @todo It is not possible to properly generate a Governor from a GovernorJSON
+   *       the Governor requires references to the Token instances in order to work
+   * @param {GovernorJSON} data - The token data, as returned by CoreNLP API service
+   * @returns {Governor} governor - A new Governor instance
+   */
+  static fromJSON() {
+    throw Error('Not implemented');
   }
 }

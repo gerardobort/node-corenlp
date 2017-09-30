@@ -1,0 +1,83 @@
+{
+  "docDate": "2017-09-30T11:55:54",
+  "sentences": [
+    {
+      "basicDependencies": [
+        {
+          "dep": "ROOT",
+          "dependent": 2,
+          "dependentGloss": "cat",
+          "governor": 0,
+          "governorGloss": "ROOT"
+        },
+        {
+          "dep": "amod",
+          "dependent": 1,
+          "dependentGloss": "happy",
+          "governor": 2,
+          "governorGloss": "cat"
+        }
+      ],
+      "enhancedDependencies": [
+        {
+          "dep": "ROOT",
+          "dependent": 2,
+          "dependentGloss": "cat",
+          "governor": 0,
+          "governorGloss": "ROOT"
+        },
+        {
+          "dep": "amod",
+          "dependent": 1,
+          "dependentGloss": "happy",
+          "governor": 2,
+          "governorGloss": "cat"
+        }
+      ],
+      "enhancedPlusPlusDependencies": [
+        {
+          "dep": "ROOT",
+          "dependent": 2,
+          "dependentGloss": "cat",
+          "governor": 0,
+          "governorGloss": "ROOT"
+        },
+        {
+          "dep": "amod",
+          "dependent": 1,
+          "dependentGloss": "happy",
+          "governor": 2,
+          "governorGloss": "cat"
+        }
+      ],
+      "index": 0,
+      "openie": [],
+      "tokens": [
+        {
+          "after": " ",
+          "before": "",
+          "characterOffsetBegin": 0,
+          "characterOffsetEnd": 5,
+          "index": 1,
+          "lemma": "happy",
+          "ner": "O",
+          "originalText": "happy",
+          "pos": "JJ",
+          "word": "happy"
+        },
+        {
+          "after": "",
+          "before": " ",
+          "characterOffsetBegin": 6,
+          "characterOffsetEnd": 9,
+          "index": 2,
+          "lemma": "cat",
+          "ner": "O",
+          "originalText": "cat",
+          "pos": "NN",
+          "word": "cat"
+        }
+      ]
+    }
+  ]
+}

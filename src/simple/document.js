@@ -55,7 +55,7 @@ export default class Document extends Annotable {
    * TODO
    * requirements: tokenize, ssplit, pos, lemma, ner, parse
    * https://stanfordnlp.github.io/CoreNLP/dcoref.html
-   * @returns {Promise.<DeterministicCorefAnnotator>} dcoref 
+   * @returns {Promise<DeterministicCorefAnnotator>} dcoref 
    */
   // eslint-disable-next-line class-methods-use-this
   coref() {
@@ -66,10 +66,10 @@ export default class Document extends Annotable {
    * @param {DocumentJSON} data - The document data, as returned by CoreNLP API service
    * @returns {Document} document - The current document instance
    */
-  fromJson(data) {
+  fromJSON(data) {
     if (data.sentences) {
       this.addAnnotator(WordsToSentenceAnnotator);
-      this._sentences = data.sentences.map(sent => Sentence.fromJson(sent, true));
+      this._sentences = data.sentences.map(sent => Sentence.fromJSON(sent, true));
     }
     return this;
   }
@@ -86,8 +86,8 @@ export default class Document extends Annotable {
    * @param {DocumentJSON} data - The document data, as returned by CoreNLP API service
    * @returns {Document} document - A new Document instance
    */
-  static fromJson(data) {
+  static fromJSON(data) {
     const instance = new this();
-    return instance.fromJson(data);
+    return instance.fromJSON(data);
   }
 }

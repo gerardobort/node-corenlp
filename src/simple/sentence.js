@@ -1,21 +1,22 @@
 import _ from 'lodash';
 import Annotable from './annotable';
 import TokenizerAnnotator from './annotator/tokenize';
-import MorphaAnnotator from './annotator/lemma';
 import ParserAnnotator from './annotator/parse';
 import DependencyParseAnnotator from './annotator/depparse';
 import Token from './token';
 import Governor from './governor';
 
+// @see {@link https://github.com/stanfordnlp/CoreNLP/blob/master/src/edu/stanford/nlp/simple/Sentence.java}
+
 /**
  * The CoreNLP API JSON structure representing a sentence
  * @typedef SentenceJSON
- * @property {number} index
+ * @property {number} index - 1-based index, as they come indexed by StanfordCoreNLP
  * @property {Array.<Token>} tokens
  */
 
 /**
- * Class representing a Sentence (@see CoreNLP.Sentence).
+ * Class representing a Sentence
  * @extends Annotable
  */
 export default class Sentence extends Annotable {
@@ -31,15 +32,23 @@ export default class Sentence extends Annotable {
 
   /**
    * Get a string representation
-   * @return {string} sentence
+   * @returns {string} sentence
    */
   toString() {
     return this._text || this._tokens.map(token => token.toString()).join(' ');
   }
 
   /**
+   * Get the index relative to the parent document
+   * @returns {number} index
+   */
+  index() {
+    return this._index;
+  }
+
+  /**
    * Get a string representation of the parse tree structure
-   * @return {string} parse
+   * @returns {string} parse
    */
   parse() {
     return this._parse;
@@ -47,7 +56,9 @@ export default class Sentence extends Annotable {
 
   /**
    * Get an array of string representations of the sentence words
-   * @return {Array.<string>} words
+   * @requires {@link TokenizerAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @returns {Array.<string>} words
    */
   words() {
     if (!this.hasAnnotator(TokenizerAnnotator)) {
@@ -58,11 +69,18 @@ export default class Sentence extends Annotable {
 
   /**
    * Get a string representations of the Nth word of the sentence
-   * @return {string} word
+   * @requires {@link TokenizerAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @throws {Error} in case the token for the given index does not exists
+   * @param {number} index - 0-based index as they are arranged naturally
+   * @returns {string} word
    */
   word(index) {
     if (!this.hasAnnotator(TokenizerAnnotator)) {
       throw new Error('Asked for a word on Sentence, but there are unmet annotator dependencies.');
+    }
+    if (!this._tokens[index]) {
+      throw new Error(`Sentence instance does not contain a token with index ${index}`);
     }
     return this._tokens[index].word();
   }
@@ -71,33 +89,75 @@ export default class Sentence extends Annotable {
     return this._tokens.values();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * Get a string representations of the tokens part of speech of the sentence
+   * @returns {Array.<string>} posTags
+   */
   posTags() {
+    return this._tokens.map(token => token.pos());
   }
 
-  // eslint-disable-next-line class-methods-use-this, no-unused-vars
+  /**
+   * Get a string representations of the Nth token part of speech of the sentence
+   * @throws {Error} in case the token for the given index does not exists
+   * @param {number} index - 0-based index as they are arranged naturally
+   * @returns {string} posTag
+   */
   posTag(index) {
+    if (!this._tokens[index]) {
+      throw new Error(`Sentence instance does not contain a token with index ${index}`);
+    }
+    return this._tokens[index].pos();
   }
 
+  /**
+   * Get a string representations of the tokens lemmas of the sentence
+   * @returns {Array.<string>} lemmas
+   */
   lemmas() {
-    if (!this.hasAnnotator(MorphaAnnotator)) {
-      throw new Error('Asked for lemmas on Sentence, but there are unmet annotator dependencies.');
-    }
     return this._tokens.map(token => token.lemma());
   }
 
-  async lemma(index) {
+  /**
+   * Get a string representations of the Nth token lemma of the sentence
+   * @throws {Error} in case the token for the given index does not exists
+   * @param {number} index - 0-based index as they are arranged naturally
+   * @returns {string} lemma
+   */
+  lemma(index) {
+    if (!this._tokens[index]) {
+      throw new Error(`Sentence instance does not contain a token with index ${index}`);
+    }
     return this._tokens[index].lemma();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * Get a string representations of the tokens nerTags of the sentence
+   * @returns {Array.<string>} nerTags
+   */
   nerTags() {
+    return this._tokens.map(token => token.ner());
   }
 
-  // eslint-disable-next-line class-methods-use-this, no-unused-vars
+  /**
+   * Get a string representations of the Nth token nerTag of the sentence
+   * @throws {Error} in case the token for the given index does not exists
+   * @param {number} index - 0-based index as they are arranged naturally
+   * @returns {string} nerTag
+   */
   nerTag(index) {
+    if (!this._tokens[index]) {
+      throw new Error(`Sentence instance does not contain a token with index ${index}`);
+    }
+    return this._tokens[index].ner();
   }
 
+  /**
+   * Get a list of annotated governors by the dependency-parser
+   * @requires {@link DependencyParseAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @returns {Array.<Governor>} governors
+   */
   governors() {
     if (!this.hasAnnotator(DependencyParseAnnotator)) {
       throw new Error('Asked for governors on Sentence, but there are unmet annotator dependencies.');
@@ -105,6 +165,12 @@ export default class Sentence extends Annotable {
     return this._governors;
   }
 
+  /**
+   * Get the N-th annotated governor by the dependency-parser annotator
+   * @requires {@link DependencyParseAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @returns {Governor} governor
+   */
   governor(index) {
     if (!this.hasAnnotator(DependencyParseAnnotator)) {
       throw new Error('Asked for a governor on Sentence, but there are unmet annotator dependencies.');
@@ -112,29 +178,36 @@ export default class Sentence extends Annotable {
     return this._governors[index];
   }
 
+  // TODO
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   incommingDependencyLabel(index) {
   }
 
+  // TODO
   // eslint-disable-next-line class-methods-use-this
   natlogPolarities() {
   }
 
+  // TODO
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarity(index) {
   }
 
+  // TODO
   // eslint-disable-next-line class-methods-use-this
   openie() {
   }
 
+  // TODO
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   openieTriples(index) {
   }
 
   /**
    * Get an array of token representations of the sentence words
-   * @return {Array.<Token>} tokens
+   * @requires {@link TokenizerAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @returns {Array.<Token>} tokens
    */
   tokens() {
     if (!this.hasAnnotator(TokenizerAnnotator)) {
@@ -145,7 +218,9 @@ export default class Sentence extends Annotable {
 
   /**
    * Get the Nth token of the sentence
-   * @return {Token} token
+   * @requires {@link TokenizerAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @returns {Token} token
    */
   token(index) {
     if (!this.hasAnnotator(TokenizerAnnotator)) {
@@ -154,35 +229,47 @@ export default class Sentence extends Annotable {
     return this._tokens[index];
   }
 
-  /**
-   *
-   * @returns {SentenceAlgorithms}
-   */
+  // TODO
   // eslint-disable-next-line class-methods-use-this
   algorithms() {
   }
 
+  /**
+   * Get a JSON representation of the current sentence
+   * @description
+   * The following arrow function `data => Sentence.fromJSON(data).toJSON()` is idempontent, if
+   * considering shallow comparison, not by reference.
+   * This JSON will respects the same structure as it expects from {@see Sentence#fromJSON}.
+   * @returns {SentenceJSON} data
+   */
   toJSON() {
-    return {
-      text: this._text,
-      tokens: this._tokens,
-      governors: this._governors,
-      parse: this._parse,
+    let json = {
+      index: this._index,
+      tokens: this._tokens.map(token => token.toJSON()),
+      basicDependencies: this._governors.map(governor => governor.toJSON()),
+      enhancedDependencies: this._enhancedDependencies,
+      enhancedPlusPlusDependencies: this._enhancedPlusPlusDependencies,
     };
+
+    if (this._parse) {
+      json = { ...json, parse: this._parse };
+    }
+    return json;
   }
 
   /**
    * Update an instance of Sentence with data provided by a JSON
    * @param {SentenceJSON} data - The document data, as returned by CoreNLP API service
    * @param {boolean} [isSentence] - Indicate if the given data represents just the sentence
-   * of a full document
-   * @returns {Sentence} document - The current document instance
+   * or a full document with just a sentence inside
+   * @returns {Sentence} sentence - The current sentence instance
    */
-  fromJson(data, isSentence = false) {
+  fromJSON(data, isSentence = false) {
     const sentence = isSentence ? data : _.head(data.sentences);
+    this._index = data.index;
     if (sentence.tokens) {
       this.addAnnotator(TokenizerAnnotator);
-      this._tokens = sentence.tokens.map(tok => Token.fromJson(tok));
+      this._tokens = sentence.tokens.map(tok => Token.fromJSON(tok));
     }
     if (sentence.parse) {
       this.addAnnotator(ParserAnnotator);
@@ -191,7 +278,7 @@ export default class Sentence extends Annotable {
     if (sentence.basicDependencies) {
       this.addAnnotator(DependencyParseAnnotator);
       this._governors = sentence.basicDependencies.map(gov =>
-        new Governor(gov.dep, this._tokens[gov.governor - 1], this._tokens[gov.dependent - 1]));
+        new Governor(gov.dep, this._tokens[gov.dependent - 1], this._tokens[gov.governor - 1]));
       // @see relation annotator...
       this._basicDependencies = sentence.basicDependencies;
       this._enhancedDependencies = sentence.enhancedDependencies;
@@ -208,8 +295,8 @@ export default class Sentence extends Annotable {
    * full document
    * @returns {Sentence} document - A new Sentence instance
    */
-  static fromJson(data, isSentence = false) {
+  static fromJSON(data, isSentence = false) {
     const instance = new this();
-    return instance.fromJson(data, isSentence);
+    return instance.fromJSON(data, isSentence);
   }
 }

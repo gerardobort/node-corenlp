@@ -67,10 +67,10 @@ export default class Pipeline {
    * Calls the service and loads the associated response metadata into the Annotable model
    * @async
    * @param {Annotable} annotable - the document or sentence to be annotated
-   * @returns {Promise.<Annotable>} annotated document / sentence
+   * @returns {Promise<Annotable>} annotated document / sentence
    */
   async annotate(annotable) {
-    annotable.fromJson(await this._service.getAnnotationData(
+    annotable.fromJSON(await this._service.getAnnotationData(
       annotable.text(),
       this._getAnnotatorsKeys(),
       this._getAnnotatrosOptions()));
@@ -103,7 +103,7 @@ export default class Pipeline {
    */
   async annotateTokensRegex(annotable, annotateExpression = false) {
     this.assert('TokensRegex', [tokenize, ssplit]);
-    annotable.fromJson(await this._service.getTokensRegexData(
+    annotable.fromJSON(await this._service.getTokensRegexData(
       annotable.text(),
       annotable.pattern(),
       this._getAnnotatorsKeys(),
@@ -129,7 +129,7 @@ export default class Pipeline {
    */
   async annotateSemgrex(annotable, annotateExpression = false) {
     this.assert('Semgrex', [tokenize, ssplit, depparse]);
-    annotable.fromJson(await this._service.getSemgrexData(
+    annotable.fromJSON(await this._service.getSemgrexData(
       annotable.text(),
       annotable.pattern(),
       this._getAnnotatorsKeys(),
@@ -155,7 +155,7 @@ export default class Pipeline {
    */
   async annotateTregex(annotable, annotateExpression = false) {
     this.assert('Tregex', [tokenize, ssplit, parse]);
-    annotable.fromJson(await this._service.getTregexData(
+    annotable.fromJSON(await this._service.getTregexData(
       annotable.text(),
       annotable.pattern(),
       this._getAnnotatorsKeys(),
