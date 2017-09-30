@@ -30,7 +30,7 @@ export default class ConnectorCli {
   }
 
   /**
-   * @returns {Promise.<Object>}
+   * @returns {Promise<Object>}
    */
   get({
     annotators,

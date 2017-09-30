@@ -5,7 +5,10 @@ describe('Governor', () => {
   let governor;
 
   beforeEach(() => {
-    governor = new Governor('det', new Token('pájaro'), new Token('él'));
+    governor = new Governor('det',
+      new Token('él'),
+      new Token('pájaro'),
+    );
   });
 
   context('CoreNLP.Governor interface', () => {

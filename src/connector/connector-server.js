@@ -23,7 +23,7 @@ export default class ConnectorServer {
    * @param {string} config.language - Language full name in CamelCase (eg. Spanish)
    * @param {(''|'tokensregex'|'semgrex'|'tregex')} [utility] - Name of the utility to use
    * NOTE: most of the utilities receives properties, these should be passed via the options param
-   * @returns {Promise.<Object>}
+   * @returns {Promise<Object>}
    */
   get({ annotators, text, options, language, utility = '' }) {
     const properties = {

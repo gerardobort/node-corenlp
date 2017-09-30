@@ -34,7 +34,7 @@ describe('Document', () => {
       });
 
       it('should return the computed text when it is initialized by the JSON API', () => {
-        const doc2 = Document.fromJson({
+        const doc2 = Document.fromJSON({
           sentences: [
             {
               tokens: [
@@ -63,7 +63,7 @@ describe('Document', () => {
 
       it('should return the sentences, by first applying ssplit annotator', async () => {
         expect(() => doc.sentences()).to.throw(Error, /unmet annotator dependencies/);
-        doc.fromJson({
+        doc.fromJSON({
           sentences: [
             {
               tokens: [
@@ -79,7 +79,7 @@ describe('Document', () => {
       });
 
       it('should return the sentences when it is initialized by the JSON API', async () => {
-        const doc2 = Document.fromJson({
+        const doc2 = Document.fromJSON({
           sentences: [
             {
               tokens: [
@@ -107,9 +107,9 @@ describe('Document', () => {
       });
     });
 
-    describe('fromJson', () => {
+    describe('fromJSON', () => {
       beforeEach(() => {
-        doc = Document.fromJson({
+        doc = Document.fromJSON({
           sentences: [
             {
               tokens: [
