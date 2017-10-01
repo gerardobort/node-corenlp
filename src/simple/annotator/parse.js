@@ -30,7 +30,7 @@ export default class ParserAnnotator extends Annotator {
       [
         new TokenizerAnnotator(),
         new WordsToSentenceAnnotator(),
-      ],
+      ]
     );
   }
 }

@@ -12,7 +12,18 @@
     "lint": "eslint 'src/**/*.js' 'test/*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort 'src/**/*.spec.js' --compilers js:babel-core/register --timeout 30000",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "doc": "gulp doc"
+  },
+  "babel": {
+    "plugins": [
+      "transform-async-to-generator",
+      "transform-object-rest-spread"
+    ],
+    "presets": [
+      "es2015",
+      "es2017"
+    ]
   },
   "repository": {
     "type": "git",
@@ -37,18 +48,9 @@
     "url": "https://github.com/gerardobort/node-corenlp/issues"
   },
   "homepage": "https://github.com/gerardobort/node-corenlp#readme",
-  "babel": {
-    "plugins": [
-      "transform-object-rest-spread"
-    ],
-    "presets": [
-      "es2015",
-      "es2017"
-    ]
-  },
   "devDependencies": {
     "babel-core": "^6.25.0",
-    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
@@ -61,7 +63,9 @@
     "eslint-plugin-import": "^2.7.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-copy": "^1.0.1",
+    "gulp-jsdoc-to-markdown": "^1.2.2",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
     "sinon": "^3.1.0",

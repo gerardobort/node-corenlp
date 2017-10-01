@@ -26,7 +26,7 @@ export default class MorphaAnnotator extends Annotator {
         new TokenizerAnnotator(),
         new WordsToSentenceAnnotator(),
         new POSTaggerAnnotator(),
-      ],
+      ]
     );
   }
 }

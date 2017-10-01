@@ -35,7 +35,7 @@ export default class RegexNERAnnotator extends Annotator {
       [
         new TokenizerAnnotator(),
         new WordsToSentenceAnnotator(),
-      ],
+      ]
     );
   }
 }

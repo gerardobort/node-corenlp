@@ -10,12 +10,14 @@ import Sentence from './sentence';
  */
 
 /**
- * Class representing a Document (@see CoreNLP.Document).
+ * @class
+ * @classdesc Class representing a Document
  * @extends Annotable
  */
 export default class Document extends Annotable {
   /**
    * Create a Document
+   * @memberof Document
    * @param {string} text
    */
   constructor(text) {
@@ -25,7 +27,7 @@ export default class Document extends Annotable {
 
   /**
    * Get a string representation
-   * @return {string} document
+   * @returns {string} document
    */
   toString() {
     return this._text || this._sentences.map(sent => sent.toString()).join('. ');

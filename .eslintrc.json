@@ -3,7 +3,14 @@
     "rules": {
       "no-underscore-dangle": "off",
       "no-restricted-syntax": "off",
-      "no-unused-expressions": "off"
+      "no-unused-expressions": "off",
+      "comma-dangle": ["error", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "never"
+      }]
     },
     "globals": {
       "context": true,

@@ -31,7 +31,7 @@ export default class WordsToSentenceAnnotator extends Annotator {
       },
       [
         new TokenizerAnnotator(),
-      ],
+      ]
     );
   }
 }

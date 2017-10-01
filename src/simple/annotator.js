@@ -75,12 +75,9 @@ export default class Annotator {
    */
   pipeline() {
     return _.uniq(
-      _.flatten(
-        this.dependencies()
-          .map(annotator => annotator.pipeline()),
-      )
-        .concat([this.toString()]),
-    );
+      _.flatten(this.dependencies()
+        .map(annotator => annotator.pipeline()))
+        .concat([this.toString()]));
   }
 
   /**
@@ -94,7 +91,6 @@ export default class Annotator {
       this.dependencies().map(annotator => annotator.pipelineOptions())
         .concat(Object.keys(this.options()).map(opt => ({ [`${this}.${opt}`]: this.option(opt) }))),
       (ac, option) => ({ ...ac, ...option }),
-      {},
-    );
+      {});
   }
 }

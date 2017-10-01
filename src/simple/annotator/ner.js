@@ -30,7 +30,7 @@ export default class NERClassifierCombiner extends Annotator {
       [
         new TokenizerAnnotator(),
         new WordsToSentenceAnnotator(),
-      ],
+      ]
     );
   }
 }

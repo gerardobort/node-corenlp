@@ -24,7 +24,7 @@ export default class POSTaggerAnnotator extends Annotator {
       [
         new TokenizerAnnotator(),
         new WordsToSentenceAnnotator(),
-      ],
+      ]
     );
   }
 }

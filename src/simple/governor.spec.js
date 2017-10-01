@@ -7,7 +7,7 @@ describe('Governor', () => {
   beforeEach(() => {
     governor = new Governor('det',
       new Token('él'),
-      new Token('pájaro'),
+      new Token('pájaro')
     );
   });
 

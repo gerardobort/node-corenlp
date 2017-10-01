@@ -32,7 +32,7 @@ export default class RelationExtractorAnnotator extends Annotator {
         new MorphaAnnotator(),
         new NERClassifierCombiner(),
         new DependencyParseAnnotator(),
-      ],
+      ]
     );
   }
 }

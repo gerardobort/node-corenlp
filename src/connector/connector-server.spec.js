@@ -34,7 +34,7 @@ describe('ConnectorServer', () => {
         expect(connector._makeRequest).to.be.have.been.calledWith(
           'http://localhost:9000',
           'pipelineLanguage=LanguageStub&properties={"annotators":"a,b,c","optionA":1,"optionB":2,"outputFormat":"json"}',
-          'xyz',
+          'xyz'
         );
       });
     });
@@ -51,7 +51,7 @@ describe('ConnectorServer', () => {
         expect(connector._makeRequest).to.be.have.been.calledWith(
           'http://localhost:9000/semgrex',
           'pipelineLanguage=LanguageStub&properties={"annotators":"a,b,c","optionA":1,"optionB":2,"semgrex.pattern":"{ner:/.*/}=stub","outputFormat":"json"}&pattern=%7Bner:/.*/%7D=stub',
-          'xyz',
+          'xyz'
         );
       });
     });

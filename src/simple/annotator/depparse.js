@@ -27,7 +27,7 @@ export default class DependencyParseAnnotator extends Annotator {
         new TokenizerAnnotator(),
         new WordsToSentenceAnnotator(),
         new POSTaggerAnnotator(),
-      ],
+      ]
     );
   }
 }

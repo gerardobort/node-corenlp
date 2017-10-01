@@ -24,7 +24,7 @@ export default class TokenizerAnnotator extends Annotator {
         // options: null, // throws error on CoreNLP server
         verbose: false,
         ...options,
-      },
+      }
     );
   }
 }

@@ -32,7 +32,7 @@ export default class DeterministicCorefAnnotator extends Annotator {
         new MorphaAnnotator(),
         new NERClassifierCombiner(),
         new ParserAnnotator(),
-      ],
+      ]
     );
   }
 }
