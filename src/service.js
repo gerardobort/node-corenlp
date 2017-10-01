@@ -1,6 +1,10 @@
 import depInfo from './simple/annotator/depparse/dependencies.json';
 
-export default class Service {
+/**
+ * @class
+ * @classdesc Middleware that interfaces between the pipeline and the connector strategies
+ */
+class Service {
   /**
    * Create a Service
    * @param {ConnectorServer|ConnectorCli} connector
@@ -83,3 +87,5 @@ export default class Service {
     return depInfo.dependencies[dep];
   }
 }
+
+export default Service;

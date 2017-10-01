@@ -4,7 +4,11 @@ const config = {
   dsn: 'http://localhost:9000',
 };
 
-export default class ConnectorServer {
+/**
+ * @class
+ * @classdesc Class representing a Connector Server (web server client)
+ */
+class ConnectorServer {
   /**
    * Create a ConnectorServer
    * @param {Object} config
@@ -71,3 +75,5 @@ export default class ConnectorServer {
     return this._rp(rpOpts);
   }
 }
+
+export default ConnectorServer;

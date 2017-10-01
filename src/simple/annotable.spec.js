@@ -8,7 +8,7 @@ describe('Annotable', () => {
 
   beforeEach(() => {
     annotable = new Annotable('el pájaro veloz');
-    annotable.fromJson = sinon.stub();
+    annotable.fromJSON = sinon.stub();
     annotatorMock1 = new Annotator();
     Object.assign(annotatorMock1, {
       toString: sinon.stub().returns('ANNOTATOR_MOCK'),

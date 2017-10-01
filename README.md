@@ -1,10 +1,39 @@
-# NodeJS CoreNLP Library
+# CoreNLP for NodeJS
+
+This library helps making NodeJS applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.
 
 [![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp)
 
+[![NPM package](https://nodei.co/npm/corenlp.png)](https://www.npmjs.com/package/corenlp)
+
 *This project is under active development, please stay tuned for updates.  More documentation and examples are comming.*
 
-This library connects to Stanford CoreNLP either via HTTP or by spawning processes.  The first (HTTP) is the preferred method since it requires CoreNLP to initialize just once to serve many requests, it also avoids extra I/O given that the CLI method need to write temporary files to run.
+## Example
+
+Assuming that StanfordCoreNLPServer is running on `http://localhost:9000`....
+
+```javascript
+import CoreNLP, { Properties, Pipeline } from 'corenlp';
+
+const props = new Properties({
+  annotators: 'tokenize,ssplit,pos,lemma,ner,parse',
+});
+const pipeline = new Pipeline(props, 'English'); // uses ConnectorServer by default
+
+const sent = new CoreNLP.simple.Sentence('The little dog runs so fast.');
+pipeline.annotate(sent)
+  .then(sent => {
+    console.log('parse', sent.parse());
+    console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
+  })
+  .catch(err => {
+    console.log('err', err);
+  });
+```
+
+## API
+
+Read the full [API documentation](https://gerardobort.github.io/node-corenlp/docs).
 
 ## Setup
 
@@ -15,6 +44,8 @@ npm i --save corenlp
 ```
 
 ### 2. Download Stanford CoreNLP
+
+### 2.1. Shortcut (recommended to give this library a first try)
 
 Via `npm`, run this command from your own project after having installed this library:
 
@@ -31,8 +62,19 @@ npm explore corenlp -- npm run corenlp:server
 Or you can manually download the project from the Stanford's CoreNLP download section at: https://stanfordnlp.github.io/CoreNLP/download.html
 You may want to download, apart of the full package, other language models (see more on that page).
 
+### 2.2. Via sources
+
+For advanced projects, in where you may need to customize the library, we highly recommend to download the source code from the [original repository](https://github.com/stanfordnlp/CoreNLP), and compile it using `ant jar`.
+
+*NOTE*: Some functionality included in this library, for `TokensRegex`, `Semgrex` and `Tregex`, requires the latest version from the repository, which is more recent than the last stable.
 
 ### 3. Configure Stanford CoreNLP
+
+There are two method to connect your NodeJS application to Stanford CoreNLP:
+
+1. HTTP is the preferred method since it requires CoreNLP to initialize just once to serve many requests, it also avoids extra I/O given that the CLI method need to write temporary files to run *recommended*.
+2. Via Command Line Interface, this is by spawning processes from your app.
+
 
 #### 3.1. Using StanfordCoreNLPServer
 
@@ -86,36 +128,7 @@ pipeline.annotate(sent)
   });
 ```
 
-## Examples
-
-NOTE1: The examples below assumes that StanfordCoreNLP is running on port `9000`.
-NOTE2: The examples below assumes `es6` syntax, if you use require, use as follows: `var CoreNLP = require('corenlp').default;`
-
-### English
-
-```javascript
-import CoreNLP, { Properties, Pipeline } from 'corenlp';
-
-const props = new Properties({
-  annotators: 'tokenize,ssplit,pos,lemma,ner,parse',
-});
-const pipeline = new Pipeline(props, 'English'); // uses ConnectorServer by default
-
-const sent = new CoreNLP.simple.Sentence('The little dog runs so fast.');
-pipeline.annotate(sent)
-  .then(sent => {
-    console.log('parse', sent.parse());
-    console.log(CoreNLP.util.Tree.fromSentence(sent).dump());
-  })
-  .catch(err => {
-    console.log('err', err);
-  });
-```
-
-## Documentation
-
-We will update this section soon.  In the meantime, you can browse the project codebase and read the @jsdoc referenecs.
-In summary, this NodeJS library aims to replicate the CoreNLP Simple Java interface but in Javascript.  There are some minor differences however, for example the need to call `applyAnnotator` asynchronously.
+## External Documentation
 
 ```bash
 Properties
@@ -144,8 +157,10 @@ CoreNLP
     Tree                          # http://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf
 ```
 
-## Stanford CoreNLP Reference
+## References
 
-https://github.com/stanfordnlp/CoreNLP
+This library is *not* maintained by [StanfordNLP](https://github.com/stanfordnlp).  However, it's based on and depends on [StanfordNLP/CoreNLP](https://github.com/stanfordnlp/CoreNLP) to function.
+
+### [Stanford CoreNLP Reference](https://github.com/stanfordnlp/CoreNLP)
 
 Manning, Christopher D., Mihai Surdeanu, John Bauer, Jenny Finkel, Steven J. Bethard, and David McClosky. 2014. The Stanford CoreNLP Natural Language Processing Toolkit In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, pp. 55-60.

@@ -1,7 +1,8 @@
 /**
- * Class representing a Properties set.
+ * @class
+ * @classdesc Class representing a Properties set.
  */
-export default class Properties {
+class Properties {
   /**
    * Create an Properties
    * @param {Object} props
@@ -44,7 +45,7 @@ export default class Properties {
    * Returns a JSON object of the given properties
    * @returns {Object} json - the properties object
    */
-  toJson() {
+  toJSON() {
     return { ...this._props };
   }
 
@@ -59,3 +60,5 @@ export default class Properties {
   }
 }
 
+
+export default Properties;

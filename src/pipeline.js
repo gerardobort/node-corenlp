@@ -38,9 +38,10 @@ const LANGUAGE_TO_ISO2 = {
 };
 
 /**
- * Class representing a Pipeline.
+ * @class
+ * @classdesc Class representing a Pipeline.
  */
-export default class Pipeline {
+class Pipeline {
   /**
    * Create a Pipeline
    * @param {Properties} properties
@@ -172,6 +173,7 @@ export default class Pipeline {
 
 
   /**
+   * @private
    * @description
    * Runs the default pipeline over the same text of the expression, and merges the results
    */
@@ -181,7 +183,9 @@ export default class Pipeline {
     return annotableExpression;
   }
 
-
+  /**
+   * @private
+   */
   async _semgrex(text, pattern) {
     const data = await this._service.getSemgrexData(
       text,
@@ -224,3 +228,5 @@ export default class Pipeline {
   }
 }
 
+
+export default Pipeline;

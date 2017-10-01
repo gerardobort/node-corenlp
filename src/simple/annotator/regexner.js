@@ -3,14 +3,14 @@ import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
 
 /**
- * Class representing an RegexNERAnnotator.
+ * @class
+ * @classdesc Class representing an RegexNERAnnotator.
  * @extends Annotator
- * requirements: tokenize, ssplit, pos, lemma, ner
- * @external RegexNERAnnotator
- * TODO ??
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit, pos, regexner
  * @see {@link https://stanfordnlp.github.io/CoreNLP/regexner.html|RegexNERAnnotator}
  */
-export default class RegexNERAnnotator extends Annotator {
+class RegexNERAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -39,3 +39,5 @@ export default class RegexNERAnnotator extends Annotator {
     );
   }
 }
+
+export default RegexNERAnnotator;

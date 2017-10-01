@@ -2,14 +2,15 @@ import Annotator from '../annotator';
 import TokenizerAnnotator from './tokenize';
 
 /**
- * Class representing an WordsToSentenceAnnotator.
+ * @class
+ * @classdesc Class representing an WordsToSentenceAnnotator.
+ *            Combines multiple {@link Token}s into sentences
  * @extends Annotator
- * requirements: tokenize, ssplit
- * @external WordsToSentenceAnnotator
- * Combines multiple {@link Token}s into sentences
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit
  * @see {@link https://stanfordnlp.github.io/CoreNLP/ssplit.html|WordsToSentenceAnnotator}
  */
-export default class WordsToSentenceAnnotator extends Annotator {
+class WordsToSentenceAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -35,3 +36,5 @@ export default class WordsToSentenceAnnotator extends Annotator {
     );
   }
 }
+
+export default WordsToSentenceAnnotator;

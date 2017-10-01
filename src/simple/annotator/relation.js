@@ -7,14 +7,14 @@ import NERClassifierCombiner from './ner';
 import DependencyParseAnnotator from './depparse';
 
 /**
- * Class representing an RelationExtractorAnnotator.
+ * @class
+ * @classdesc Class representing an RelationExtractorAnnotator.
  * @extends Annotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse, depparse, relation
- * @external RelationExtractorAnnotator
- * TODO ??
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit, pos, lemma, ner, depparse, relation
  * @see {@link https://stanfordnlp.github.io/CoreNLP/relation.html|RelationExtractorAnnotator}
  */
-export default class RelationExtractorAnnotator extends Annotator {
+class RelationExtractorAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -36,3 +36,5 @@ export default class RelationExtractorAnnotator extends Annotator {
     );
   }
 }
+
+export default RelationExtractorAnnotator;

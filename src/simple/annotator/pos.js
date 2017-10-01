@@ -3,14 +3,14 @@ import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
 
 /**
- * Class representing an POSTaggerAnnotator.
+ * @class
+ * @classdesc Class representing an POSTaggerAnnotator. Hydrates {@link Token.pos()}
  * @extends Annotator
- * requirements: tokenize, ssplit, pos
- * @external POSTaggerAnnotator
- * Hydrates {@link Token.pos()}
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit, pos
  * @see {@link https://stanfordnlp.github.io/CoreNLP/pos.html|POSTaggerAnnotator}
  */
-export default class POSTaggerAnnotator extends Annotator {
+class POSTaggerAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -28,3 +28,5 @@ export default class POSTaggerAnnotator extends Annotator {
     );
   }
 }
+
+export default POSTaggerAnnotator;

@@ -1,9 +1,10 @@
 import ExpressionSentenceMatch from './expression-sentence-match';
 
 /**
- * Class representing an ExpressionSentence.
+ * @class
+ * @classdesc Class representing an ExpressionSentence
  */
-export default class ExpressionSentence {
+class ExpressionSentence {
   /**
    * Create an ExpressionSentence
    * @param {Array.<ExpressionSentenceMatch>} matches
@@ -59,10 +60,10 @@ export default class ExpressionSentence {
    * @param {ExpressionSentenceJSON} data - The expression data, as returned by CoreNLP API service
    * @returns {ExpressionSentenceJSON} sentence - The current sentence instance
    */
-  fromJson(data) {
+  fromJSON(data) {
     this._matches = Object.keys(data)
       .filter(matchIndex => matchIndex !== 'length')
-      .map(matchIndex => ExpressionSentenceMatch.fromJson(data[matchIndex]));
+      .map(matchIndex => ExpressionSentenceMatch.fromJSON(data[matchIndex]));
     return this;
   }
 
@@ -75,8 +76,10 @@ export default class ExpressionSentence {
    * @param {ExpressionSentenceJSON} data - The sentence data, as returned by CoreNLP API service
    * @returns {ExpressionSentence} sentence - A new ExpressionSentence instance
    */
-  static fromJson(data) {
+  static fromJSON(data) {
     const instance = new this();
-    return instance.fromJson(data);
+    return instance.fromJSON(data);
   }
 }
+
+export default ExpressionSentence;

@@ -1,7 +1,8 @@
 /**
- * Class representing an Annotable.
+ * @class
+ * @classdesc Class representing an Annotable
  */
-export default class Annotable {
+class Annotable {
   /**
    * Create an Annotable
    * @param {string} text
@@ -80,3 +81,5 @@ export default class Annotable {
       !!~Object.keys(this._annotators).indexOf(annotator.toString()));
   }
 }
+
+export default Annotable;

@@ -10,10 +10,11 @@ import Sentence from './sentence';
  */
 
 /**
- * Class representing a Document (@see CoreNLP.Document).
+ * @class
+ * @classdesc Class representing a Document
  * @extends Annotable
  */
-export default class Document extends Annotable {
+class Document extends Annotable {
   /**
    * Create a Document
    * @param {string} text
@@ -91,3 +92,5 @@ export default class Document extends Annotable {
     return instance.fromJSON(data);
   }
 }
+
+export default Document;

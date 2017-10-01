@@ -11,9 +11,11 @@ import Service from '../service';
  */
 
 /**
- * Class representing a Governor
+ * @class
+ * @classdesc Class representing a Governor
+ * @memberof CoreNLP/simple
  */
-export default class Governor {
+class Governor {
   /**
    * Create a Governor
    * @param {string} dep
@@ -81,3 +83,5 @@ export default class Governor {
     throw Error('Not implemented');
   }
 }
+
+export default Governor;

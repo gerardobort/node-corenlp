@@ -4,7 +4,7 @@
  * @property {number} begin - 0-based index of the matched group, relative to the given text
  * @property {number} end - 0-based index of the matched group, relative to the given text
  * @property {Token} [token] - onluy given if aggregated with an annotated Sentence or Document
- * @property {ExpressionSentenceMatchGroup} $[label] - other groups inside
+ * @property {ExpressionSentenceMatchGroup} [$label] - other groups inside
  */
 
 /**
@@ -13,9 +13,14 @@
  * @property {number} begin - word begin position, starting from zero
  * @property {number} end - word end position, starting from zero (no match ends at 0)
  * @property {string} text - matched text
- * @property {string} $[label] - any label, as defined in the expression pattern
+ * @property {string} [$label] - any label, as defined in the expression pattern
  */
-export default class ExpressionSentenceMatch {
+
+/**
+ * @class
+ * @classdesc Class representing an ExpressionSentenceMatch
+ */
+class ExpressionSentenceMatch {
   /**
    * Returns the main and labeled groups as a list of ExpressionSentenceMatchGroup
    * @returns {Array.<ExpressionSentenceMatchGroup>} groups
@@ -57,7 +62,7 @@ export default class ExpressionSentenceMatch {
    * @param {ExpressionSentenceMatchJSON} data - The match data, as returned by CoreNLP API service
    * @returns {ExpressionSentenceMatch} expression - The current match instance
    */
-  fromJson(data) {
+  fromJSON(data) {
     this._data = data;
     return this;
   }
@@ -71,8 +76,10 @@ export default class ExpressionSentenceMatch {
    * @param {ExpressionSentenceMatchJSON} data - The match data, as returned by CoreNLP API service
    * @returns {ExpressionSentenceMatch} match - A new ExpressionSentenceMatch instance
    */
-  static fromJson(data) {
+  static fromJSON(data) {
     const instance = new this();
-    return instance.fromJson(data);
+    return instance.fromJSON(data);
   }
 }
+
+export default ExpressionSentenceMatch;
