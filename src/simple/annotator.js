@@ -4,6 +4,7 @@ import _ from 'lodash';
  * @class
  * @classdesc Class representing an Annotatror
  * @extends Annotator
+ * @memberof CoreNLP/simple
  */
 class Annotator {
   /**

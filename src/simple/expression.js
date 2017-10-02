@@ -19,6 +19,7 @@ export class TregexAnnotator extends Annotator { }
  * @class
  * @classdesc Class representing an Expression
  * @extends Annotable
+ * @memberof CoreNLP/simple
  */
 class Expression extends Annotable {
   /**
