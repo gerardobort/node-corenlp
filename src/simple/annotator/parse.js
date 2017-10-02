@@ -3,14 +3,14 @@ import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
 
 /**
- * Class representing an ParserAnnotator.
+ * @class
+ * @class Class representing an ParserAnnotator. Hydrates {@link Token.parse()}
  * @extends Annotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse
- * @external ParserAnnotator
- * Hydrates {@link Token.parse()}
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit, pos, lemma, ner, parse
  * @see {@link https://stanfordnlp.github.io/CoreNLP/parse.html|ParserAnnotator}
  */
-export default class ParserAnnotator extends Annotator {
+class ParserAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -34,3 +34,5 @@ export default class ParserAnnotator extends Annotator {
     );
   }
 }
+
+export default ParserAnnotator;

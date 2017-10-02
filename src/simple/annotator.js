@@ -1,10 +1,11 @@
 import _ from 'lodash';
 
 /**
- * Class representing an Annotatror.
+ * @class
+ * @classdesc Class representing an Annotatror
  * @extends Annotator
  */
-export default class Annotator {
+class Annotator {
   /**
    * Create an Annotator
    * @param {string} name
@@ -98,3 +99,5 @@ export default class Annotator {
     );
   }
 }
+
+export default Annotator;

@@ -6,7 +6,6 @@ import DependencyParseAnnotator from './annotator/depparse';
 import Token from './token';
 import Governor from './governor';
 
-// @see {@link https://github.com/stanfordnlp/CoreNLP/blob/master/src/edu/stanford/nlp/simple/Sentence.java}
 
 /**
  * The CoreNLP API JSON structure representing a sentence
@@ -16,10 +15,13 @@ import Governor from './governor';
  */
 
 /**
- * Class representing a Sentence
+ * @class
+ * @classdesc Class representing a Sentence
  * @extends Annotable
+ * @memberof CoreNLP/simple
+ * @see {@link https://github.com/stanfordnlp/CoreNLP/blob/master/src/edu/stanford/nlp/simple/Sentence.java}
  */
-export default class Sentence extends Annotable {
+class Sentence extends Annotable {
   /**
    * Create a Sentence
    * @param {string} text
@@ -300,3 +302,5 @@ export default class Sentence extends Annotable {
     return instance.fromJSON(data, isSentence);
   }
 }
+
+export default Sentence;

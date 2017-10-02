@@ -1,5 +1,9 @@
 import Service from '../service';
 
+/**
+ * @class
+ * @classdesc Class representing a Sentence Tree Node
+ */
 export class Node {
   constructor(pos = '', word = '', children = [], paren = null) {
     this._pos = pos;
@@ -60,14 +64,17 @@ export class Node {
 }
 
 /**
- * Class representing a Parse tree structure
+ * @class
+ * @classdesc Class representing a Parse tree structure
+ * @memberof CoreNLP/util
+ * @description
  * The nodes are given in order left to right as the words in a sentence appears
  * The leaves are grouped into semantic representations provided by the Annotator
  * This class is pretty useful to use along with the ParserAnnotator
  * @see inspired on {@link http://www.nltk.org/howto/tree.html|Tree}
  * @see the lecture {@link http://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf|Tree Syntax of Natural Language}
  */
-export default class Tree {
+class Tree {
   /**
    * Create a Tree
    * @param {Node} node
@@ -224,3 +231,5 @@ export default class Tree {
     return new Node(node.pos, node.word, node.children.map(n => this._transformTree(n)));
   }
 }
+
+export default Tree;

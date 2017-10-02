@@ -28,10 +28,12 @@ export const ConnectorServer = _ConnectorServer;
 
 /**
  * CoreNLP NodeJS Interface
+ * @namespace CoreNLP
  */
 export default {
   /**
-   * https://stanfordnlp.github.io/CoreNLP/simple.html
+   * @namespace CoreNLP/simple
+   * @description NodeJS API that emulates {@link https://stanfordnlp.github.io/CoreNLP/simple.html}
    */
   simple: {
     Annotable,
@@ -40,8 +42,10 @@ export default {
     Sentence,
     Token,
     Expression,
-    // namespace for default annotators
-    // Predefined annotators @see {@link https://stanfordnlp.github.io/CoreNLP/annotators.html}
+    /**
+     * @namespace CoreNLP/simple/annotator
+     * @description Predefined annotators {@link https://stanfordnlp.github.io/CoreNLP/annotators.html}
+     */
     annotator: {
       TokenizerAnnotator,
       WordsToSentenceAnnotator,
@@ -54,7 +58,10 @@ export default {
       RegexNERAnnotator,
     },
   },
-
+  /**
+   * @namespace CoreNLP/util
+   * @description Utilities
+   */
   util: {
     Tree,
   },

@@ -1,14 +1,14 @@
 import Annotator from '../annotator';
 
 /**
- * Class representing an TokenizerAnnotator.
+ * @class
+ * @classdesc Class representing an TokenizerAnnotator. Identifies {@link Token}s
  * @extends Annotator
- * requirements: tokenize
- * @external TokenizerAnnotator
- * Identifies {@link Token}s
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize
  * @see {@link https://stanfordnlp.github.io/CoreNLP/tokenize.html|TokenizerAnnotator}
  */
-export default class TokenizerAnnotator extends Annotator {
+class TokenizerAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -28,3 +28,5 @@ export default class TokenizerAnnotator extends Annotator {
     );
   }
 }
+
+export default TokenizerAnnotator;

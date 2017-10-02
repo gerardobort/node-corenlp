@@ -8,7 +8,11 @@ const config = {
   props: 'StanfordCoreNLP-spanish.properties',
 };
 
-export default class ConnectorCli {
+/**
+ * @class
+ * @classdesc Class representing a Connector CLI (command line interface client)
+ */
+class ConnectorCli {
   /**
    * Create a ConnectorCli
    * @param {Object} config
@@ -55,3 +59,5 @@ export default class ConnectorCli {
         }));
   }
 }
+
+export default ConnectorCli;

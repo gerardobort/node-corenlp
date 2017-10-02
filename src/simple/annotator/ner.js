@@ -3,14 +3,14 @@ import TokenizerAnnotator from './tokenize';
 import WordsToSentenceAnnotator from './ssplit';
 
 /**
- * Class representing an NERClassifierCombiner.
+ * @class
+ * @classdesc Class representing an NERClassifierCombiner. Hydrates {@link Token.ner()}
  * @extends Annotator
- * requirements: tokenize, ssplit, pos, lemma, ner
- * @external NERClassifierCombiner
- * Hydrates {@link Token.ner()}
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit, pos, lemma, ner
  * @see {@link https://stanfordnlp.github.io/CoreNLP/ner.html|NERClassifierCombiner}
  */
-export default class NERClassifierCombiner extends Annotator {
+class NERClassifierCombiner extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -34,3 +34,5 @@ export default class NERClassifierCombiner extends Annotator {
     );
   }
 }
+
+export default NERClassifierCombiner;

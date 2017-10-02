@@ -16,10 +16,11 @@ export class TregexAnnotator extends Annotator { }
  */
 
 /**
- * Class representing an Expression.
+ * @class
+ * @classdesc Class representing an Expression
  * @extends Annotable
  */
-export default class Expression extends Annotable {
+class Expression extends Annotable {
   /**
    * Create an Expression
    * @param {string} text
@@ -81,10 +82,10 @@ export default class Expression extends Annotable {
    * @param {ExpressionJSON} data - The expression data, as returned by CoreNLP API service
    * @returns {Expression} expression - The current expression instance
    */
-  fromJson(data) {
+  fromJSON(data) {
     if (data.sentences) {
       this._sentences = data.sentences
-        .map(sent => ExpressionSentence.fromJson(sent));
+        .map(sent => ExpressionSentence.fromJSON(sent));
     }
     return this;
   }
@@ -101,8 +102,10 @@ export default class Expression extends Annotable {
    * @param {ExpressionJSON} data - The expression data, as returned by CoreNLP API service
    * @returns {Expression} expression - A new Expression instance
    */
-  static fromJson(data) {
+  static fromJSON(data) {
     const instance = new this();
-    return instance.fromJson(data);
+    return instance.fromJSON(data);
   }
 }
+
+export default Expression;

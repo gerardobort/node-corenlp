@@ -40,13 +40,13 @@ describe('Properties', () => {
     });
   });
 
-  describe('toJson', () => {
+  describe('toJSON', () => {
     beforeEach(() => {
       props = new Properties({ test: 123, bar: 'foo' });
     });
 
     it('should allow to get all prperties', async () => {
-      expect(props.toJson()).to.deep.equal({
+      expect(props.toJSON()).to.deep.equal({
         test: 123,
         bar: 'foo',
       });

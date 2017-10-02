@@ -29,9 +29,11 @@ import Service from '../service';
  */
 
 /**
- * Class representing a Token
+ * @class
+ * @classdesc Class representing a Token
+ * @memberof CoreNLP/simple
  */
-export default class Token {
+class Token {
   /**
    * Create a Token
    * @param {string} word
@@ -188,3 +190,5 @@ export default class Token {
     return instance;
   }
 }
+
+export default Token;

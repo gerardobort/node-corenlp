@@ -4,14 +4,14 @@ import WordsToSentenceAnnotator from './ssplit';
 import POSTaggerAnnotator from './pos';
 
 /**
- * Class representing an DependencyParseAnnotator.
+ * @class
+ * @classdesc Class representing an DependencyParseAnnotator. Hydrates {@link Sentence.governors()}
  * @extends Annotator
- * requirements: tokenize, ssplit, pos, lemma, ner, parse, depparse
- * @external DependencyParseAnnotator
- * Hydrates {@link Sentence.governors()}
+ * @memberof CoreNLP/simple/annotator
+ * @requires tokenize, ssplit, pos, lemma, ner, parse, depparse
  * @see {@link https://stanfordnlp.github.io/CoreNLP/depparse.html|DependencyParseAnnotator}
  */
-export default class DependencyParseAnnotator extends Annotator {
+class DependencyParseAnnotator extends Annotator {
   /**
    * Create an Annotator
    * @param {Object} [options] a key-value map of options, without the annotator prefix
@@ -31,3 +31,5 @@ export default class DependencyParseAnnotator extends Annotator {
     );
   }
 }
+
+export default DependencyParseAnnotator;
