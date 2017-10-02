@@ -8,6 +8,8 @@ import gulpSequence from 'gulp-sequence';
  
 gulp.task('default', ['build']);
 
+gulp.task('compile', gulpSequence('copy', 'transpile'));
+
 gulp.task('build', gulpSequence('clean', 'copy', 'transpile', 'doc'));
 
 gulp.task('transpile', () =>

@@ -9,7 +9,7 @@
     "corenlp:server": "./scripts/corenlp-server",
     "compile": "gulp compile",
     "build": "gulp build",
-    "prepublish": "npm run lint && npm run test && npm run build",
+    "prepublish": "npm run lint && npm run test && npm run compile",
     "lint": "eslint 'src/**/*.js' 'test/*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill test/setup.js --sort 'src/**/*.spec.js' --compilers js:babel-core/register --timeout 30000",
