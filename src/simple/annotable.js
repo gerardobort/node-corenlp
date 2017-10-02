@@ -1,6 +1,7 @@
 /**
  * @class
  * @classdesc Class representing an Annotable
+ * @memberof CoreNLP/simple
  */
 class Annotable {
   /**

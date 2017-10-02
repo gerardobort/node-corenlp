@@ -64,9 +64,9 @@ You may want to download, apart of the full package, other language models (see 
 
 ### 2.2. Via sources
 
-For advanced projects, in where you may need to customize the library, we highly recommend to download the source code from the [original repository](https://github.com/stanfordnlp/CoreNLP), and compile it using `ant jar`.
+For advanced projects, when you have to customize the library a bit more, we highly recommend to download the StanfordCoreNLP from the [original repository](https://github.com/stanfordnlp/CoreNLP), and compile the source code by using `ant jar`.
 
-*NOTE*: Some functionality included in this library, for `TokensRegex`, `Semgrex` and `Tregex`, requires the latest version from the repository, which is more recent than the last stable.
+*NOTE*: Some functionality included in this library, for `TokensRegex`, `Semgrex` and `Tregex`, requires the latest version from that repository, which contains some fixes needed by this library, not included in the latest stable release.
 
 ### 3. Configure Stanford CoreNLP
 
@@ -113,7 +113,7 @@ const props = new Properties({
 const pipeline = new Pipeline(props, 'English', connector);
 ```
 
-### 4. Use it
+### 4. Usage
 
 ```javascript
 // ... initialize pipeline first (see above)

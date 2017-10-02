@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ConnectorCli - Documentation</title>
+    <title>Expression - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ConnectorCli</h1>
+    <h1 class="page-title">Expression</h1>
     
 
     
@@ -40,10 +40,12 @@
 <header>
     
         <h2>
-        ConnectorCli
+            <span class="ancestors"><a href="CoreNLP_simple.html">CoreNLP/simple</a>.</span>
+        
+        Expression
         </h2>
         
-            <div class="class-description"><p>Class representing a Connector CLI (command line interface client)</p></div>
+            <div class="class-description"><p>Class representing an Expression</p></div>
         
     
 </header>
@@ -57,7 +59,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="ConnectorCli"><span class="type-signature"></span>new ConnectorCli<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Expression"><span class="type-signature"></span>new Expression<span class="signature">(text, pattern)</span><span class="type-signature"></span></h4>
 
     
 
@@ -69,7 +71,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connector_connector-cli.js.html">connector/connector-cli.js</a>, <a href="connector_connector-cli.js.html#line15">line 15</a>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -109,7 +111,7 @@
 
 
 <div class="description">
-    <p>Create a ConnectorCli</p>
+    <p>Create an Expression</p>
 </div>
 
 
@@ -147,49 +149,7 @@
 
         <tr>
             
-                <td class="name"><code>config</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>classPath</code></td>
+                <td class="name"><code>text</code></td>
             
 
             <td class="type">
@@ -205,14 +165,14 @@
 
             
 
-            <td class="description last"><p>The path to the Jar files to be included</p></td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>mainClass</code></td>
+                <td class="name"><code>pattern</code></td>
             
 
             <td class="type">
@@ -228,37 +188,7 @@
 
             
 
-            <td class="description last"><p>The name of the Java class that represents the main program</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The - path to the properties file (for example, language specific)</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>Either <code>TokensRegex</code>, <code>Semrgex</code> or <code>Tregex</code> valid pattern</p></td>
         </tr>
 
     
@@ -284,6 +214,17 @@
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>Annotable</li>
+    </ul>
+
+
+    
 
     
 
@@ -303,7 +244,7 @@
 
     
 
-    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    <h4 class="name" id=".fromJSON"><span class="type-signature">(static) </span>fromJSON<span class="signature">(data)</span><span class="type-signature"> &rarr; {Expression}</span></h4>
 
     
 
@@ -315,7 +256,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connector_connector-cli.js.html">connector/connector-cli.js</a>, <a href="connector_connector-cli.js.html#line39">line 39</a>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -354,6 +295,482 @@
 
 
 
+<div class="description">
+    <p>Get an instance of Expression from a given JSON</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#ExpressionJSON">ExpressionJSON</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The expression data, as returned by CoreNLP API service</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression - A new Expression instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Expression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fromJSON"><span class="type-signature"></span>fromJSON<span class="signature">(data)</span><span class="type-signature"> &rarr; {Expression}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line86">line 86</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update an instance of Expression with data provided by a JSON</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#ExpressionJSON">ExpressionJSON</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The expression data, as returned by CoreNLP API service</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression - The current expression instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Expression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="mergeTokensFromDocument"><span class="type-signature"></span>mergeTokensFromDocument<span class="signature">(document)</span><span class="type-signature"> &rarr; {Expression}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ExpressionSentence.html#mergeTokensFromSentence">ExpressionSentence#mergeTokensFromSentence</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Hydrate the Expression instance with Token objects from an annotated Document</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Document</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An annotated document from where to extract the tokens</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression - The current expression instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Expression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="pattern"><span class="type-signature"></span>pattern<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get the pattern</p>
+</div>
+
 
 
 
@@ -379,6 +796,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>pattern - The expression pattern</p>
+</div>
+
 
 
 <dl class="param-type">
@@ -387,7 +808,374 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Object></span>
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sentence"><span class="type-signature"></span>sentence<span class="signature">(index)</span><span class="type-signature"> &rarr; {<a href="ExpressionSentence.html">ExpressionSentence</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get the sentence for a given index</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The position of the sentence to get</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>sentence - An expression sentence</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="ExpressionSentence.html">ExpressionSentence</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sentences"><span class="type-signature"></span>sentences<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="ExpressionSentence.html">ExpressionSentence</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get a list of sentences</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>sentences - The expression sentences</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="ExpressionSentence.html">ExpressionSentence</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_expression.js.html">simple/expression.js</a>, <a href="simple_expression.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get a string representation</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
 
 
     </dd>

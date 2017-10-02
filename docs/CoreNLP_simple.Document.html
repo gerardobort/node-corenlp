@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>index.js - Documentation</title>
+    <title>Document - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,87 +27,989 @@
 
 <div id="main">
     
-    <h1 class="page-title">index.js</h1>
+    <h1 class="page-title">Document</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import Document from './simple/document';
-import Sentence from './simple/sentence';
-import Token from './simple/token';
-import Expression from './simple/expression';
-import Annotable from './simple/annotable';
-import Annotator from './simple/annotator';
-import TokenizerAnnotator from './simple/annotator/tokenize';
-import WordsToSentenceAnnotator from './simple/annotator/ssplit';
-import POSTaggerAnnotator from './simple/annotator/pos';
-import MorphaAnnotator from './simple/annotator/lemma';
-import NERClassifierCombiner from './simple/annotator/ner';
-import ParserAnnotator from './simple/annotator/parse';
-import DependencyParseAnnotator from './simple/annotator/depparse';
-import RelationExtractorAnnotator from './simple/annotator/relation';
-import RegexNERAnnotator from './simple/annotator/regexner';
-import Tree from './util/tree';
-import _Properties from './properties';
-import _Pipeline from './pipeline';
-import _Service from './service';
-import _ConnectorCli from './connector/connector-cli';
-import _ConnectorServer from './connector/connector-server';
+        <h2>
+            <span class="ancestors"><a href="CoreNLP_simple.html">CoreNLP/simple</a>.</span>
+        
+        Document
+        </h2>
+        
+            <div class="class-description"><p>Class representing a Document</p></div>
+        
+    
+</header>
 
-export const Properties = _Properties;
-export const Pipeline = _Pipeline;
-export const Service = _Service;
-export const ConnectorCli = _ConnectorCli;
-export const ConnectorServer = _ConnectorServer;
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * CoreNLP NodeJS Interface
- * @namespace CoreNLP
- */
-export default {
-  /**
-   * @namespace CoreNLP/simple
-   * @description NodeJS API that emulates {@link https://stanfordnlp.github.io/CoreNLP/simple.html}
-   */
-  simple: {
-    Annotable,
-    Annotator,
-    Document,
-    Sentence,
-    Token,
-    Expression,
-    /**
-     * @namespace CoreNLP/simple/annotator
-     * @description Predefined annotators {@link https://stanfordnlp.github.io/CoreNLP/annotators.html}
-     */
-    annotator: {
-      TokenizerAnnotator,
-      WordsToSentenceAnnotator,
-      POSTaggerAnnotator,
-      MorphaAnnotator,
-      NERClassifierCombiner,
-      ParserAnnotator,
-      DependencyParseAnnotator,
-      RelationExtractorAnnotator,
-      RegexNERAnnotator,
-    },
-  },
-  /**
-   * @namespace CoreNLP/util
-   * @description Utilities
-   */
-  util: {
-    Tree,
-  },
-};
-</code></pre>
-        </article>
-    </section>
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Document"><span class="type-signature"></span>new Document<span class="signature">(text)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a Document</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>Annotable</li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fromJSON"><span class="type-signature">(static) </span>fromJSON<span class="signature">(data)</span><span class="type-signature"> &rarr; {Document}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get an instance of Document from a given JSON</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#DocumentJSON">DocumentJSON</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The document data, as returned by CoreNLP API service</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>document - A new Document instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Document</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="coref"><span class="type-signature"></span>coref<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;DeterministicCorefAnnotator>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line63">line 63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>TODO
+requirements: tokenize, ssplit, pos, lemma, ner, parse
+https://stanfordnlp.github.io/CoreNLP/dcoref.html</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>dcoref</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;DeterministicCorefAnnotator></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fromJSON"><span class="type-signature"></span>fromJSON<span class="signature">(data)</span><span class="type-signature"> &rarr; {Document}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update an instance of Document with data provided by a JSON</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#DocumentJSON">DocumentJSON</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The document data, as returned by CoreNLP API service</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>document - The current document instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Document</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sentence"><span class="type-signature"></span>sentence<span class="signature">(index)</span><span class="type-signature"> &rarr; {Sentence}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get the sentence for a given index</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The position of the sentence to get</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>sentence - The document sentences</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Sentence</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sentences"><span class="type-signature"></span>sentences<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Sentence>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get a list of sentences</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>sentences - The document sentences</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Sentence></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="simple_document.js.html">simple/document.js</a>, <a href="simple_document.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Get a string representation</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

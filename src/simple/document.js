@@ -13,6 +13,7 @@ import Sentence from './sentence';
  * @class
  * @classdesc Class representing a Document
  * @extends Annotable
+ * @memberof CoreNLP/simple
  */
 class Document extends Annotable {
   /**
