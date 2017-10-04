@@ -326,6 +326,25 @@ describe('Sentence', () => {
       });
     });
 
+    describe('setLanguageISO / getLanguageISO', () => {
+      it('should default to undefined', () => {
+        expect(sent.getLanguageISO()).to.be.undefined;
+      });
+
+      it('should receive and return wthe language as indicated', () => {
+        sent.setLanguageISO('es');
+        expect(sent.getLanguageISO('es')).to.equal('es');
+      });
+
+      it('should propagate the language to its tokens', () => {
+        const dummyToken = { setLanguageISO: sinon.stub() };
+        sent._tokens = [dummyToken];
+        sent.setLanguageISO('es');
+        expect(sent.getLanguageISO('es')).to.equal('es');
+        expect(dummyToken.setLanguageISO).to.have.been.calledOnce.and.calledWith('es');
+      });
+    });
+
     describe('fromJSON', () => {
       beforeEach(() => {
         sent = Sentence.fromJSON(sentenceStubJson, true);

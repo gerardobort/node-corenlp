@@ -58,4 +58,18 @@ describe('Annotable', () => {
       expect(annotable.hasAnnotator(annotatorMock1)).to.be.false;
     });
   });
+
+  describe('setLanguageISO / getLanguageISO', () => {
+    it('should default to undefined', () => {
+      expect(annotable.getLanguageISO()).to.be.undefined;
+    });
+
+    it('should receive and return wthe language as indicated', () => {
+      expect(annotable.getLanguageISO()).to.be.undefined;
+      annotable.setLanguageISO('es');
+      expect(annotable.getLanguageISO('es')).to.equal('es');
+      annotable.setLanguageISO('en');
+      expect(annotable.getLanguageISO('en')).to.equal('en');
+    });
+  });
 });

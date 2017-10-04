@@ -24,6 +24,7 @@ class Annotable {
   /**
    * Sets the language ISO (given by the pipeline during the annotation process)
    * This is solely to keep track of the language chosen for further analysis
+   * The language string should be passed in lowercase ISO2 format
    * @return {string} text
    */
   setLanguageISO(iso) {
@@ -31,8 +32,8 @@ class Annotable {
   }
 
   /**
-   * Retrieves the language ISO
-   * @return {string} text
+   * Retrieves the language ISO (in lowercase ISO2 format)
+   * @return {string} iso
    */
   getLanguageISO() {
     return this._language;

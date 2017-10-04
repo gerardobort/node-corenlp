@@ -9,7 +9,7 @@ export class TregexAnnotator extends Annotator { }
 /**
  * The CoreNLP API JSON structure representing an expression
  * This expression structure can be found as the output of `TokensRegex`,
- * `Semrgex` and `Tregex`.
+ * `Semgrex` and `Tregex`.
  * @typedef ExpressionJSON
  * @property {number} index
  * @property {Array.<Array.<ExpressionSentenceMatch>>} sentences
@@ -25,7 +25,7 @@ class Expression extends Annotable {
   /**
    * Create an Expression
    * @param {string} text
-   * @param {string} pattern - Either `TokensRegex`, `Semrgex` or `Tregex` valid pattern
+   * @param {string} pattern - Either `TokensRegex`, `Semgrex` or `Tregex` valid pattern
    */
   constructor(text, pattern) {
     super(text);
