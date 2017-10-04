@@ -8,7 +8,7 @@
  */
 
 /**
- * A ExpressionSentenceMatch of either `TokensRegex`, `Semrgex` or `Tregex`.
+ * A ExpressionSentenceMatch of either `TokensRegex`, `Semgrex` or `Tregex`.
  * @typedef ExpressionSentenceMatchJSON
  * @property {number} begin - word begin position, starting from zero
  * @property {number} end - word end position, starting from zero (no match ends at 0)

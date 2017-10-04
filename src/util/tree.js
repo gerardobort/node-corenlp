@@ -17,11 +17,13 @@ export class Node {
   }
 
   posInfo() {
+    // itf it's a subtree
     if (this._children.length) {
-      return Service.getSentenceParseInfo(this._pos);
+      return Service.getSentenceParseInfo(this._pos, this.getLanguageISO());
     }
 
-    return Service.getTokenPosInfo(this._pos);
+    // if it's a leaf
+    return Service.getTokenPosInfo(this._pos, this.getLanguageISO());
   }
 
   token(token = null) {
@@ -34,6 +36,23 @@ export class Node {
 
   word() {
     return this._word;
+  }
+
+  /**
+   * Sets the language ISO (given by the pipeline during the annotation process)
+   * This is solely to keep track of the language chosen for further analysis
+   * @return {string} text
+   */
+  setLanguageISO(iso) {
+    this._language = iso;
+  }
+
+  /**
+   * Retrieves the language ISO
+   * @return {string} text
+   */
+  getLanguageISO() {
+    return this._language;
   }
 
   children() {
@@ -112,7 +131,7 @@ class Tree {
    */
   visitDeepFirst(visitor, node = this.rootNode) {
     node.children().forEach((childNode) => {
-      this.visitDeepFirst(childNode);
+      this.visitDeepFirst(visitor, childNode);
       visitor(childNode);
     });
 
@@ -125,7 +144,7 @@ class Tree {
    */
   visitDeepFirstRight(visitor, node = this.rootNode) {
     node.children().reverse().forEach((childNode) => {
-      this.visitDeepFirst(childNode);
+      this.visitDeepFirstRight(visitor, childNode);
       visitor(childNode);
     });
 
@@ -167,6 +186,11 @@ class Tree {
     let visitedLeaves = 0;
     // eslint-disable-next-line no-plusplus
     tree.visitLeaves(node => node.token(sentence.token(visitedLeaves++)));
+
+    const languageIso = sentence.getLanguageISO();
+    if (languageIso) {
+      tree.visitDeepFirst(node => node.setLanguageISO(languageIso));
+    }
 
     return tree;
   }

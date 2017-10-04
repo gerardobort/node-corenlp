@@ -237,6 +237,16 @@ class Sentence extends Annotable {
   }
 
   /**
+   * Sets the language ISO (given by the pipeline during the annotation process)
+   * This is solely to keep track of the language chosen for further analysis
+   * @return {string} text
+   */
+  setLanguageISO(iso) {
+    super.setLanguageISO(iso);
+    this._tokens.forEach(token => token.setLanguageISO(iso));
+  }
+
+  /**
    * Get a JSON representation of the current sentence
    * @description
    * The following arrow function `data => Sentence.fromJSON(data).toJSON()` is idempontent, if

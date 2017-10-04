@@ -179,6 +179,7 @@ class Pipeline {
    */
   async _annotateExpression(annotableExpression) {
     const doc = await this.annotate(new Document(annotableExpression.text()));
+    doc.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotableExpression.mergeTokensFromDocument(doc);
     return annotableExpression;
   }

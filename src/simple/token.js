@@ -1,4 +1,5 @@
 import Service from '../service';
+import Annotable from './annotable';
 
 // @see {@link https://github.com/stanfordnlp/CoreNLP/blob/master/src/edu/stanford/nlp/simple/Token.java}
 
@@ -31,15 +32,17 @@ import Service from '../service';
 /**
  * @class
  * @classdesc Class representing a Token
+ * @extends Annotable
  * @memberof CoreNLP/simple
  */
-class Token {
+class Token extends Annotable {
   /**
    * Create a Token
    * @param {string} word
    */
+  // eslint-disable-next-line no-useless-constructor
   constructor(word) {
-    this._word = word;
+    super(word);
   }
 
   /**
@@ -47,7 +50,7 @@ class Token {
    * @returns {string} token
    */
   toString() {
-    return this._word;
+    return this._text;
   }
 
   /**
@@ -65,7 +68,7 @@ class Token {
    * @returns {string} word
    */
   word() {
-    return this._word;
+    return this._text;
   }
 
   /**
@@ -134,7 +137,7 @@ class Token {
    * @returns {PosInfo} posInfo
    */
   posInfo() {
-    return Service.getTokenPosInfo(this._pos);
+    return Service.getTokenPosInfo(this._pos, this.getLanguageISO());
   }
 
   /**
@@ -156,7 +159,7 @@ class Token {
   toJSON() {
     return {
       index: this._index,
-      word: this._word,
+      word: this._text,
       originalText: this._originalText,
       characterOffsetBegin: this._characterOffsetBegin,
       characterOffsetEnd: this._characterOffsetEnd,
@@ -177,7 +180,7 @@ class Token {
   static fromJSON(data) {
     const instance = new this();
     instance._index = data.index;
-    instance._word = data.word;
+    instance._text = data.word;
     instance._originalText = data.originalText;
     instance._characterOffsetBegin = data.characterOffsetBegin;
     instance._characterOffsetEnd = data.characterOffsetEnd;

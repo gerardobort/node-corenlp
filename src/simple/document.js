@@ -54,13 +54,23 @@ class Document extends Annotable {
   }
 
   /**
-   * TODO
-   * requirements: tokenize, ssplit, pos, lemma, ner, parse
-   * https://stanfordnlp.github.io/CoreNLP/dcoref.html
-   * @returns {Promise<DeterministicCorefAnnotator>} dcoref 
+   * @todo Missing implementation
+   * @requires {Promise<DeterministicCorefAnnotator>} dcoref 
+   * @see https://stanfordnlp.github.io/CoreNLP/dcoref.html
+   * @returns {undefined}
    */
   // eslint-disable-next-line class-methods-use-this
   coref() {
+  }
+
+  /**
+   * Sets the language ISO (given by the pipeline during the annotation process)
+   * This is solely to keep track of the language chosen for further analysis
+   * @return {string} text
+   */
+  setLanguageISO(iso) {
+    super.setLanguageISO(iso);
+    this._sentences.forEach(sentence => sentence.setLanguageISO(iso));
   }
 
   /**

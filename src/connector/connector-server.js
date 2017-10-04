@@ -21,7 +21,7 @@ class ConnectorServer {
 
   /**
    * @param {Object} config
-   * @param {Array.<string>} config.annotators - The list of annotators that edfines the pipeline
+   * @param {Array.<string>} config.annotators - The list of annotators that defines the pipeline
    * @param {string} config.text - The text to run the pipeline against
    * @param {Object} config.options - Additinal options (properties) for the pipeline
    * @param {string} config.language - Language full name in CamelCase (eg. Spanish)
