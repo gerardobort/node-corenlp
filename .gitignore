@@ -7,3 +7,4 @@ dist
 corenlp
 coverage
 .nyc_output
+docs
