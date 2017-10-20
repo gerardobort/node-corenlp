@@ -2,9 +2,7 @@
 
 This library helps making NodeJS applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.
 
-[![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp)
-
-[![Try corenlp on RunKit](https://badge.runkitcdn.com/corenlp.svg)](https://npm.runkit.com/corenlp)
+[![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp) [![Try corenlp on RunKit](https://badge.runkitcdn.com/corenlp.svg)](https://npm.runkit.com/corenlp)
 
 [![NPM package](https://nodei.co/npm/corenlp.png)](https://www.npmjs.com/package/corenlp)
 
