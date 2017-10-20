@@ -4,6 +4,8 @@ This library helps making NodeJS applications using the state-of-the-art technol
 
 [![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp)
 
+[![Try corenlp on RunKit](https://badge.runkitcdn.com/corenlp.svg)](https://npm.runkit.com/corenlp)
+
 [![NPM package](https://nodei.co/npm/corenlp.png)](https://www.npmjs.com/package/corenlp)
 
 *This project is under active development, please stay tuned for updates.  More documentation and examples are comming.*
@@ -115,20 +117,66 @@ const pipeline = new Pipeline(props, 'English', connector);
 
 ### 4. Usage
 
+#### 4.1 Pipeline
 ```javascript
-// ... initialize pipeline first (see above)
+// ... include dependencies
 
+const props = new Properties({ annotators: 'tokenize,ssplit,pos,lemma,ner' });
+const pipeline = new Pipeline(props, 'English', connector);
 const sent = new CoreNLP.simple.Sentence('Hello world');
 pipeline.annotate(sent)
   .then(sent => {
     console.log(sent.words());
+    console.log(sent.nerTags());
   })
   .catch(err => {
     console.log('err', err);
   });
 ```
 
-## External Documentation
+#### 4.2 Penn TreeBank traversing
+```javascript
+// ... include dependencies
+
+const props = new Properties();
+props.setProperty('annotators', 'tokenize,ssplit,pos,lemma,ner,parse');
+const pipeline = new Pipeline(props, 'Spanish');
+
+const sent = new CoreNLP.simple.Sentence('Jorge quiere cinco empanadas de queso y carne.');
+pipeline.annotate(sent)
+  .then(sent => {
+    console.log('parse', sent.parse()); // constituency parsing string representation
+    const tree = CoreNLP.util.Tree.fromSentence(sent);
+    console.log(tree.dump());
+    console.log(tree.visitLeaves(node =>
+      console.log(node.word(), node.pos(), node.token().ner())));
+  })
+  .catch(err => {
+    console.log('err', err);
+  });
+```
+
+#### 4.3 TokensRegex, Tregex and Semgrex
+```javascript
+// ... include dependencies
+
+const props = new Properties();
+props.setProperty('annotators', 'tokenize,ssplit,regexner,depparse');
+const expression = new CoreNLP.simple.Expression(
+  'John Snow eats snow.',
+  '{ner:PERSON}=who <nsubj ({pos:VBZ}=action >dobj {}=what)');
+const pipeline = new Pipeline(props, 'English');
+
+pipeline.annotateSemgrex(expression, true)  // similarly use pipeline.annotateTokensRegex / pipeline.annotateTregex
+  .then(expression => expression.sentence(0).matches().map(match => {
+      console.log('match', match.group('who'), match.group('action'), match.group('what'));
+  }))
+  .catch(err => {
+    console.log('err', err);
+  });
+```
+
+## 5. External Documentation
 
 ```bash
 Properties
@@ -153,14 +201,18 @@ CoreNLP
       DependencyParseAnnotator    # https://stanfordnlp.github.io/CoreNLP/depparse.html
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html
       DeterministicCorefAnnotator # https://stanfordnlp.github.io/CoreNLP/coref.html
+      SentimentAnnotator          # https://stanfordnlp.github.io/CoreNLP/sentiment.html - TODO
+      RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html - TODO
+      NaturalLogicAnnotator       # https://stanfordnlp.github.io/CoreNLP/natlog.html - TODO
+      QuoteAnnotator              # https://stanfordnlp.github.io/CoreNLP/quote.html - TODO
   util
     Tree                          # http://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf
 ```
 
-## References
+## 6. References
 
 This library is *not* maintained by [StanfordNLP](https://github.com/stanfordnlp).  However, it's based on and depends on [StanfordNLP/CoreNLP](https://github.com/stanfordnlp/CoreNLP) to function.
 
-### [Stanford CoreNLP Reference](https://github.com/stanfordnlp/CoreNLP)
+### 6.1 [Stanford CoreNLP Reference](https://github.com/stanfordnlp/CoreNLP)
 
 Manning, Christopher D., Mihai Surdeanu, John Bauer, Jenny Finkel, Steven J. Bethard, and David McClosky. 2014. The Stanford CoreNLP Natural Language Processing Toolkit In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, pp. 55-60.
