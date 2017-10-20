@@ -33,13 +33,14 @@
   "license": "GPL-3.0",
   "files": [
     "dist",
-    "scripts"
+    "scripts",
+    "examples/runkit.js"
   ],
   "bugs": {
     "url": "https://github.com/gerardobort/node-corenlp/issues"
   },
   "homepage": "https://github.com/gerardobort/node-corenlp#readme",
-  "runkitExampleFilename": "runkit-example.js",
+  "runkitExampleFilename": "examples/runkit.js",
   "babel": {
     "plugins": [
       "transform-object-rest-spread"
