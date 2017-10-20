@@ -39,7 +39,7 @@
     "url": "https://github.com/gerardobort/node-corenlp/issues"
   },
   "homepage": "https://github.com/gerardobort/node-corenlp#readme",
-  "runkitExampleFilename": "examples/runkit-demo.js",
+  "runkitExampleFilename": "runkit-example.js",
   "babel": {
     "plugins": [
       "transform-object-rest-spread"
