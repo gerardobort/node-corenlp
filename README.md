@@ -147,9 +147,9 @@ pipeline.annotate(sent)
   .then(sent => {
     console.log('parse', sent.parse()); // constituency parsing string representation
     const tree = CoreNLP.util.Tree.fromSentence(sent);
+    tree.visitLeaves(node =>
+      console.log(node.word(), node.pos(), node.token().ner()));
     console.log(tree.dump());
-    console.log(tree.visitLeaves(node =>
-      console.log(node.word(), node.pos(), node.token().ner())));
   })
   .catch(err => {
     console.log('err', err);
