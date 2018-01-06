@@ -73,7 +73,7 @@ class Governor {
 
   /**
    * Get an instance of Governor from a given JSON
-   * 
+   *
    * @todo It is not possible to properly generate a Governor from a GovernorJSON
    *       the Governor requires references to the Token instances in order to work
    * @param {GovernorJSON} data - The token data, as returned by CoreNLP API service
