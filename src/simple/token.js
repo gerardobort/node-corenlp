@@ -22,7 +22,7 @@ import Annotable from './annotable';
  * by language provided by this library.  It's only helpful for analysis and study.  The
  * data was collected from different documentation resources on the Web.
  * The PosInfo may vary depending on the POS annotation types used, for example, CoreNLP
- * for Spanish uses custom POS tags developed by Stanford, but this can also be changed 
+ * for Spanish uses custom POS tags developed by Stanford, but this can also be changed
  * to Universal Dependencies, which uses different tags.
  * @property {string} group
  * @property {string} tag
