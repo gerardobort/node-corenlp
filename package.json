@@ -47,17 +47,25 @@
   "babel": {
     "plugins": [
       "transform-object-rest-spread",
-      ["fast-async", {
-        "spec":true
-      }]
+      [
+        "fast-async",
+        {
+          "spec": true
+        }
+      ]
     ],
     "presets": [
-      ["env", {
-        "targets": {
-          "node": "6"
-        },
-        "exclude": ["transform-regenerator"]
-      }]
+      [
+        "env",
+        {
+          "targets": {
+            "node": "6"
+          },
+          "exclude": [
+            "transform-regenerator"
+          ]
+        }
+      ]
     ]
   },
   "devDependencies": {
