@@ -44,8 +44,8 @@ class ConnectorServer {
      * The conenctor should support extensibility to special tools:
      * - For example, Semgrex is an utility that runs in a separate url Hanlder
      *   in StanfordCoreNLPServer
-     *   This url is /semgrex, and apart of the normal options, it expects the 
-     *   query-string `pattern` as a must.  This `pattern` option is taken here from 
+     *   This url is /semgrex, and apart of the normal options, it expects the
+     *   query-string `pattern` as a must.  This `pattern` option is taken here from
      *   the options object, form the key `semgrex.pattern`.
      */
     if (utility) {

@@ -1,6 +1,3 @@
-// requires ployfill for ES7 async/await
-require("babel-polyfill");
-
 const corenlp = require("corenlp");
 const CoreNLP = corenlp.default; // convenient when not using `import`
 

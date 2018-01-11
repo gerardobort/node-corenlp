@@ -55,7 +55,7 @@ class Document extends Annotable {
 
   /**
    * @todo Missing implementation
-   * @requires {Promise<DeterministicCorefAnnotator>} dcoref 
+   * @requires {Promise<DeterministicCorefAnnotator>} dcoref
    * @see https://stanfordnlp.github.io/CoreNLP/dcoref.html
    * @returns {undefined}
    */
