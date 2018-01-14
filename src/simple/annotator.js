@@ -86,7 +86,7 @@ class Annotator {
   }
 
   /**
-   * Get an object of all the Annotator options including the current and all its 
+   * Get an object of all the Annotator options including the current and all its
    * dependencies, prefixed by the annotator names
    * This is useful to fulfill the options params in CoreNLP API properties.
    * @return {Array.<string>} pipelineOptions
