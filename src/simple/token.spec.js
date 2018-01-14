@@ -120,6 +120,17 @@ describe('Token', () => {
       });
     });
 
+    describe('speaker', () => {
+      it('should return the Speaker given by the JSON API', () => {
+        const token2 = Token.fromJSON({
+          word: 'loren',
+          speaker: 'PER1',
+        });
+        expect(token2.speaker()).to.be.a('string');
+        expect(token2.speaker()).to.equals('PER1');
+      });
+    });
+
     describe('fromJSON / toJSON', () => {
       const tokenJSON = {
         index: 2,
@@ -132,6 +143,7 @@ describe('Token', () => {
         pos: 'NNP',
         lemma: 'loren',
         ner: 'PERSON',
+        speaker: 'PER0',
       };
 
       beforeEach(() => {
@@ -144,6 +156,7 @@ describe('Token', () => {
         expect(token.pos()).to.be.a('string').and.equals('NNP');
         expect(token.lemma()).to.be.a('string').and.equals('loren');
         expect(token.ner()).to.be.a('string').and.equals('PERSON');
+        expect(token.speaker()).to.be.a('string').and.equals('PER0');
       });
 
       it('should return back the same input json, but not the exact', () => {

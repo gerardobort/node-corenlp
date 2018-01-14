@@ -1,6 +1,9 @@
 import Document from './document';
 import Sentence from './sentence';
 import Annotable from './annotable';
+import CorefChain from './coref-chain';
+import CorefMention from './coref-mention';
+import Token from './token';
 
 describe('Document', () => {
   let doc;
@@ -13,6 +16,7 @@ describe('Document', () => {
     it('should follow the CoreNLP.Document contract', () => {
       expect(doc).to.have.property('sentences').that.is.a('function');
       expect(doc).to.have.property('sentence').that.is.a('function');
+      expect(doc).to.have.property('corefs').that.is.a('function');
       expect(doc).to.have.property('coref').that.is.a('function');
     });
 
@@ -102,8 +106,87 @@ describe('Document', () => {
       });
     });
 
-    describe.skip('coref', () => {
-      it('should...', () => {
+    describe('corefs / coref', () => {
+      it('should throw an error if there is no annotator', () => {
+        expect(() => doc.corefs()).to.throw(Error, /unmet annotator dependencies/);
+        expect(() => doc.coref(0)).to.throw(Error, /unmet annotator dependencies/);
+      });
+
+      it('should return the sentences, by first applying ssplit annotator', async () => {
+        expect(() => doc.sentences()).to.throw(Error, /unmet annotator dependencies/);
+        doc.fromJSON({
+          sentences: [
+            {
+              tokens: [
+                { word: 'Charly' },
+                { word: 'cries' },
+              ],
+            },
+            {
+              tokens: [
+                { word: 'He' },
+                { word: 'is' },
+                { word: 'OK' },
+              ],
+            },
+          ],
+          corefs: {
+            1: [
+              {
+                animacy: 'ANIMATE',
+                gender: 'MALE',
+                number: 'SINGULAR',
+                text: 'Charly',
+                type: 'PROPER',
+                sentNum: 1,
+                startIndex: 1,
+                isRepresentativeMention: true,
+              },
+              {
+                animacy: 'ANIMATE',
+                gender: 'MALE',
+                number: 'SINGULAR',
+                text: 'He',
+                type: 'PROPER',
+                sentNum: 2,
+                startIndex: 1,
+                isRepresentativeMention: false,
+              },
+            ],
+          },
+        });
+        expect(doc.corefs()).to.be.an('array');
+        expect(doc.corefs()).to.have.property('0').that.is.instanceof(CorefChain);
+        expect(doc.coref(0)).to.be.instanceof(CorefChain);
+        expect(doc.coref(0).mention(0)).to.be.instanceof(CorefMention);
+        expect(doc.coref(0).mention(0).token()).to.be.instanceof(Token);
+        expect(doc.coref(0).mention(0).token().text()).to.equal('Charly');
+        expect(doc.coref(0).mention(1).token().text()).to.equal('He');
+        expect(doc.coref(0).representative().token().text()).to.equal('Charly');
+        expect(doc.coref(0).nonRepresentatives()[0].token().text()).to.equal('He');
+      });
+
+      it('should return the sentences when it is initialized by the JSON API', async () => {
+        const doc2 = Document.fromJSON({
+          sentences: [
+            {
+              tokens: [
+                { word: 'loren' },
+                { word: 'ipsum' },
+              ],
+            },
+            {
+              tokens: [
+                { word: 'dolor' },
+                { word: 'sit' },
+                { word: 'amet' },
+              ],
+            },
+          ],
+        });
+        expect(doc2.sentences()).to.be.an('array');
+        expect(doc2.sentences()).to.have.property('0').that.is.instanceof(Sentence);
+        expect(doc2.sentence(0)).to.be.instanceof(Sentence);
       });
     });
 

@@ -10,6 +10,7 @@ import parse from './simple/annotator/parse';
 import depparse from './simple/annotator/depparse';
 import relation from './simple/annotator/relation';
 import regexner from './simple/annotator/regexner';
+import coref from './simple/annotator/coref';
 import Document from './simple/document';
 
 import {
@@ -28,6 +29,7 @@ const ANNOTATORS_BY_KEY = {
   depparse,
   relation,
   regexner,
+  coref,
 };
 
 const LANGUAGE_TO_ISO2 = {

@@ -59,7 +59,8 @@
       "ner": "O",
       "originalText": "happy",
       "pos": "JJ",
-      "word": "happy"
+      "word": "happy",
+      "speaker": "PER0"
     },
     {
       "after": "",
@@ -71,7 +72,8 @@
       "ner": "O",
       "originalText": "cat",
       "pos": "NN",
-      "word": "cat"
+      "word": "cat",
+      "speaker": "PER0"
     }
   ]
 }

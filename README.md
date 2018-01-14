@@ -198,7 +198,7 @@ CoreNLP
       ParserAnnotator             # https://stanfordnlp.github.io/CoreNLP/parse.html
       DependencyParseAnnotator    # https://stanfordnlp.github.io/CoreNLP/depparse.html
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html
-      DeterministicCorefAnnotator # https://stanfordnlp.github.io/CoreNLP/coref.html
+      CorefAnnotator              # https://stanfordnlp.github.io/CoreNLP/coref.html
       SentimentAnnotator          # https://stanfordnlp.github.io/CoreNLP/sentiment.html - TODO
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html - TODO
       NaturalLogicAnnotator       # https://stanfordnlp.github.io/CoreNLP/natlog.html - TODO

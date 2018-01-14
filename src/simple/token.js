@@ -149,6 +149,15 @@ class Token extends Annotable {
   }
 
   /**
+   * Get the annotated speaker for the current token
+   * @see {@link CorefAnnotator}
+   * @returns {string} speaker
+   */
+  speaker() {
+    return this._speaker;
+  }
+
+  /**
    * Get a JSON representation of the current token
    * @description
    * The following arrow function `data => Token.fromJSON(data).toJSON()` is idempontent, if
@@ -169,6 +178,7 @@ class Token extends Annotable {
       pos: this._pos,
       lemma: this._lemma,
       ner: this._ner,
+      speaker: this._speaker,
     };
   }
 
@@ -190,6 +200,7 @@ class Token extends Annotable {
     instance._pos = data.pos;
     instance._lemma = data.lemma;
     instance._ner = data.ner;
+    instance._speaker = data.speaker;
     return instance;
   }
 }
