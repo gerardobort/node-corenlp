@@ -1,6 +1,8 @@
 import Annotable from './annotable';
 import WordsToSentenceAnnotator from './annotator/ssplit';
 import Sentence from './sentence';
+import CorefChain from './coref-chain';
+import CorefAnnotator from './annotator/coref';
 
 /**
  * The CoreNLP API JSON structure representing a document
@@ -55,12 +57,24 @@ class Document extends Annotable {
 
   /**
    * @todo Missing implementation
-   * @requires {Promise<DeterministicCorefAnnotator>} dcoref
    * @see https://stanfordnlp.github.io/CoreNLP/dcoref.html
-   * @returns {undefined}
+   * @returns {Array.<CorefChain>}
    */
-  // eslint-disable-next-line class-methods-use-this
-  coref() {
+  corefs() {
+    if (!this.hasAnnotator(CorefAnnotator)) {
+      throw new Error('Asked for corefs on Document, but there are unmet annotator dependencies.');
+    }
+    return this._corefs;
+  }
+
+  /**
+   * Get the coreference for a given index
+   * @param {number} index - 0-based index of the coref chain list
+   * @see https://stanfordnlp.github.io/CoreNLP/dcoref.html
+   * @returns {CorefChain}
+   */
+  coref(index) {
+    return this.corefs()[index];
   }
 
   /**
@@ -82,6 +96,12 @@ class Document extends Annotable {
     if (data.sentences) {
       this.addAnnotator(WordsToSentenceAnnotator);
       this._sentences = data.sentences.map(sent => Sentence.fromJSON(sent, true));
+    }
+    if (data.corefs) {
+      this.addAnnotator(CorefAnnotator);
+      this._corefs = Object.keys(data.corefs)
+        .filter(chainIndex => chainIndex !== 'length')
+        .map(chainIndex => CorefChain.fromJSON(data.corefs[chainIndex]).fromDocument(this));
     }
     return this;
   }

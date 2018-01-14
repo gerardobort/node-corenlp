@@ -13,6 +13,7 @@ import ParserAnnotator from './simple/annotator/parse';
 import DependencyParseAnnotator from './simple/annotator/depparse';
 import RelationExtractorAnnotator from './simple/annotator/relation';
 import RegexNERAnnotator from './simple/annotator/regexner';
+import CorefAnnotator from './simple/annotator/coref';
 import Tree from './util/tree';
 import _Properties from './properties';
 import _Pipeline from './pipeline';
@@ -56,6 +57,7 @@ export default {
       DependencyParseAnnotator,
       RelationExtractorAnnotator,
       RegexNERAnnotator,
+      CorefAnnotator,
     },
   },
   /**

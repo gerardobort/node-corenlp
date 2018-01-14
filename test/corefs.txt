@@ -1,0 +1,28 @@
+TODO list:
+doc sentences' tokens' speaker property
+doc corefs object
+  key?
+  value: CorefChain
+
+
+
+Running on raw text:
+String text = ...;
+String[] args = new String[]{
+  "-props", "edu/stanford/nlp/hcoref/properties/zh-dcoref-default.properties"
+};
+
+
+Annotation document = new Annotation(text);
+Properties props = StringUtils.argsToProperties(args);
+StanfordCoreNLP corenlp = new StanfordCoreNLP(props);
+corenlp.annotate(document);
+
+
+HybridCorefAnnotator hcoref = new HybridCorefAnnotator(props);
+hcoref.annotate(document);
+
+
+Map corefChain = document.get(CorefChainAnnotation.class); 
+System.out.println(corefChain);
+
