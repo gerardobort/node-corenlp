@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Pipeline - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ConnectorCli.html">ConnectorCli</a><ul class='methods'><li data-type='method'><a href="ConnectorCli.html#get">get</a></li></ul></li><li><a href="ConnectorServer.html">ConnectorServer</a><ul class='methods'><li data-type='method'><a href="ConnectorServer.html#get">get</a></li></ul></li><li><a href="CorefChain.html">CorefChain</a><ul class='methods'><li data-type='method'><a href="CorefChain.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CorefChain.html#document">document</a></li><li data-type='method'><a href="CorefChain.html#fromDocument">fromDocument</a></li><li data-type='method'><a href="CorefChain.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="CorefChain.html#mention">mention</a></li><li data-type='method'><a href="CorefChain.html#mentions">mentions</a></li><li data-type='method'><a href="CorefChain.html#nonRepresentatives">nonRepresentatives</a></li><li data-type='method'><a href="CorefChain.html#representative">representative</a></li></ul></li><li><a href="CorefMention.html">CorefMention</a><ul class='methods'><li data-type='method'><a href="CorefMention.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CorefMention.html#animacy">animacy</a></li><li data-type='method'><a href="CorefMention.html#endIndex">endIndex</a></li><li data-type='method'><a href="CorefMention.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="CorefMention.html#gender">gender</a></li><li data-type='method'><a href="CorefMention.html#headIndex">headIndex</a></li><li data-type='method'><a href="CorefMention.html#id">id</a></li><li data-type='method'><a href="CorefMention.html#isRepresentativeMention">isRepresentativeMention</a></li><li data-type='method'><a href="CorefMention.html#number">number</a></li><li data-type='method'><a href="CorefMention.html#sentence">sentence</a></li><li data-type='method'><a href="CorefMention.html#sentNum">sentNum</a></li><li data-type='method'><a href="CorefMention.html#startIndex">startIndex</a></li><li data-type='method'><a href="CorefMention.html#text">text</a></li><li data-type='method'><a href="CorefMention.html#token">token</a></li><li data-type='method'><a href="CorefMention.html#type">type</a></li></ul></li><li><a href="CoreNLP_simple.Annotable.html">Annotable</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Annotable.html#addAnnotator">addAnnotator</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#addAnnotators">addAnnotators</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#getLanguageISO">getLanguageISO</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#hasAnnotator">hasAnnotator</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#hasAnyAnnotator">hasAnyAnnotator</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#removeAnnotator">removeAnnotator</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#setLanguageISO">setLanguageISO</a></li><li data-type='method'><a href="CoreNLP_simple.Annotable.html#text">text</a></li></ul></li><li><a href="CoreNLP_simple.Annotator.html">Annotator</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Annotator.html#dependencies">dependencies</a></li><li data-type='method'><a href="CoreNLP_simple.Annotator.html#equalsTo">equalsTo</a></li><li data-type='method'><a href="CoreNLP_simple.Annotator.html#option">option</a></li><li data-type='method'><a href="CoreNLP_simple.Annotator.html#options">options</a></li><li data-type='method'><a href="CoreNLP_simple.Annotator.html#pipeline">pipeline</a></li><li data-type='method'><a href="CoreNLP_simple.Annotator.html#pipelineOptions">pipelineOptions</a></li><li data-type='method'><a href="CoreNLP_simple.Annotator.html#toString">toString</a></li></ul></li><li><a href="CoreNLP_simple.Document.html">Document</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Document.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#coref">coref</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#corefs">corefs</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#sentence">sentence</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#sentences">sentences</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#setLanguageISO">setLanguageISO</a></li><li data-type='method'><a href="CoreNLP_simple.Document.html#toString">toString</a></li></ul></li><li><a href="CoreNLP_simple.Expression.html">Expression</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Expression.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Expression.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Expression.html#mergeTokensFromDocument">mergeTokensFromDocument</a></li><li data-type='method'><a href="CoreNLP_simple.Expression.html#pattern">pattern</a></li><li data-type='method'><a href="CoreNLP_simple.Expression.html#sentence">sentence</a></li><li data-type='method'><a href="CoreNLP_simple.Expression.html#sentences">sentences</a></li><li data-type='method'><a href="CoreNLP_simple.Expression.html#toString">toString</a></li></ul></li><li><a href="CoreNLP_simple.Governor.html">Governor</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Governor.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Governor.html#toString">toString</a></li></ul></li><li><a href="CoreNLP_simple.Sentence.html">Sentence</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Sentence.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#governor">governor</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#governors">governors</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#index">index</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#lemma">lemma</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#lemmas">lemmas</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#nerTag">nerTag</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#nerTags">nerTags</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#parse">parse</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#posTag">posTag</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#posTags">posTags</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#setLanguageISO">setLanguageISO</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#toJSON">toJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#token">token</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#tokens">tokens</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#toString">toString</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#word">word</a></li><li data-type='method'><a href="CoreNLP_simple.Sentence.html#words">words</a></li></ul></li><li><a href="CoreNLP_simple.Token.html">Token</a><ul class='methods'><li data-type='method'><a href="CoreNLP_simple.Token.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#after">after</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#before">before</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#characterOffsetBegin">characterOffsetBegin</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#characterOffsetEnd">characterOffsetEnd</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#index">index</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#lemma">lemma</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#ner">ner</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#originalText">originalText</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#pos">pos</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#posInfo">posInfo</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#speaker">speaker</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#toJSON">toJSON</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#toString">toString</a></li><li data-type='method'><a href="CoreNLP_simple.Token.html#word">word</a></li></ul></li><li><a href="CoreNLP_simple_annotator.CorefAnnotator.html">CorefAnnotator</a></li><li><a href="CoreNLP_simple_annotator.DependencyParseAnnotator.html">DependencyParseAnnotator</a></li><li><a href="CoreNLP_simple_annotator.DeterministicCorefAnnotator.html">DeterministicCorefAnnotator</a></li><li><a href="CoreNLP_simple_annotator.MorphaAnnotator.html">MorphaAnnotator</a></li><li><a href="CoreNLP_simple_annotator.NERClassifierCombiner.html">NERClassifierCombiner</a></li><li><a href="CoreNLP_simple_annotator.ParserAnnotator.html">ParserAnnotator</a></li><li><a href="CoreNLP_simple_annotator.POSTaggerAnnotator.html">POSTaggerAnnotator</a></li><li><a href="CoreNLP_simple_annotator.RegexNERAnnotator.html">RegexNERAnnotator</a></li><li><a href="CoreNLP_simple_annotator.RelationExtractorAnnotator.html">RelationExtractorAnnotator</a></li><li><a href="CoreNLP_simple_annotator.TokenizerAnnotator.html">TokenizerAnnotator</a></li><li><a href="CoreNLP_simple_annotator.WordsToSentenceAnnotator.html">WordsToSentenceAnnotator</a></li><li><a href="CoreNLP_util.Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="CoreNLP_util.Tree.html#.fromSentence">fromSentence</a></li><li data-type='method'><a href="CoreNLP_util.Tree.html#.fromString">fromString</a></li><li data-type='method'><a href="CoreNLP_util.Tree.html#dump">dump</a></li><li data-type='method'><a href="CoreNLP_util.Tree.html#visitDeepFirst">visitDeepFirst</a></li><li data-type='method'><a href="CoreNLP_util.Tree.html#visitDeepFirstRight">visitDeepFirstRight</a></li><li data-type='method'><a href="CoreNLP_util.Tree.html#visitLeaves">visitLeaves</a></li></ul></li><li><a href="ExpressionSentence.html">ExpressionSentence</a><ul class='methods'><li data-type='method'><a href="ExpressionSentence.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="ExpressionSentence.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="ExpressionSentence.html#match">match</a></li><li data-type='method'><a href="ExpressionSentence.html#matches">matches</a></li><li data-type='method'><a href="ExpressionSentence.html#mergeTokensFromSentence">mergeTokensFromSentence</a></li></ul></li><li><a href="ExpressionSentenceMatch.html">ExpressionSentenceMatch</a><ul class='methods'><li data-type='method'><a href="ExpressionSentenceMatch.html#.fromJSON">fromJSON</a></li><li data-type='method'><a href="ExpressionSentenceMatch.html#fromJSON">fromJSON</a></li><li data-type='method'><a href="ExpressionSentenceMatch.html#group">group</a></li><li data-type='method'><a href="ExpressionSentenceMatch.html#groups">groups</a></li><li data-type='method'><a href="ExpressionSentenceMatch.html#labels">labels</a></li></ul></li><li><a href="Node.html">Node</a><ul class='methods'><li data-type='method'><a href="Node.html#getLanguageISO">getLanguageISO</a></li><li data-type='method'><a href="Node.html#setLanguageISO">setLanguageISO</a></li></ul></li><li><a href="Pipeline.html">Pipeline</a><ul class='methods'><li data-type='method'><a href="Pipeline.html#annotate">annotate</a></li><li data-type='method'><a href="Pipeline.html#annotateSemgrex">annotateSemgrex</a></li><li data-type='method'><a href="Pipeline.html#annotateTokensRegex">annotateTokensRegex</a></li><li data-type='method'><a href="Pipeline.html#annotateTregex">annotateTregex</a></li><li data-type='method'><a href="Pipeline.html#assert">assert</a></li><li data-type='method'><a href="Pipeline.html#getService">getService</a></li></ul></li><li><a href="Properties.html">Properties</a><ul class='methods'><li data-type='method'><a href="Properties.html#getProperties">getProperties</a></li><li data-type='method'><a href="Properties.html#getProperty">getProperty</a></li><li data-type='method'><a href="Properties.html#setProperty">setProperty</a></li><li data-type='method'><a href="Properties.html#toJSON">toJSON</a></li><li data-type='method'><a href="Properties.html#toPropertiessFileContent">toPropertiessFileContent</a></li></ul></li><li><a href="Service.html">Service</a></li></ul><h3>Namespaces</h3><ul><li><a href="CoreNLP.html">CoreNLP</a></li><li><a href="CoreNLP_simple.html">CoreNLP/simple</a></li><li><a href="CoreNLP_simple_annotator.html">CoreNLP/simple/annotator</a></li><li><a href="CoreNLP_util.html">CoreNLP/util</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Pipeline</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        Pipeline
+        </h2>
+        
+            <div class="class-description"><p>Class representing a Pipeline.</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Pipeline"><span class="type-signature"></span>new Pipeline<span class="signature">(properties, language<span class="signature-attributes">opt</span>, connector<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a Pipeline</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Properties.html">Properties</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>language</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>Unspecified</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>in CamelCase (i.e. English, Spanish)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>connector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ConnectorServer.html">ConnectorServer</a></span>
+|
+
+<span class="param-type"><a href="ConnectorCli.html">ConnectorCli</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="annotate"><span class="type-signature">(async) </span>annotate<span class="signature">(annotable)</span><span class="type-signature"> &rarr; {Promise.&lt;Annotable>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Execute the pipeline against the annotable object, adding annotations to it.
+Calls the service and loads the associated response metadata into the Annotable model</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>annotable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Annotable</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the document or sentence to be annotated</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>annotated document / sentence</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Annotable></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="annotateSemgrex"><span class="type-signature">(async) </span>annotateSemgrex<span class="signature">(expression, annotateExpression<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Expression}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line133">line 133</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Annotates the given Expression instance with matching groups and/or Tokens</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>expression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Expression</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An annotable expression containing a Semgrex pattern</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>annotateExpression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Whether to hydrate the annotations with tokens or not.
+IMPORTANT: The optional parameter <code>annotateExpression</code> if true, will run the CoreNLP pipeline
+           twice.  First for the Semgrex annotation, and one more for the standard pipeline
+           Token annotations (pos, ner, lemma, etc).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression - The current expression instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Expression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="annotateTokensRegex"><span class="type-signature">(async) </span>annotateTokensRegex<span class="signature">(expression, annotateExpression<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Expression}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Annotates the given Expression instance with matching groups and/or Tokens</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>expression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Expression</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An annotable expression containing a TokensRegex pattern</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>annotateExpression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Whether to hydrate the annotations with tokens or not.
+IMPORTANT: The optional parameter <code>annotateExpression</code> if true, will run the CoreNLP pipeline
+           twice.  First for the TokensRegex annotation, and one more for the standard pipeline
+           Token annotations (pos, ner, lemma, etc).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression - The current expression instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Expression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="annotateTregex"><span class="type-signature">(async) </span>annotateTregex<span class="signature">(expression, annotateExpression<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Expression}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line159">line 159</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Annotates the given Expression instance with matching groups and/or Tokens</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>expression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Expression</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An annotable expression containing a Tregex pattern</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>annotateExpression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Whether to hydrate the annotations with tokens or not.
+IMPORTANT: The optional parameter <code>annotateExpression</code> if true, will run the CoreNLP pipeline
+           twice.  First for the Tregex annotation, and one more for the standard pipeline
+           Token annotations (pos, ner, lemma, etc).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>expression - The current expression instance</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Expression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="assert"><span class="type-signature"></span>assert<span class="signature">(requiredAnnotators)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line90">line 90</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>requiredAnnotators</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Annotator></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getService"><span class="type-signature"></span>getService<span class="signature">(service)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pipeline.js.html">pipeline.js</a>, <a href="pipeline.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Retrieves the current Service used by the pipeline</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>service</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Service.html">Service</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 15 2018 01:33:13 GMT-0300 (-03) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
