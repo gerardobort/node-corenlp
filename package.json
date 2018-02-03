@@ -42,7 +42,7 @@
   "homepage": "https://github.com/gerardobort/node-corenlp#readme",
   "runkitExampleFilename": "examples/runkit.js",
   "engines": {
-    "node": ">= 6"
+    "node": ">=6 <9"
   },
   "babel": {
     "plugins": [
