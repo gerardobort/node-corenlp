@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import difference from 'lodash.difference';
 import Service from './service';
 import ConnectorServer from './connector/connector-server';
 import tokenize from './simple/annotator/tokenize';
@@ -88,7 +88,7 @@ class Pipeline {
    * @param {Array.<Annotator>} requiredAnnotators
    */
   assert(methodName = '', requiredAnnotators = []) {
-    if (_.difference(
+    if (difference(
       requiredAnnotators.map(Annotator => (new Annotator()).toString()),
       this._getAnnotatorsKeys()).length > 0) {
       throw new Error(`Assert: ${methodName} requires ${requiredAnnotators.join()} within the annotators list.`);

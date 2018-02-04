@@ -1,0 +1,90 @@
+body {
+  font-weight: 300;
+  font-family: 'Helvetica Neue';
+}
+
+label {
+  font-size: 22px;
+}
+
+input {
+  width: 50%;
+  font-size: 22px;
+  font-weight: 300;
+  padding: 6px 12px;
+  border: 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.node.hide rect {
+  fill-opacity: .01;
+}
+
+.node.hide text {
+  fill-opacity: .03;
+}
+
+.node.ROOT rect {
+  fill: #aaa;
+}
+
+.node.S rect {
+  fill: #bbb;
+}
+
+.node text {
+  fill: #000;
+  font-weight: 300;
+  font-family: 'Helvetica Neue';
+  cursor: pointer;
+  text-anchor: middle;
+  font-size: 22px;
+}
+
+.node text.highlighted {
+  font-weight: 500;
+}
+
+.node rect {
+  fill: #ededed;
+  fill.opacity: .9;
+}
+
+.node rect.hover {
+  fill: #fee;
+}
+
+.node rect.expandable {
+  fill: #777;
+}
+
+.node rect.token {
+  fill: lightsteelblue;
+  fill-opacity: .3;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.link-tokens {
+  fill: none;
+  stroke: #cac;
+  stroke-opacity: 0.6;
+  stroke-width: 24px;
+}
+
+.link-govs {
+  fill: none;
+  stroke: #acc;
+  stroke-opacity: 0.8;
+  stroke-width: 4px;
+}
+
+.label-govs {
+  fill: #caa;
+  text-anchor: middle;
+  font: 300 16px 'Helvetica Neue';
+}

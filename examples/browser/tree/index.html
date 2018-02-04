@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <title>CoreNLP Workshop</title>
+  <link href="tree.css" media="all" rel="stylesheet" />
+  <script src="d3.min.js"></script>
+  <script src="d3-selection-multi.min.js"></script>
+  <script src="../corenlp.min.js"></script>
+  <script src="tree.js"></script>
+  <body onload="loadSentenceTree();focusInput();">
+    <h1>CoreNLP <small>Sentence Tree Inpsector</small></h1>
+    <label>Sentence: <input type="text" id="input-sentence" onchange="loadSentenceTree(this.value)"></label>
+    <div id="canvas"></div>
+  </body>
+</html>
