@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>corenlp: browser demo (amd)</title>
+  </head>
+  <body>
+    <h1>CoreNLP client side example (AMD)</h1>
+    <pre id="canvas">Loading annotation data...</pre>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+    <script>
+        require(['./corenlp.min.js'], function(CoreNLP) {
+          const connector = new CoreNLP.ConnectorServer({ dsn: 'http://localhost:9000' });
+          const props = new CoreNLP.Properties({ annotators: 'tokenize,ssplit,pos,lemma,ner,parse' });
+          const pipeline = new CoreNLP.Pipeline(props, 'Spanish', connector);
+          const sent = new CoreNLP.default.simple.Sentence('A los pibes les gusta tomar Fernet con Coca.');
+          pipeline.annotate(sent)
+            .then(function(sent) {
+              console.log(sent);
+              console.log('pos', sent.tokens().map(token => `${token.word()}: ${token.posInfo().tag}`));
+              console.log('parse', sent.parse());
+              document.getElementById('canvas').innerHTML = CoreNLP.default.util.Tree.fromSentence(sent).dump();
+            })
+            .catch(function(err) {
+              console.log('err', err);
+            });
+        });
+    </script>
+  </body>
+</html>
