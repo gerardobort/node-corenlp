@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import head from 'lodash.head';
 import Annotable from './annotable';
 import TokenizerAnnotator from './annotator/tokenize';
 import ParserAnnotator from './annotator/parse';
@@ -277,7 +277,7 @@ class Sentence extends Annotable {
    * @returns {Sentence} sentence - The current sentence instance
    */
   fromJSON(data, isSentence = false) {
-    const sentence = isSentence ? data : _.head(data.sentences);
+    const sentence = isSentence ? data : head(data.sentences);
     this._index = data.index;
     if (sentence.tokens) {
       this.addAnnotator(TokenizerAnnotator);

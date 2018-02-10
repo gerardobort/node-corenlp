@@ -1,5 +1,11 @@
 import depInfo from './simple/annotator/depparse/dependencies.json';
 
+// preload for browserify
+require('./simple/annotator/pos/en.json');
+require('./simple/annotator/pos/es.json');
+require('./simple/annotator/parse/en.json');
+require('./simple/annotator/parse/es.json');
+
 /**
  * @class
  * @classdesc Middleware that interfaces between the pipeline and the connector strategies
