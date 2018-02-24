@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import uniq from 'lodash.uniq';
+import flatten from 'lodash.flatten';
+import reduce from 'lodash.reduce';
 
 /**
  * @class
@@ -76,8 +78,8 @@ class Annotator {
    * @return {Array.<string>} pipeline
    */
   pipeline() {
-    return _.uniq(
-      _.flatten(
+    return uniq(
+      flatten(
         this.dependencies()
           .map(annotator => annotator.pipeline()),
       )
@@ -92,7 +94,7 @@ class Annotator {
    * @return {Array.<string>} pipelineOptions
    */
   pipelineOptions() {
-    return _.reduce(
+    return reduce(
       this.dependencies().map(annotator => annotator.pipelineOptions())
         .concat(Object.keys(this.options()).map(opt => ({ [`${this}.${opt}`]: this.option(opt) }))),
       (ac, option) => ({ ...ac, ...option }),
