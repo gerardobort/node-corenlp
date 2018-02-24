@@ -46,7 +46,8 @@
 
 
     <section class="readme">
-        <article><h1>CoreNLP for NodeJS</h1><p>This library helps making NodeJS applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.</p>
+        <article><h1>CoreNLP for NodeJS</h1><p>This library helps making NodeJS/Web applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.
+It is compatible with the latest release of <a href="https://stanfordnlp.github.io/CoreNLP/#download">CoreNLP 3.9.0</a>.</p>
 <p><a href="https://travis-ci.org/gerardobort/node-corenlp"><img src="https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master" alt="Build Status"></a> <a href="https://npm.runkit.com/corenlp"><img src="https://badge.runkitcdn.com/corenlp.svg" alt="Try corenlp on RunKit"></a></p>
 <p><a href="https://www.npmjs.com/package/corenlp"><img src="https://nodei.co/npm/corenlp.png" alt="NPM package"></a></p>
 <p><em>This project is under active development, please stay tuned for updates.  More documentation and examples are comming.</em></p>
@@ -99,7 +100,7 @@ const props = new Properties({
 });
 const pipeline = new Pipeline(props, 'English', connector);</code></pre><h3>4. Usage</h3><h4>4.1 Pipeline</h4><pre class="prettyprint source lang-javascript"><code>// ... include dependencies
 
-const props = new Properties({ annotators: 'tokenize,ssplit,pos,lemma,ner' });
+const props = new Properties({ annotators: 'tokenize,ssplit,lemma,pos,ner' });
 const pipeline = new Pipeline(props, 'English', connector);
 const sent = new CoreNLP.simple.Sentence('Hello world');
 pipeline.annotate(sent)
@@ -141,7 +142,10 @@ pipeline.annotateSemgrex(expression, true)  // similarly use pipeline.annotateTo
   }))
   .catch(err => {
     console.log('err', err);
-  });</code></pre><h2>5. External Documentation</h2><pre class="prettyprint source lang-bash"><code>Properties
+  });</code></pre><h2>5. Client Side</h2><p>This library is isomorphic, which means that works as well on a Browser. The API is exactly the same, and you can use it directly by requiring it via a <code>&lt;script&gt;</code> tag, using AMD (RequireJS), or within your app bundle.</p>
+<p>The browser ready version of <code>corenlp</code> can be found as <code>dist/index.browser.min.js</code>, once built (<code>npm run build</code>).</p>
+<p>See the examples folder for more details.</p>
+<h2>6. External Documentation</h2><pre class="prettyprint source lang-bash"><code>Properties
 Pipeline
 Service
 ConnectorServer                   # https://stanfordnlp.github.io/CoreNLP/corenlp-server.html
@@ -163,13 +167,13 @@ CoreNLP
       DependencyParseAnnotator    # https://stanfordnlp.github.io/CoreNLP/depparse.html
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html
       CorefAnnotator              # https://stanfordnlp.github.io/CoreNLP/coref.html
-      SentimentAnnotator          # https://stanfordnlp.github.io/CoreNLP/sentiment.html - TODO
+      SentimentAnnotator          # https://stanfordnlp.github.io/CoreNLP/sentiment.html - Comming soon...
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html - TODO
       NaturalLogicAnnotator       # https://stanfordnlp.github.io/CoreNLP/natlog.html - TODO
       QuoteAnnotator              # https://stanfordnlp.github.io/CoreNLP/quote.html - TODO
   util
-    Tree                          # http://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf</code></pre><h2>6. References</h2><p>This library is <em>not</em> maintained by <a href="https://github.com/stanfordnlp">StanfordNLP</a>.  However, it's based on and depends on <a href="https://github.com/stanfordnlp/CoreNLP">StanfordNLP/CoreNLP</a> to function.</p>
-<h3>6.1 <a href="https://github.com/stanfordnlp/CoreNLP">Stanford CoreNLP Reference</a></h3><p>Manning, Christopher D., Mihai Surdeanu, John Bauer, Jenny Finkel, Steven J. Bethard, and David McClosky. 2014. The Stanford CoreNLP Natural Language Processing Toolkit In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, pp. 55-60.</p></article>
+    Tree                          # http://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf</code></pre><h2>7. References</h2><p>This library is <em>not</em> maintained by <a href="https://github.com/stanfordnlp">StanfordNLP</a>.  However, it's based on and depends on <a href="https://github.com/stanfordnlp/CoreNLP">StanfordNLP/CoreNLP</a> to function.</p>
+<h3>7.1 <a href="https://github.com/stanfordnlp/CoreNLP">Stanford CoreNLP Reference</a></h3><p>Manning, Christopher D., Mihai Surdeanu, John Bauer, Jenny Finkel, Steven J. Bethard, and David McClosky. 2014. The Stanford CoreNLP Natural Language Processing Toolkit In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, pp. 55-60.</p></article>
     </section>
 
 
@@ -182,7 +186,7 @@ CoreNLP
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 15 2018 01:33:13 GMT-0300 (-03) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 24 2018 11:02:19 GMT-0300 (-03) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
