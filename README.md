@@ -1,7 +1,7 @@
 # CoreNLP for NodeJS
 
 This library helps making NodeJS/Web applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.
-It is compatible with the latest release of [![CoreNLP 3.9.0](https://stanfordnlp.github.io/CoreNLP/#download).
+It is compatible with the latest release of [CoreNLP 3.9.0](https://stanfordnlp.github.io/CoreNLP/#download).
 
 [![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp) [![Try corenlp on RunKit](https://badge.runkitcdn.com/corenlp.svg)](https://npm.runkit.com/corenlp)
 
