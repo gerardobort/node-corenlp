@@ -1,6 +1,7 @@
 # CoreNLP for NodeJS
 
-This library helps making NodeJS applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.
+This library helps making NodeJS/Web applications using the state-of-the-art technology for Natural Language Processing: Stanford CoreNLP.
+It is compatible with the latest release of [CoreNLP 3.9.0](https://stanfordnlp.github.io/CoreNLP/#download).
 
 [![Build Status](https://travis-ci.org/gerardobort/node-corenlp.svg?branch=master)](https://travis-ci.org/gerardobort/node-corenlp) [![Try corenlp on RunKit](https://badge.runkitcdn.com/corenlp.svg)](https://npm.runkit.com/corenlp)
 
@@ -119,7 +120,7 @@ const pipeline = new Pipeline(props, 'English', connector);
 ```javascript
 // ... include dependencies
 
-const props = new Properties({ annotators: 'tokenize,ssplit,pos,lemma,ner' });
+const props = new Properties({ annotators: 'tokenize,ssplit,lemma,pos,ner' });
 const pipeline = new Pipeline(props, 'English', connector);
 const sent = new CoreNLP.simple.Sentence('Hello world');
 pipeline.annotate(sent)
@@ -174,7 +175,15 @@ pipeline.annotateSemgrex(expression, true)  // similarly use pipeline.annotateTo
   });
 ```
 
-## 5. External Documentation
+## 5. Client Side
+
+This library is isomorphic, which means that works as well on a Browser. The API is exactly the same, and you can use it directly by requiring it via a `<script>` tag, using AMD (RequireJS), or within your app bundle.
+
+The browser ready version of `corenlp` can be found as `dist/index.browser.min.js`, once built (`npm run build`).
+
+See the examples folder for more details.
+
+## 6. External Documentation
 
 ```bash
 Properties
@@ -199,7 +208,7 @@ CoreNLP
       DependencyParseAnnotator    # https://stanfordnlp.github.io/CoreNLP/depparse.html
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html
       CorefAnnotator              # https://stanfordnlp.github.io/CoreNLP/coref.html
-      SentimentAnnotator          # https://stanfordnlp.github.io/CoreNLP/sentiment.html - TODO
+      SentimentAnnotator          # https://stanfordnlp.github.io/CoreNLP/sentiment.html - Comming soon...
       RelationExtractorAnnotator  # https://stanfordnlp.github.io/CoreNLP/relation.html - TODO
       NaturalLogicAnnotator       # https://stanfordnlp.github.io/CoreNLP/natlog.html - TODO
       QuoteAnnotator              # https://stanfordnlp.github.io/CoreNLP/quote.html - TODO
@@ -207,10 +216,10 @@ CoreNLP
     Tree                          # http://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf
 ```
 
-## 6. References
+## 7. References
 
 This library is *not* maintained by [StanfordNLP](https://github.com/stanfordnlp).  However, it's based on and depends on [StanfordNLP/CoreNLP](https://github.com/stanfordnlp/CoreNLP) to function.
 
-### 6.1 [Stanford CoreNLP Reference](https://github.com/stanfordnlp/CoreNLP)
+### 7.1 [Stanford CoreNLP Reference](https://github.com/stanfordnlp/CoreNLP)
 
 Manning, Christopher D., Mihai Surdeanu, John Bauer, Jenny Finkel, Steven J. Bethard, and David McClosky. 2014. The Stanford CoreNLP Natural Language Processing Toolkit In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations, pp. 55-60.
