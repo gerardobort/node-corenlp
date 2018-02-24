@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <title>CoreNLP Workshop</title>
+  <link href="tree.css" media="all" rel="stylesheet" />
+  <body>
+    <h1>CoreNLP <small>Sentence Tree Inpsector</small></h1>
+    <p>
+      <label>
+        <small>choose your language</small>
+        <select id="lang" name="language">
+          <option value="es" selected>Spanish</option>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="zh">Chinese</option>
+          <option value="ar">Arabic</option>
+        </select>
+      </label>
+      <small>/ if you're using Google Chrome, allow audio input so you can speak and see.</small>
+    </p>
+    <label>Sentence: <input type="text" id="input-sentence" onchange="loadSentenceTree(this.value)"></label>
+    <hr />
+    <div id="canvas">loading...</div>
+    <div class="info-container">
+      <div id="info"></div>
+      <small>This is an example of <a target="_blank" href="https://github.com/gerardobort/node-corenlp">NodeJS Corenlp</a> library.  It uses <code>http://corenlp.run/</code> as API server for annotations.</small>
+    </div>
+    <script src="../corenlp.min.js"></script>
+    <script src="d3.min.js"></script>
+    <script src="d3-selection-multi.min.js"></script>
+    <script src="tree.js"></script>
+    <script>
+        loadSentenceTree();
+        focusInput();
+        initializeSpeech2Text()
+    </script>
+  </body>
+</html>

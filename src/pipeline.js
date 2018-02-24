@@ -37,6 +37,8 @@ const LANGUAGE_TO_ISO2 = {
   French: 'fr',
   German: 'de',
   Spanish: 'es',
+  Chinese: 'zh',
+  Arabic: 'ar',
 };
 
 /**
