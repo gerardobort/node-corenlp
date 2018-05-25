@@ -244,7 +244,7 @@ class Tree {
     if (doubleLink) {
       const parentNode = new Node(node.pos, node.word);
       node.children.forEach((n) => {
-        const childNode = this._transformTree(n);
+        const childNode = this._transformTree(n, doubleLink);
         childNode.parent(parentNode);
         parentNode.appendChild(childNode);
       });
