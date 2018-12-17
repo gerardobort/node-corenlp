@@ -2,6 +2,10 @@ import rp from 'request-promise-native';
 
 const config = {
   dsn: 'http://localhost:9000',
+  auth: {
+    user: null,
+    pass: null,
+  },
 };
 
 /**
@@ -71,6 +75,13 @@ class ConnectorServer {
       body: text,
       json: true,
     };
+
+    if (config.auth.user) {
+      rpOpts.auth = {
+        user: config.auth.user,
+        pass: config.auth.pass,
+      };
+    }
 
     return this._rp(rpOpts);
   }
