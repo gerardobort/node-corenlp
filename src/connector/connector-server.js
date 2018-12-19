@@ -13,9 +13,13 @@ class ConnectorServer {
    * Create a ConnectorServer
    * @param {Object} config
    * @param {string} config.dsn - The StanfordCoreNLPServer dsn (example: 'http://localhost:9000')
+   * @param {string} [config.username] - StanfordCoreNLPServer basic authentication username
+   * @param {string} [config.username] - StanfordCoreNLPServer basic authentication password
    */
-  constructor({ dsn = config.dsn } = { }) {
+  constructor({ dsn = config.dsn, username = null, password = null } = { }) {
     this._dsn = dsn;
+    this._username = username;
+    this._password = password;
     this._rp = rp;
   }
 
@@ -71,6 +75,16 @@ class ConnectorServer {
       body: text,
       json: true,
     };
+
+    if (this._username) {
+      // @see https://github.com/request/request#http-authentication
+      Object.assign(rpOpts, {
+        auth: {
+          user: this._username,
+          pass: this._password,
+        },
+      });
+    }
 
     return this._rp(rpOpts);
   }

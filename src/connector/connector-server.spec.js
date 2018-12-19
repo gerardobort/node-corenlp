@@ -15,6 +15,14 @@ describe('ConnectorServer', () => {
     it('should initialize the instance properly (custom dsn)', () => {
       expect(new ConnectorServer({ dsn: 'dsn-stub' })).to.have.property('_dsn').that.equals('dsn-stub');
     });
+
+    it('should initialize the instance properly (basic auth username)', () => {
+      expect(new ConnectorServer({ username: 'username-stub' })).to.have.property('_username').that.equals('username-stub');
+    });
+
+    it('should initialize the instance properly (basic auth password)', () => {
+      expect(new ConnectorServer({ password: 'password-stub' })).to.have.property('_password').that.equals('password-stub');
+    });
   });
 
   describe('get', () => {
@@ -58,21 +66,47 @@ describe('ConnectorServer', () => {
   });
 
   describe('_makeRequest', () => {
-    beforeEach(() => {
-      connector = new ConnectorServer();
-      sinon.stub(connector, '_rp').returns(Promise.resolve('corenlp-result-stub'));
+    describe('no authentincation', () => {
+      beforeEach(() => {
+        connector = new ConnectorServer();
+        sinon.stub(connector, '_rp').returns(Promise.resolve('corenlp-result-stub'));
+      });
+
+      it('should call request-promise accordingly', async () => {
+        connector._makeRequest('http://127.0.0.1:3000', 'q=1&k=2', 'text-stub');
+        expect(connector._rp).to.be.have.been.calledWith({
+          method: 'POST',
+          uri: 'http://127.0.0.1:3000?q=1&k=2',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
+          body: 'text-stub',
+          json: true,
+        });
+      });
     });
 
-    it('should call request-promise accordingly', async () => {
-      connector._makeRequest('http://127.0.0.1:3000', 'q=1&k=2', 'text-stub');
-      expect(connector._rp).to.be.have.been.calledWith({
-        method: 'POST',
-        uri: 'http://127.0.0.1:3000?q=1&k=2',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        },
-        body: 'text-stub',
-        json: true,
+    describe('basic authentincation', () => {
+      beforeEach(() => {
+        connector = new ConnectorServer({ username: 'username-stub', password: 'password-stub' });
+        sinon.stub(connector, '_rp').returns(Promise.resolve('corenlp-result-stub'));
+      });
+
+      it('should call request-promise accordingly', async () => {
+        connector._makeRequest('http://127.0.0.1:3000', 'q=1&k=2', 'text-stub');
+        expect(connector._rp).to.be.have.been.calledWith({
+          method: 'POST',
+          uri: 'http://127.0.0.1:3000?q=1&k=2',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
+          body: 'text-stub',
+          json: true,
+          auth: {
+            user: 'username-stub',
+            pass: 'password-stub',
+          },
+        });
       });
     });
   });
