@@ -12,9 +12,9 @@
  * @property {("FEMALE"|"MALE"|"NEUTRAL"|"UNKNOWN")} gender - Gender of the mention
  * @property {("SINGULAR"|"PLURAL"|"UNKNOWN")} number - Cardinality of the mention
  * @property {("PRONOMINAL"|"NOMINAL"|"PROPER"|"LIST")} type - Mention type
- * @property {Array} position - Position is a binary tuple of 
+ * @property {Array} position - Position is a binary tuple of
  *    (sentence number, mention number in that sentence). This is used for indexing by mention.
- * 
+ *
  * @see {@link https://github.com/stanfordnlp/CoreNLP/blob/7cfaf869f9500da16b858ab1a2835234ae46f96e/src/edu/stanford/nlp/dcoref/CorefChain.java#L148}
  * @see {@link https://github.com/stanfordnlp/CoreNLP/blob/master/src/edu/stanford/nlp/dcoref/Dictionaries.java} for enum definitions
  */
