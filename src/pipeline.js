@@ -78,7 +78,7 @@ class Pipeline {
     annotable.fromJSON(await this._service.getAnnotationData(
       annotable.text(),
       this._getAnnotatorsKeys(),
-      this._getAnnotatrosOptions()));
+      this._getAnnotatorsOptions()));
 
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotators(this._getAnnotators());
@@ -112,7 +112,7 @@ class Pipeline {
       annotable.text(),
       annotable.pattern(),
       this._getAnnotatorsKeys(),
-      this._getAnnotatrosOptions()));
+      this._getAnnotatorsOptions()));
 
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotator(TokensRegexAnnotator);
@@ -138,7 +138,7 @@ class Pipeline {
       annotable.text(),
       annotable.pattern(),
       this._getAnnotatorsKeys(),
-      this._getAnnotatrosOptions()));
+      this._getAnnotatorsOptions()));
 
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotator(SemgrexAnnotator);
@@ -164,7 +164,7 @@ class Pipeline {
       annotable.text(),
       annotable.pattern(),
       this._getAnnotatorsKeys(),
-      this._getAnnotatrosOptions()));
+      this._getAnnotatorsOptions()));
 
     annotable.setLanguageISO(LANGUAGE_TO_ISO2[this._language]);
     annotable.addAnnotator(TregexAnnotator);
@@ -196,14 +196,14 @@ class Pipeline {
       text,
       pattern,
       this._getAnnotatorsKeys(),
-      this._getAnnotatrosOptions());
+      this._getAnnotatorsOptions());
 
     return data;
   }
 
   /**
    * @private
-   * @returns {Aray.<string>} annotators - those set for this pipeline
+   * @returns {Array.<string>} annotators - those set for this pipeline
    */
   _getAnnotatorsKeys() {
     return this._properties.getProperty('annotators', '')
@@ -212,7 +212,7 @@ class Pipeline {
 
   /**
    * @private
-   * @returns {Aray.<Annotator>} annotators - those set for this pipeline
+   * @returns {Array.<Annotator>} annotators - those set for this pipeline
    */
   _getAnnotators() {
     return this._getAnnotatorsKeys()
@@ -222,14 +222,17 @@ class Pipeline {
   /**
    * Only given options are those related to the annotators in the pipeline
    * @private
-   * @returns {Aray.<Annotator>} annotators - those set for this pipeline
+   * @returns {Object} annotator options - those set for this pipeline
    */
-  _getAnnotatrosOptions() {
+  _getAnnotatorsOptions() {
     const pipelineProps = this._properties.getProperties();
     const validPrfixes = Object.keys(ANNOTATORS_BY_KEY);
     return Object.keys(pipelineProps)
-      .filter(propName => validPrfixes.indexOf(propName) === 0)
-      .reduce((acc, val, key) => ({ ...acc, [key]: val }), {});
+      .filter(propName => validPrfixes.includes(propName.split('.')[0]))
+      .reduce((acc, val) => ({
+        ...acc,
+        [val]: pipelineProps[val],
+      }), {});
   }
 }
 

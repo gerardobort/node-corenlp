@@ -1,5 +1,6 @@
 import Pipeline from './pipeline';
 import Service from './service';
+import Properties from './properties';
 import ConnectorServer from './connector/connector-server';
 
 describe('Pipeline', () => {
@@ -26,6 +27,22 @@ describe('Pipeline', () => {
 
     it('should allow to get the service associated', async () => {
       expect(pipeline.getService()).to.be.instanceOf(Service);
+    });
+  });
+
+  describe('_getAnnotatorsOptions', () => {
+    beforeEach(() => {
+      const props = new Properties({
+        annotators: 'ner',
+        'ner.model': 'edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz',
+      });
+      pipeline = new Pipeline(props);
+    });
+
+    it('should get the annotator options', async () => {
+      expect(pipeline._getAnnotatorsOptions()).to.eql({
+        'ner.model': 'edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz',
+      });
     });
   });
 });

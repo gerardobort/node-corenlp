@@ -76,7 +76,7 @@ class CorefChain {
 
   /**
    * Update an instance of CorefChain with data provided by a JSON
-   * @param {Array.<CorefMentionJSON>} data - A sentence corefs mentions chain, as 
+   * @param {Array.<CorefMentionJSON>} data - A sentence corefs mentions chain, as
    *  returned by CoreNLP API service
    * @returns {CorefChain} chain - The current chain instance
    */
