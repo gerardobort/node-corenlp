@@ -2,6 +2,8 @@ import head from 'lodash.head';
 import Annotable from './annotable';
 import TokenizerAnnotator from './annotator/tokenize';
 import ParserAnnotator from './annotator/parse';
+import NaturalLogicAnnotator from './annotator/natlog';
+import OpenIEAnnotator from './annotator/openie';
 import DependencyParseAnnotator from './annotator/depparse';
 import Token from './token';
 import Governor from './governor';
@@ -30,6 +32,8 @@ class Sentence extends Annotable {
     super(text);
     this._tokens = [];
     this._governors = [];
+    this._openie = [];
+    this._natLogPolarities = [];
   }
 
   /**
@@ -185,19 +189,29 @@ class Sentence extends Annotable {
   incommingDependencyLabel(index) {
   }
 
-  // TODO
-  // eslint-disable-next-line class-methods-use-this
   natlogPolarities() {
+    if (!this.hasAnnotator(NaturalLogicAnnotator)) {
+      throw new Error('Asked for PolarityAnnotation on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._natLogPolarities;
   }
 
   // TODO
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarity(index) {
+    if (!this.hasAnnotator(NaturalLogicAnnotator)) {
+      throw new Error('Asked for a PolarityAnnotation on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._natLogPolarities[index];
   }
 
   // TODO
   // eslint-disable-next-line class-methods-use-this
   openie() {
+    if (!this.hasAnnotator(OpenIEAnnotator)) {
+      throw new Error('Asked for a OpenIE-Annotation on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._openie;
   }
 
   // TODO
@@ -286,6 +300,10 @@ class Sentence extends Annotable {
     if (sentence.parse) {
       this.addAnnotator(ParserAnnotator);
       this._parse = sentence.parse;
+    }
+    if (sentence.openie) {
+      this.addAnnotator(OpenIEAnnotator);
+      this._openie = sentence.openie;
     }
     if (sentence.basicDependencies) {
       this.addAnnotator(DependencyParseAnnotator);

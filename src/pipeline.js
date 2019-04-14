@@ -2,6 +2,8 @@ import difference from 'lodash.difference';
 import Service from './service';
 import ConnectorServer from './connector/connector-server';
 import tokenize from './simple/annotator/tokenize';
+import natlog from './simple/annotator/natlog';
+import openie from './simple/annotator/openie';
 import ssplit from './simple/annotator/ssplit';
 import pos from './simple/annotator/pos';
 import lemma from './simple/annotator/lemma';
@@ -30,6 +32,8 @@ const ANNOTATORS_BY_KEY = {
   relation,
   regexner,
   coref,
+  natlog,
+  openie,
 };
 
 const LANGUAGE_TO_ISO2 = {

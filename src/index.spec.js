@@ -10,6 +10,8 @@ import Token from './simple/token';
 import Annotable from './simple/annotable';
 import Annotator from './simple/annotator';
 import TokenizerAnnotator from './simple/annotator/tokenize';
+import OpenIEAnnotator from './simple/annotator/openie';
+import NaturalLogicAnnotator from './simple/annotator/natlog';
 import WordsToSentenceAnnotator from './simple/annotator/ssplit';
 import POSTaggerAnnotator from './simple/annotator/pos';
 import MorphaAnnotator from './simple/annotator/lemma';
@@ -73,6 +75,8 @@ describe('CoreNLP Library entry point', () => {
             RelationExtractorAnnotator,
             RegexNERAnnotator,
             CorefAnnotator,
+            NaturalLogicAnnotator,
+            OpenIEAnnotator,
           });
         });
       });

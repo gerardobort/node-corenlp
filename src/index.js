@@ -5,6 +5,8 @@ import Expression from './simple/expression';
 import Annotable from './simple/annotable';
 import Annotator from './simple/annotator';
 import TokenizerAnnotator from './simple/annotator/tokenize';
+import NaturalLogicAnnotator from './simple/annotator/natlog';
+import OpenIEAnnotator from './simple/annotator/openie';
 import WordsToSentenceAnnotator from './simple/annotator/ssplit';
 import POSTaggerAnnotator from './simple/annotator/pos';
 import MorphaAnnotator from './simple/annotator/lemma';
@@ -58,6 +60,8 @@ export default {
       RelationExtractorAnnotator,
       RegexNERAnnotator,
       CorefAnnotator,
+      NaturalLogicAnnotator,
+      OpenIEAnnotator,
     },
   },
   /**
