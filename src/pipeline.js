@@ -175,7 +175,6 @@ class Pipeline {
     return annotable;
   }
 
-
   /**
    * @private
    * @description
@@ -215,16 +214,18 @@ class Pipeline {
    * @returns {Array.<Annotator>} annotators - those set for this pipeline
    */
   _getAnnotators() {
-    return this._getAnnotatorsKeys()
-      .reduce((acc, annotatorKey) => {
-        if (Object.prototype.hasOwnProperty.call(ANNOTATORS_BY_KEY, annotatorKey)) {
-          acc.push(ANNOTATORS_BY_KEY[annotatorKey]);
-        }
-        else {
-          console.log(`Annotator "${annotatorKey}" doesn't exist or is not supported. Removing it from the pipeline.`);
-        }
-        return acc;
-      }, []);
+    return this._getAnnotatorsKeys().reduce((acc, annotatorKey) => {
+      if (
+        Object.prototype.hasOwnProperty.call(ANNOTATORS_BY_KEY, annotatorKey)
+      ) {
+        acc.push(ANNOTATORS_BY_KEY[annotatorKey]);
+      } else {
+        console.log(
+          `Annotator "${annotatorKey}" doesn't exist or is not supported. Removing it from the pipeline.`
+        );
+      }
+      return acc;
+    }, []);
   }
 
   /**
@@ -243,6 +244,5 @@ class Pipeline {
       }), {});
   }
 }
-
 
 export default Pipeline;
