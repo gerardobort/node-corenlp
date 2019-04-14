@@ -216,7 +216,15 @@ class Pipeline {
    */
   _getAnnotators() {
     return this._getAnnotatorsKeys()
-      .map(annotatorKey => ANNOTATORS_BY_KEY[annotatorKey]);
+      .reduce((acc, annotatorKey) => {
+        if (ANNOTATORS_BY_KEY.hasOwnProperty(annotatorKey)) {
+          acc.push(ANNOTATORS_BY_KEY[annotatorKey]);
+        }
+        else {
+          console.log(`Annotator "${annotatorKey}" doesn't exist or is not supported. Removing it from the pipeline.`);
+        }
+        return acc;
+      }, []);
   }
 
   /**
