@@ -217,7 +217,7 @@ class Pipeline {
   _getAnnotators() {
     return this._getAnnotatorsKeys()
       .reduce((acc, annotatorKey) => {
-        if (ANNOTATORS_BY_KEY.hasOwnProperty(annotatorKey)) {
+        if (Object.prototype.hasOwnProperty.call(ANNOTATORS_BY_KEY, annotatorKey)) {
           acc.push(ANNOTATORS_BY_KEY[annotatorKey]);
         }
         else {
