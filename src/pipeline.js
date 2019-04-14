@@ -220,9 +220,7 @@ class Pipeline {
       ) {
         acc.push(ANNOTATORS_BY_KEY[annotatorKey]);
       } else {
-        console.log(
-          `Annotator "${annotatorKey}" doesn't exist or is not supported. Removing it from the pipeline.`
-        );
+        console.log(`Annotator "${annotatorKey}" doesn't exist or is not supported. Removing it from the pipeline.`);
       }
       return acc;
     }, []);
