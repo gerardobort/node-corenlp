@@ -18,9 +18,9 @@
     "build": "gulp build",
     "build:browser": "gulp build:browser",
     "prepublish": "npm run lint && npm run test && npm run compile",
-    "lint": "eslint 'src/**/*.js' 'test/*.js'",
+    "lint": "eslint \"src/**/*.js\" \"test/*.js\"",
     "lint:fix": "npm run lint -- --fix",
-    "test": "nyc --reporter=html --reporter=text mocha test/setup.js --sort 'src/**/*.spec.js' --compilers js:babel-core/register --timeout 30000",
+    "test": "nyc --reporter=html --reporter=text mocha test/setup.js --sort \"src/**/*.spec.js\" --compilers js:babel-core/register --timeout 30000",
     "test:watch": "npm run test -- --watch",
     "doc": "DEBUG=gulp-jsdoc3 gulp doc"
   },
