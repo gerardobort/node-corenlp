@@ -22,7 +22,8 @@ class NaturalLogicAnnotator extends Annotator {
     super(
       'natlog',
       {
-        // dopolarity: True by default. If set to false, the annotator will only annotate quantifiers and quantifier scopes, and not annotate the polarity of each token
+        // dopolarity: True by default. If set to false, the annotator will only annotate
+        //            quantifiers and quantifier scopes, and not annotate the polarity of each token
         ...options,
       },
       [
