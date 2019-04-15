@@ -189,20 +189,22 @@ class Sentence extends Annotable {
   incommingDependencyLabel(index) {
   }
 
+  // TODO
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarities() {
-    if (!this.hasAnnotator(NaturalLogicAnnotator)) {
-      throw new Error('Asked for PolarityAnnotation on Sentence, but there are unmet annotator dependencies.');
-    }
-    return this._natLogPolarities;
+    // if (!this.hasAnnotator(NaturalLogicAnnotator)) {
+    //   throw new Error('Asked for PolarityAnnotation on Sentence, but there are unmet annotator dependencies.');
+    // }
+    // return this._natLogPolarities;
   }
 
   // TODO
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarity(index) {
-    if (!this.hasAnnotator(NaturalLogicAnnotator)) {
-      throw new Error('Asked for a PolarityAnnotation on Sentence, but there are unmet annotator dependencies.');
-    }
-    return this._natLogPolarities[index];
+    // if (!this.hasAnnotator(NaturalLogicAnnotator)) {
+    //   throw new Error('Asked for a PolarityAnnotation on Sentence, but there are unmet annotator dependencies.');
+    // }
+    // return this._natLogPolarities[index];
   }
 
   // TODO
