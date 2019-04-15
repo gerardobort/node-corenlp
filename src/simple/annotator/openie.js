@@ -1,9 +1,9 @@
-import Annotator from "../annotator";
-import NaturalLogicAnnotator from "./natlog";
-import DependencyParseAnnotator from "./depparse";
-import CorefAnnotator from "./coref";
+import Annotator from '../annotator';
+import NaturalLogicAnnotator from './natlog';
+import DependencyParseAnnotator from './depparse';
+import CorefAnnotator from './coref';
 
-//TODO: Requirements are missing here https://stanfordnlp.github.io/CoreNLP/annotators.html, verify.
+// TODO: Requirements are missing here https://stanfordnlp.github.io/CoreNLP/annotators.html, verify.
 
 /**
  * @class
@@ -20,7 +20,7 @@ class OpenIEAnnotator extends Annotator {
    */
   constructor(options = {}) {
     super(
-      "openie",
+      'openie',
       {
         // format	(Enum)	default  	One of {reverb, ollie, default, qa_srl}. Changes the output format of the program. Default will produce tab-separated columns for confidence, the subject, relation, and the object of a relation. ReVerb will output a TSV in the ReVerb format. Ollie will output relations in the default format returned by Ollie.
         // filelist	(filepath)	null  	A path to a file, which contains files to annotate. Each file should be on its own line. If this option is set, only these files are annotated and the files passed via bare arguments are ignored.
@@ -35,15 +35,15 @@ class OpenIEAnnotator extends Annotator {
         // splitter.nomodel	(boolean)	false  	Run without a clause splitting model – that is, split on every clause.
         // splitter.disable	(boolean)	false  	Don’t split clauses at all, and only extract relations centered around the root verb.
         // affinity_models	(filepath)
-        ...options
+        ...options,
       },
       options.resolve_coref
         ? [
-            new CorefAnnotator(),
-            new DependencyParseAnnotator(),
-            new NaturalLogicAnnotator()
-          ]
-        : [new DependencyParseAnnotator(), new NaturalLogicAnnotator()]
+          new CorefAnnotator(),
+          new DependencyParseAnnotator(),
+          new NaturalLogicAnnotator(),
+        ]
+        : [new DependencyParseAnnotator(), new NaturalLogicAnnotator()],
     );
   }
 }

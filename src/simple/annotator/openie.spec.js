@@ -9,7 +9,7 @@ describe('Annotator', () => {
     });
 
     it('should have a proper pipeline', () => {
-      expect(annotator.pipeline()).to.deep.equal(["tokenize", "ssplit", "pos", "lemma", "depparse", 'natlog', 'openie']);
+      expect(annotator.pipeline()).to.deep.equal(['tokenize', 'ssplit', 'pos', 'lemma', 'depparse', 'natlog', 'openie']);
     });
 
     it('should have the proper default options', () => {
