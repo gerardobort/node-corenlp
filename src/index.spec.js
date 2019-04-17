@@ -11,8 +11,6 @@ import Annotable from './simple/annotable';
 import Annotator from './simple/annotator';
 import TokenizerAnnotator from './simple/annotator/tokenize';
 import OpenIEAnnotator from './simple/annotator/openie';
-import NaturalLogicAnnotator from './simple/annotator/natlog';
-import WordsToSentenceAnnotator from './simple/annotator/ssplit';
 import POSTaggerAnnotator from './simple/annotator/pos';
 import MorphaAnnotator from './simple/annotator/lemma';
 import NERClassifierCombiner from './simple/annotator/ner';
@@ -21,6 +19,8 @@ import DependencyParseAnnotator from './simple/annotator/depparse';
 import RelationExtractorAnnotator from './simple/annotator/relation';
 import RegexNERAnnotator from './simple/annotator/regexner';
 import CorefAnnotator from './simple/annotator/coref';
+import NaturalLogicAnnotator from './simple/annotator/natlog';
+import WordsToSentenceAnnotator from './simple/annotator/ssplit';
 import Tree from './util/tree';
 
 describe('CoreNLP Library entry point', () => {

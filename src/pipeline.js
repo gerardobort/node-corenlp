@@ -2,8 +2,6 @@ import difference from 'lodash.difference';
 import Service from './service';
 import ConnectorServer from './connector/connector-server';
 import tokenize from './simple/annotator/tokenize';
-import natlog from './simple/annotator/natlog';
-import openie from './simple/annotator/openie';
 import ssplit from './simple/annotator/ssplit';
 import pos from './simple/annotator/pos';
 import lemma from './simple/annotator/lemma';
@@ -13,6 +11,8 @@ import depparse from './simple/annotator/depparse';
 import relation from './simple/annotator/relation';
 import regexner from './simple/annotator/regexner';
 import coref from './simple/annotator/coref';
+import natlog from './simple/annotator/natlog';
+import openie from './simple/annotator/openie';
 import Document from './simple/document';
 
 import {
