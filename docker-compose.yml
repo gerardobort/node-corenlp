@@ -1,0 +1,23 @@
+version: '3'
+services:
+  corenlp-english:
+    build:
+      context: .
+      args:
+        - LANGUAGE=english
+    ports:
+      - 9001:9000
+  corenlp-spanish:
+    build:
+      context: .
+      args:
+        - LANGUAGE=spanish
+    ports:
+      - 9002:9000
+  demo-spanish:
+    image: nginx:alpine
+    volumes:
+      - ./examples/browser/tree:/usr/share/nginx/html
+      - ./dist/index.browser.min.js:/usr/share/nginx/html/corenlp.min.js
+    ports:
+      - 8080:80

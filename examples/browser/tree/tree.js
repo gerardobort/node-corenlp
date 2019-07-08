@@ -1,4 +1,4 @@
-const connector = new CoreNLP.ConnectorServer({ dsn: 'http://corenlp.run' });
+const connector = new CoreNLP.ConnectorServer({ dsn: 'http://localhost:9002' });
 const props = new CoreNLP.Properties({ annotators: 'tokenize,ssplit,pos,lemma,ner,parse,depparse' });
 const inputSentence = document.getElementById('input-sentence');
 const info = document.getElementById('info');
