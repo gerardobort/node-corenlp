@@ -10,8 +10,8 @@
     <script>
         const connector = new CoreNLP.ConnectorServer({ dsn: 'http://localhost:9000' });
         const props = new CoreNLP.Properties({ annotators: 'tokenize,ssplit,pos,lemma,ner,parse' });
-        const pipeline = new CoreNLP.Pipeline(props, 'Spanish', connector);
-        const sent = new CoreNLP.default.simple.Sentence('A los pibes les gusta tomar Fernet con Coca.');
+        const pipeline = new CoreNLP.Pipeline(props, 'English', connector);
+        const sent = new CoreNLP.default.simple.Sentence('This is so great!');
         pipeline.annotate(sent)
           .then(function(sent) {
             console.log(sent);
