@@ -42,7 +42,8 @@
   "files": [
     "dist",
     "scripts",
-    "examples/runkit.js"
+    "examples/runkit.js",
+    "index.d.ts"
   ],
   "bugs": {
     "url": "https://github.com/gerardobort/node-corenlp/issues"
