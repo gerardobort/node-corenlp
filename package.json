@@ -7,7 +7,7 @@
     "child-process-promise": false,
     "load-json-file": false,
     "request": false,
-    "request-promise-native": "./src/polyfills/request-promise-native.js",
+    "request-promise-native": "./dist/polyfills/request-promise-native.js",
     "tmp-file": false
   },
   "scripts": {
