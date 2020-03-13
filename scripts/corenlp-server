@@ -6,7 +6,7 @@ if [ -f `dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/build.xml ]; th
   java -Xmx4g \
     -cp "`dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/*" \
     edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
-    -serverProperties StanfordCoreNLP-english.properties \
+    # -serverProperties StanfordCoreNLP-english.properties \ # doesn't work for english properties
     -port 9000 \
     -timeout 30000
 else
