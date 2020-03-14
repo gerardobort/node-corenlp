@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Start CoreNLP Server (spanish setup)
+# Start CoreNLP Server (english setup)
 
 if [ -f `dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/build.xml ]; then
   java -Xmx4g \
     -cp "`dirname $0`/../corenlp/stanford-corenlp-full-2017-06-09/*" \
     edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
-    -serverProperties StanfordCoreNLP-spanish.properties \
+    # -serverProperties StanfordCoreNLP-english.properties \ # doesn't work for english properties
     -port 9000 \
     -timeout 30000
 else
