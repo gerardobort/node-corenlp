@@ -11,6 +11,8 @@ import depparse from './simple/annotator/depparse';
 import relation from './simple/annotator/relation';
 import regexner from './simple/annotator/regexner';
 import coref from './simple/annotator/coref';
+import natlog from './simple/annotator/natlog';
+import openie from './simple/annotator/openie';
 import Document from './simple/document';
 
 import {
@@ -30,6 +32,8 @@ const ANNOTATORS_BY_KEY = {
   relation,
   regexner,
   coref,
+  natlog,
+  openie,
 };
 
 const LANGUAGE_TO_ISO2 = {

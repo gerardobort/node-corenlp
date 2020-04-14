@@ -2,6 +2,7 @@ import head from 'lodash.head';
 import Annotable from './annotable';
 import TokenizerAnnotator from './annotator/tokenize';
 import ParserAnnotator from './annotator/parse';
+import OpenIEAnnotator from './annotator/openie';
 import DependencyParseAnnotator from './annotator/depparse';
 import Token from './token';
 import Governor from './governor';
@@ -30,6 +31,8 @@ class Sentence extends Annotable {
     super(text);
     this._tokens = [];
     this._governors = [];
+    this._openie = [];
+    this._natLogPolarities = [];
   }
 
   /**
@@ -186,18 +189,45 @@ class Sentence extends Annotable {
   }
 
   // TODO
-  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarities() {
+    // if (!this.hasAnnotator(NaturalLogicAnnotator)) {
+    //   throw new Error(
+    // 'Asked for PolarityAnnotation on Sentence, but there are unmet annotator dependencies.'
+    // );
+    // }
+    // return this._natLogPolarities;
   }
 
   // TODO
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   natlogPolarity(index) {
+    // if (!this.hasAnnotator(NaturalLogicAnnotator)) {
+    //   throw new Error(
+    // 'Asked for a PolarityAnnotation on Sentence, but there are unmet annotator dependencies.'
+    // );
+    // }
+    // return this._natLogPolarities[index];
   }
 
-  // TODO
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * Extract open-domain relation triples.
+   * @requires {@link OpenIEAnnotator}
+   * @throws {Error} in case the require annotator was not applied to the sentence
+   * @returns {Array.<OpenIETriple>} OpenIE-Triples
+   */
   openie() {
+    // TODO: Create OpenIE-Triples:
+    // object:"Constantin Hütterer"
+    // objectSpan:Array(2) [3, 5]
+    // relation:"is"
+    // relationSpan:Array(2) [2, 3]
+    // subject:"My name"
+    // subjectSpan:Array(2) [0, 2]
+    if (!this.hasAnnotator(OpenIEAnnotator)) {
+      throw new Error('Asked for a OpenIE-Annotation on Sentence, but there are unmet annotator dependencies.');
+    }
+    return this._openie;
   }
 
   // TODO
@@ -286,6 +316,10 @@ class Sentence extends Annotable {
     if (sentence.parse) {
       this.addAnnotator(ParserAnnotator);
       this._parse = sentence.parse;
+    }
+    if (sentence.openie) {
+      this.addAnnotator(OpenIEAnnotator);
+      this._openie = sentence.openie;
     }
     if (sentence.basicDependencies) {
       this.addAnnotator(DependencyParseAnnotator);

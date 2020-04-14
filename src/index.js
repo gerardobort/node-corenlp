@@ -14,6 +14,8 @@ import DependencyParseAnnotator from './simple/annotator/depparse';
 import RelationExtractorAnnotator from './simple/annotator/relation';
 import RegexNERAnnotator from './simple/annotator/regexner';
 import CorefAnnotator from './simple/annotator/coref';
+import NaturalLogicAnnotator from './simple/annotator/natlog';
+import OpenIEAnnotator from './simple/annotator/openie';
 import Tree from './util/tree';
 import _Properties from './properties';
 import _Pipeline from './pipeline';
@@ -58,6 +60,8 @@ export default {
       RelationExtractorAnnotator,
       RegexNERAnnotator,
       CorefAnnotator,
+      NaturalLogicAnnotator,
+      OpenIEAnnotator,
     },
   },
   /**
